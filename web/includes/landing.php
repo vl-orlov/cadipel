@@ -80,6 +80,87 @@
 </div>
 <!-- END SERVICES SECTION -->
 
+<!-- WHAT WE DO SECTION -->
+<div class="what_we_do_section">
+    <div class="what_we_do_container">
+        <div class="what_we_do_content">
+            <div class="what_we_do_list">
+                <h2 class="what_we_do_title" data-i18n="what_we_do_title">Lo que hacemos</h2>
+                <div class="what_we_do_items">
+                    <div class="what_we_do_item">
+                        <div class="what_we_do_icon">
+                            <img src="img/icons/what_we_do_item1.png" alt="Design and development">
+                        </div>
+                        <p class="what_we_do_text" data-i18n="what_we_do_item1">Diseño y desarrollo de equipos electrónicos para distintas industrias.</p>
+                    </div>
+                    <div class="what_we_do_item">
+                        <div class="what_we_do_icon">
+                            <img src="img/icons/what_we_do_item2.png" alt="Software development">
+                        </div>
+                        <p class="what_we_do_text" data-i18n="what_we_do_item2">Desarrollo de software embebido e interfaces de usuario/servidor a medida.</p>
+                    </div>
+                    <div class="what_we_do_item">
+                        <div class="what_we_do_icon">
+                            <img src="img/icons/what_we_do_item3.png" alt="Product cycle">
+                        </div>
+                        <p class="what_we_do_text" data-i18n="what_we_do_item3">Acompañamiento en todo el ciclo de producto: especificación, diseño, validación y puesta en marcha.</p>
+                    </div>
+                    <div class="what_we_do_item">
+                        <div class="what_we_do_icon">
+                            <img src="img/icons/what_we_do_item4.png" alt="Manufacturing">
+                        </div>
+                        <p class="what_we_do_text" data-i18n="what_we_do_item4">Fabricación de equipos electrónicos en series pequeñas, medianas y grandes.</p>
+                    </div>
+                    <div class="what_we_do_item">
+                        <div class="what_we_do_icon">
+                            <img src="img/icons/what_we_do_item5.png" alt="Technical support">
+                        </div>
+                        <p class="what_we_do_text" data-i18n="what_we_do_item5">Soporte técnico y mantenimiento continuo para garantizar el rendimiento óptimo.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="how_we_do_list">
+                <h2 class="how_we_do_title" data-i18n="how_we_do_title">Cómo lo hacemos</h2>
+                <div class="how_we_do_items">
+                    <div class="how_we_do_item">
+                        <div class="how_we_do_icon">
+                            <img src="img/icons/what_we_do_item4.png" alt="Rapid prototyping">
+                        </div>
+                        <div class="how_we_do_item_content">
+                            <h3 class="how_we_do_item_title" data-i18n="how_we_do_item1_title">Prototipado rápido y Time To Market (TTM)</h3>
+                            <p class="how_we_do_item_text" data-i18n="how_we_do_item1_text">Fabricación propia de circuitos impresos para prototipos rápidos, reduciendo los tiempos de desarrollo y llegada al mercado.</p>
+                        </div>
+                    </div>
+                    <div class="how_we_do_item">
+                        <div class="how_we_do_icon">
+                            <img src="img/icons/how_we_do_item2_title.png" alt="DFM">
+                        </div>
+                        <div class="how_we_do_item_content">
+                            <h3 class="how_we_do_item_title" data-i18n="how_we_do_item2_title">Diseño orientado a fabricación (DFM)</h3>
+                            <p class="how_we_do_item_text" data-i18n="how_we_do_item2_text">Diseñamos pensando en serie: viabilidad productiva, optimización de costos y procesos, y calidad consistente.</p>
+                        </div>
+                    </div>
+                    <div class="how_we_do_item">
+                        <div class="how_we_do_icon">
+                            <img src="img/icons/how_we_do_item3_title.png" alt="Strategic alliance">
+                        </div>
+                        <div class="how_we_do_item_content">
+                            <h3 class="how_we_do_item_title" data-i18n="how_we_do_item3_title">Alianza estratégica con ASSISI SRL</h3>
+                            <p class="how_we_do_item_text" data-i18n="how_we_do_item3_text">Ecosistema productivo con montaje THT y SMT y experiencia en múltiples industrias para escalar de prototipo a serie.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="what_we_do_line">
+            <div class="what_we_do_line_progress" id="scroll_progress">
+                <div class="what_we_do_line_indicator"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END WHAT WE DO SECTION -->
+
 <!-- PROJECTS SECTION -->
 <div class="projects_section">
     <div class="projects_container">
@@ -187,6 +268,67 @@ function toggleNavMenu() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initLang('landing');
+  
+  // Вертикальный слайдер для секций "Lo que hacemos" и "Cómo lo hacemos"
+  const whatWeDoContainer = document.querySelector('.what_we_do_container');
+  const whatWeDoList = document.querySelector('.what_we_do_list');
+  const howWeDoList = document.querySelector('.how_we_do_list');
+  const scrollProgressBar = document.getElementById('scroll_progress');
+  
+  if (whatWeDoContainer && whatWeDoList && howWeDoList && scrollProgressBar) {
+    let scrollProgress = 0;
+    let isHovered = false;
+    
+    whatWeDoContainer.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+    
+    whatWeDoContainer.addEventListener('mouseleave', () => {
+      isHovered = false;
+      // Возвращаем к начальному состоянию при уходе мыши
+      scrollProgress = 0;
+      updateSections();
+    });
+    
+    whatWeDoContainer.addEventListener('wheel', (e) => {
+      if (!isHovered) return;
+      
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Увеличиваем прогресс при скролле вниз, уменьшаем при скролле вверх
+      if (e.deltaY > 0) {
+        scrollProgress = Math.min(1, scrollProgress + 0.1);
+      } else {
+        scrollProgress = Math.max(0, scrollProgress - 0.1);
+      }
+      
+      updateSections();
+    }, { passive: false });
+    
+    function updateSections() {
+      // Обновляем градиент линии прогресса
+      // scrollProgress = 0: первая половина закрашена (#00b3ff), вторая белая (#ffffff)
+      // scrollProgress = 1: первая половина белая (#ffffff), вторая закрашена (#00b3ff)
+      // Граница всегда на 50%, но цвета меняются местами
+      const firstHalfColor = scrollProgress <= 0.5 
+        ? (scrollProgress === 0 ? '#00b3ff' : '#ffffff') 
+        : '#ffffff';
+      const secondHalfColor = scrollProgress <= 0.5 
+        ? '#ffffff' 
+        : '#00b3ff';
+      
+      scrollProgressBar.style.background = `linear-gradient(to bottom, ${firstHalfColor} 0%, ${firstHalfColor} 50%, ${secondHalfColor} 50%, ${secondHalfColor} 100%)`;
+      
+      if (scrollProgress > 0.3) {
+        whatWeDoList.classList.add('scrolled');
+        howWeDoList.classList.add('visible');
+      } else {
+        whatWeDoList.classList.remove('scrolled');
+        howWeDoList.classList.remove('visible');
+      }
+    }
+  }
 });
 
 document.addEventListener('click', function (e) {
