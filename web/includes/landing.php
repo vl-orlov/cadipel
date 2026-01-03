@@ -135,7 +135,8 @@
             <a href="#" class="cta_button" data-i18n="cta_button">Agendar reunión</a>
         </div>
         <div class="cta_image_wrapper">
-            <div class="cta_image_shape"></div>
+            <div class="cta_image_background cta_image_background_left"></div>
+            <div class="cta_image_background cta_image_background_right"></div>
             <img src="img/team.png" class="cta_image">
         </div>
     </div>
