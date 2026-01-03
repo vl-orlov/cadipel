@@ -1,4 +1,5 @@
-<header class="header">
+<!-- HEADER -->
+<div class="header">
     <div class="header_container">
         <div class="logo">
             <img src="img/logo.png" alt="CADIPEL" class="logo_image">
@@ -26,9 +27,11 @@
             </div>
         </div>
     </div>
-</header>
+</div>
+<!-- END HEADER -->
 
-<section class="hero">
+<!-- HERO SECTION -->
+<div class="hero">
     <div class="hero_background">
         <img src="img/circuit-board.jpg" alt="Circuit board" class="hero_bg_image">
         <div class="hero_overlay"></div>
@@ -37,9 +40,48 @@
         <h1 class="hero_title" data-i18n-html="hero_title">Compañía internacional<br>desarrolladora y fabricante<br>de tecnologías en electrónica<br>y software</h1>
         <a href="#" class="hero_cta" data-i18n="hero_cta">Descubrir nuestras soluciones</a>
     </div>
-</section>
+</div>
+<!-- END HERO SECTION -->
 
-<section class="cta_section">
+<!-- SERVICES SECTION -->
+<div class="services_section">
+    <div class="services_container">
+        <h2 class="services_title" data-i18n="services_title">Acompañamos a empresas que buscan integrar tecnología electrónica y software sin frenar su operación ni sumar complejidad interna</h2>
+        <div class="services_grid">
+            <div class="service_card">
+                <div class="service_image_wrapper">
+                    <img src="img/service1.png" alt="De la idea al producto" class="service_image">
+                </div>
+                <div class="service_content">
+                    <h3 class="service_card_title" data-i18n="service1_title">De la idea al producto</h3>
+                    <p class="service_card_text" data-i18n="service1_text">Diseñamos y desarrollamos soluciones electrónicas y de software desde la etapa conceptual hasta la validación funcional</p>
+                </div>
+            </div>
+            <div class="service_card">
+                <div class="service_image_wrapper">
+                    <img src="img/service2.png" alt="Del prototipo a la producción" class="service_image">
+                </div>
+                <div class="service_content">
+                    <h3 class="service_card_title" data-i18n="service2_title">Del prototipo a la producción</h3>
+                    <p class="service_card_text" data-i18n="service2_text">Reducimos tiempos de desarrollo y llegada al mercado mediante prototipado rápido, DFM y fabricación en serie</p>
+                </div>
+            </div>
+            <div class="service_card">
+                <div class="service_image_wrapper">
+                    <img src="img/service3.png" alt="Tecnología para las industrias" class="service_image">
+                </div>
+                <div class="service_content">
+                    <h3 class="service_card_title" data-i18n="service3_title">Tecnología para las industrias</h3>
+                    <p class="service_card_text" data-i18n="service3_text">Integramos soluciones electrónicas y digitales en entornos reales: industria, agro, fintech, seguridad y más</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END SERVICES SECTION -->
+
+<!-- CTA SECTION -->
+<div class="cta_section">
     <div class="cta_container">
         <div class="cta_content">
             <div class="cta_logo">
@@ -54,9 +96,11 @@
             <img src="img/team.png" class="cta_image">
         </div>
     </div>
-</section>
+</div>
+<!-- END CTA SECTION -->
 
-<footer class="footer">
+<!-- FOOTER -->
+<div class="footer">
     <div class="footer_container">
         <div class="footer_left">
             <div class="footer_contact">
@@ -81,7 +125,8 @@
     <div class="footer_copyright">
         <p data-i18n="footer_copyright">© CADIPEL - Todos los derechos reservados.</p>
     </div>
-</footer>
+</div>
+<!-- END FOOTER -->
 
 <script>
 function toggleLangMenu() {
