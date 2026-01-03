@@ -5,5 +5,14 @@
   "nav_about": "About CADIPEL",
   "nav_contact": "Contact",
   "hero_title": "International company<br>developer and manufacturer<br>of technologies in electronics<br>and software",
-  "hero_cta": "Discover our solutions"
+  "hero_cta": "Discover our solutions",
+  "cta_title": "Schedule a meeting with our team",
+  "cta_text": "Tell us about your project and let's evaluate together how we can help you with custom electronic engineering and software",
+  "cta_button": "Schedule meeting",
+  "footer_address": "Av. Independencia 4281, CABA (CP 1226)",
+  "footer_phone": "+54 11 6264 4638",
+  "footer_email": "info@cadipel.com.ar",
+  "footer_title": "Your technological ally",
+  "footer_description": "We listen to your needs and design a custom solution to take your project to production.",
+  "footer_copyright": "© CADIPEL - All rights reserved."
 }
