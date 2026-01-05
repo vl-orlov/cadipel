@@ -161,6 +161,53 @@
 </div>
 <!-- END WHAT WE DO SECTION -->
 
+<!-- STATS SECTION -->
+<div class="stats_section">
+    <div class="stats_container">
+        <div class="stats_image_wrapper">
+            <div class="stats_content">
+                <div class="stats_item">
+                    <div class="stats_number_wrapper">
+                        <span class="stats_number_prefix">+</span>
+                        <span class="stats_number" data-target="20" data-suffix=" años">0</span>
+                    </div>
+                    <div class="stats_description">
+                        <span class="stats_icon">
+                            <img src="img/icons/star_icon.png" alt="Icon">
+                        </span>
+                        <span data-i18n="stats_description1">Componentes electrónicos montados por mes junto a ASSISI (en un solo turno)</span>
+                    </div>
+                </div>
+                <div class="stats_item">
+                    <div class="stats_number_wrapper">
+                        <span class="stats_number_prefix">+</span>
+                        <span class="stats_number" data-target="7" data-suffix=" sectores">0</span>
+                    </div>
+                    <div class="stats_description">
+                        <span class="stats_icon">
+                            <img src="img/icons/star_icon.png" alt="Icon">
+                        </span>
+                        <span data-i18n="stats_description2">Industrial, automotriz, aeroespacial, seguridad, salud, comunicaciones y Tecnologías de la Información</span>
+                    </div>
+                </div>
+                <div class="stats_item">
+                    <div class="stats_number_wrapper">
+                        <span class="stats_number_prefix">+</span>
+                        <span class="stats_number" data-target="4" data-suffix=" millones">0</span>
+                    </div>
+                    <div class="stats_description">
+                        <span class="stats_icon">
+                            <img src="img/icons/star_icon.png" alt="Icon">
+                        </span>
+                        <span data-i18n="stats_description3">Experiencia en ingeniería y montaje electrónico</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END STATS SECTION -->
+
 <!-- PROJECTS SECTION -->
 <div class="projects_section">
     <div class="projects_container">
@@ -328,6 +375,44 @@ document.addEventListener('DOMContentLoaded', () => {
         howWeDoList.classList.remove('visible');
       }
     }
+  }
+  
+  // Анимация счетчика для статистики
+  const statsSection = document.querySelector('.stats_section');
+  const statsNumbers = document.querySelectorAll('.stats_number');
+  
+  if (statsSection && statsNumbers.length > 0) {
+    let hasAnimated = false;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true;
+          
+          statsNumbers.forEach((numberEl) => {
+            const target = parseInt(numberEl.getAttribute('data-target'));
+            const duration = 2000; // 2 секунды
+            const steps = 60;
+            const increment = target / steps;
+            const stepDuration = duration / steps;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                current = target;
+                clearInterval(timer);
+              }
+              numberEl.textContent = Math.floor(current);
+            }, stepDuration);
+          });
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+    
+    observer.observe(statsSection);
   }
 });
 
