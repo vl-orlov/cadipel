@@ -80,6 +80,259 @@
 </div>
 <!-- END SERVICES SECTION -->
 
+<!-- BUSINESS UNITS CAROUSEL -->
+<div class="business_units_section">
+    <div class="business_units_container">
+        <h2 class="business_units_title" data-i18n="business_units_title">Organizamos nuestras soluciones en distintas unidades de negocio para adaptarnos a las necesidades de cada industria</h2>
+        <div class="business_units_carousel">
+            <div class="business_units_track">
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img1.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
+                            <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
+                        <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img2.png" alt="Fin-Tech" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
+                            <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
+                        <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img3.png" alt="Agro" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
+                            <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
+                        <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img4.png" alt="Automatización" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
+                            <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
+                        <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img5.png" alt="Consorcios" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
+                            <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
+                        <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img6.png" alt="Industria Automotriz" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
+                            <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
+                        <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img7.png" alt="Seguridad y Control" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
+                            <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
+                        <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img8.png" alt="Desinfección UV-C" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
+                            <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
+                        <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
+                    </div>
+                </div>
+                <!-- Дублируем все карточки для бесконечной прокрутки -->
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img1.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
+                            <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
+                        <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img2.png" alt="Fin-Tech" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
+                            <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
+                        <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img3.png" alt="Agro" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
+                            <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
+                        <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img4.png" alt="Automatización" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
+                            <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
+                        <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img5.png" alt="Consorcios" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
+                            <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
+                        <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img6.png" alt="Industria Automotriz" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
+                            <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
+                        <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img7.png" alt="Seguridad y Control" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
+                            <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
+                        <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
+                    </div>
+                </div>
+                <div class="business_unit_card">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/carousel_img8.png" alt="Desinfección UV-C" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
+                            <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
+                        <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END BUSINESS UNITS CAROUSEL -->
+
 <!-- WHAT WE DO SECTION -->
 <div class="what_we_do_section">
     <div class="what_we_do_container">
@@ -413,6 +666,244 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     observer.observe(statsSection);
+  }
+  
+  // Карусель с автоматической прокруткой и hover-управлением (замкнутый круг)
+  const carousel = document.querySelector('.business_units_carousel');
+  const track = document.querySelector('.business_units_track');
+  
+  if (carousel && track) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let currentTranslate = 0;
+    let cardWidth = 0;
+    let gap = 0;
+    let singleSetWidth = 0; // Ширина одного полного набора карточек
+    let autoScrollInterval = null;
+    let isHovered = false;
+    let hoverDirection = 0; // -1 влево, 0 нет, 1 вправо
+    let hoverScrollSpeed = 0;
+    let animationFrameId = null;
+    
+    // Вычисляем размеры
+    function calcDimensions() {
+      const firstCard = track.querySelector('.business_unit_card');
+      if (!firstCard) return;
+      const styles = getComputedStyle(track);
+      gap = parseFloat(styles.gap || 0);
+      cardWidth = firstCard.getBoundingClientRect().width;
+      
+      // Вычисляем ширину одного полного набора (8 карточек)
+      const totalCards = 8;
+      singleSetWidth = (cardWidth + gap) * totalCards;
+    }
+    
+    calcDimensions();
+    window.addEventListener('resize', calcDimensions);
+    
+    // Функция для обновления позиции
+    function setTransform() {
+      track.style.transform = `translateX(${currentTranslate}px)`;
+    }
+    
+    // Функция для проверки и сброса позиции (бесконечная прокрутка)
+    function checkInfiniteLoop() {
+      // Если прокрутили вправо на полный набор, сбрасываем позицию
+      if (currentTranslate <= -singleSetWidth) {
+        currentTranslate += singleSetWidth;
+        setTransform();
+      }
+      // Если прокрутили влево за начало, переходим к концу
+      else if (currentTranslate > 0) {
+        currentTranslate -= singleSetWidth;
+        setTransform();
+      }
+    }
+    
+    // Автоматическая прокрутка вправо
+    function startAutoScroll() {
+      if (autoScrollInterval) return;
+      
+      autoScrollInterval = setInterval(() => {
+        if (!isHovered && !isDown) {
+          currentTranslate -= 0.5; // Плавная прокрутка
+          setTransform();
+          checkInfiniteLoop();
+        }
+      }, 16); // ~60fps
+    }
+    
+    function stopAutoScroll() {
+      if (autoScrollInterval) {
+        clearInterval(autoScrollInterval);
+        autoScrollInterval = null;
+      }
+    }
+    
+    // Плавная прокрутка при наведении
+    function handleHoverScroll() {
+      if (isDown || !isHovered) {
+        animationFrameId = requestAnimationFrame(handleHoverScroll);
+        return;
+      }
+      
+      if (hoverDirection !== 0 && hoverScrollSpeed > 0) {
+        currentTranslate += hoverDirection * hoverScrollSpeed;
+        setTransform();
+        checkInfiniteLoop();
+      }
+      
+      animationFrameId = requestAnimationFrame(handleHoverScroll);
+    }
+    
+    // Запускаем автоматическую прокрутку
+    startAutoScroll();
+    handleHoverScroll();
+    
+    // Mouse events
+    carousel.addEventListener('mouseenter', () => {
+      isHovered = true;
+      stopAutoScroll();
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      isHovered = false;
+      hoverDirection = 0;
+      hoverScrollSpeed = 0;
+      
+      if (isDown) {
+        isDown = false;
+        track.classList.remove('dragging');
+        carousel.style.cursor = 'grab';
+      }
+      
+      startAutoScroll();
+    });
+    
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isHovered) return;
+      
+      const rect = carousel.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const carouselWidth = rect.width;
+      const centerX = carouselWidth / 2;
+      const edgeZone = carouselWidth * 0.15; // 15% от края для зоны прокрутки
+      
+      // Если drag - прокручиваем в сторону движения мыши
+      if (isDown) {
+        e.preventDefault();
+        const x = e.pageX - carousel.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        currentTranslate = scrollLeft - walk;
+        setTransform();
+        checkInfiniteLoop();
+        return;
+      }
+      
+      // Прокрутка при наведении на края
+      if (mouseX < edgeZone) {
+        // Левая зона - прокрутка влево
+        hoverDirection = -1;
+        const distanceFromEdge = mouseX / edgeZone; // 0 до 1
+        hoverScrollSpeed = (1 - distanceFromEdge) * 3; // Скорость от 0 до 3
+      } else if (mouseX > carouselWidth - edgeZone) {
+        // Правая зона - прокрутка вправо
+        hoverDirection = 1;
+        const distanceFromEdge = (carouselWidth - mouseX) / edgeZone; // 0 до 1
+        hoverScrollSpeed = (1 - distanceFromEdge) * 3; // Скорость от 0 до 3
+      } else {
+        // Центральная зона - определяем направление по позиции относительно центра
+        const distanceFromCenter = mouseX - centerX;
+        const normalizedDistance = distanceFromCenter / (carouselWidth / 2 - edgeZone); // -1 до 1
+        
+        if (Math.abs(normalizedDistance) > 0.1) {
+          hoverDirection = normalizedDistance > 0 ? 1 : -1;
+          hoverScrollSpeed = Math.abs(normalizedDistance) * 1.5; // Скорость от 0 до 1.5
+        } else {
+          hoverDirection = 0;
+          hoverScrollSpeed = 0;
+        }
+      }
+    });
+    
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = currentTranslate;
+      track.classList.add('dragging');
+      track.classList.remove('smooth');
+      carousel.style.cursor = 'grabbing';
+      hoverDirection = 0;
+      hoverScrollSpeed = 0;
+      e.preventDefault();
+    });
+    
+    carousel.addEventListener('mouseup', () => {
+      if (isDown) {
+        isDown = false;
+        track.classList.remove('dragging');
+        track.classList.add('smooth');
+        carousel.style.cursor = 'grab';
+        checkInfiniteLoop();
+      }
+    });
+    
+    // Touch events для мобильных
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+    let isTouching = false;
+    
+    carousel.addEventListener('touchstart', (e) => {
+      isTouching = true;
+      touchStartX = e.touches[0].pageX - carousel.offsetLeft;
+      touchScrollLeft = currentTranslate;
+      track.classList.add('dragging');
+      track.classList.remove('smooth');
+      e.preventDefault();
+    }, { passive: false });
+    
+    carousel.addEventListener('touchmove', (e) => {
+      if (!isTouching) return;
+      const x = e.touches[0].pageX - carousel.offsetLeft;
+      const walk = (x - touchStartX) * 1.2;
+      currentTranslate = touchScrollLeft - walk;
+      setTransform();
+      checkInfiniteLoop();
+      e.preventDefault();
+    }, { passive: false });
+    
+    carousel.addEventListener('touchend', () => {
+      if (isTouching) {
+        isTouching = false;
+        touchStartX = 0;
+        track.classList.remove('dragging');
+        track.classList.add('smooth');
+        checkInfiniteLoop();
+      }
+    });
+    
+    // Предотвращаем клики на карточках во время drag
+    let hasMoved = false;
+    carousel.addEventListener('mousedown', () => {
+      hasMoved = false;
+    });
+    
+    carousel.addEventListener('mousemove', () => {
+      if (isDown) {
+        hasMoved = true;
+      }
+    });
+    
+    const cards = carousel.querySelectorAll('.business_unit_card');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    });
   }
 });
 
