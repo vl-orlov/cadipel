@@ -7,6 +7,9 @@
     <link rel="icon" type="image/png" href="img/icons/logo_icon.png">
     <link rel="shortcut icon" type="image/png" href="img/icons/logo_icon.png">
     <link rel="apple-touch-icon" href="img/icons/logo_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/i18n.js"></script>
 </head>

@@ -4,14 +4,14 @@
         <div class="logo">
             <img src="img/logo.png" alt="CADIPEL" class="logo_image">
         </div>
-        <nav class="nav" id="nav_menu">
-            <a href="#" data-i18n="nav_business_units">Unidades de negocio</a>
-            <a href="#" data-i18n="nav_companies">Compañías</a>
-            <a href="#" data-i18n="nav_success_cases">Casos de éxito</a>
-            <a href="#" data-i18n="nav_about">Sobre CADIPEL</a>
-            <a href="#" data-i18n="nav_contact">Contacto</a>
-        </nav>
         <div class="header_right">
+            <nav class="nav" id="nav_menu">
+                <a href="#" data-i18n="nav_business_units">Unidades de negocio</a>
+                <a href="#" data-i18n="nav_companies">Compañías</a>
+                <a href="#" data-i18n="nav_success_cases">Casos de éxito</a>
+                <a href="#" data-i18n="nav_about">Sobre CADIPEL</a>
+                <a href="#" data-i18n="nav_contact">Contacto</a>
+            </nav>
             <button class="burger_menu" onclick="toggleNavMenu()" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
