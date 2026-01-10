@@ -88,7 +88,7 @@
             <div class="business_units_track">
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img1.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
+                        <img src="img/carousel/ingenieria_desarrollo.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img2.png" alt="Fin-Tech" class="business_unit_image">
+                        <img src="img/carousel/fintech.png" alt="Fin-Tech" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
@@ -118,7 +118,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img3.png" alt="Agro" class="business_unit_image">
+                        <img src="img/carousel/agro.png" alt="Agro" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img4.png" alt="Automatización" class="business_unit_image">
+                        <img src="img/carousel/automatizacion.png" alt="Automatización" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
@@ -148,7 +148,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img5.png" alt="Consorcios" class="business_unit_image">
+                        <img src="img/carousel/consorcios.png" alt="Consorcios" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
@@ -163,7 +163,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img6.png" alt="Industria Automotriz" class="business_unit_image">
+                        <img src="img/carousel/industria_automotriz.png" alt="Industria Automotriz" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
@@ -178,7 +178,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img7.png" alt="Seguridad y Control" class="business_unit_image">
+                        <img src="img/carousel/seguridad_control.png" alt="Seguridad y Control" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
@@ -193,7 +193,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img8.png" alt="Desinfección UV-C" class="business_unit_image">
+                        <img src="img/carousel/desinfeccion_uvc.png" alt="Desinfección UV-C" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
@@ -209,7 +209,7 @@
                 <!-- Дублируем все карточки для бесконечной прокрутки -->
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img1.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
+                        <img src="img/carousel/ingenieria_desarrollo.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
@@ -224,7 +224,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img2.png" alt="Fin-Tech" class="business_unit_image">
+                        <img src="img/carousel/fintech.png" alt="Fin-Tech" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
@@ -239,7 +239,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img3.png" alt="Agro" class="business_unit_image">
+                        <img src="img/carousel/agro.png" alt="Agro" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
@@ -254,7 +254,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img4.png" alt="Automatización" class="business_unit_image">
+                        <img src="img/carousel/automatizacion.png" alt="Automatización" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
@@ -269,7 +269,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img5.png" alt="Consorcios" class="business_unit_image">
+                        <img src="img/carousel/consorcios.png" alt="Consorcios" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
@@ -284,7 +284,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img6.png" alt="Industria Automotriz" class="business_unit_image">
+                        <img src="img/carousel/industria_automotriz.png" alt="Industria Automotriz" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
@@ -299,7 +299,7 @@
                 </div>
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img7.png" alt="Seguridad y Control" class="business_unit_image">
+                        <img src="img/carousel/seguridad_control.png" alt="Seguridad y Control" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
@@ -313,8 +313,8 @@
                     </div>
                 </div>
                 <div class="business_unit_card">
-                    <div class="business_unit_image_wrapper">
-                        <img src="img/carousel/carousel_img8.png" alt="Desinfección UV-C" class="business_unit_image">
+                    <div class="business_unit_image_wrapper">   
+                        <img src="img/carousel/desinfeccion_uvc.png" alt="Desinfección UV-C" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
@@ -401,7 +401,6 @@
                             <h3 class="how_we_do_item_title" data-i18n="how_we_do_item3_title">Alianza estratégica con ASSISI SRL</h3>
                             <p class="how_we_do_item_text" data-i18n="how_we_do_item3_text">Ecosistema productivo con montaje THT y SMT y experiencia en múltiples industrias para escalar de prototipo a serie.</p>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -668,7 +667,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(statsSection);
   }
   
-  // Карусель с автоматической прокруткой и hover-управлением (замкнутый круг)
+  // Карусель с автоматической прокруткой и hover-управлением (бесконечная замкнутая)
   const carousel = document.querySelector('.business_units_carousel');
   const track = document.querySelector('.business_units_track');
   
@@ -679,16 +678,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTranslate = 0;
     let cardWidth = 0;
     let gap = 0;
-    let singleSetWidth = 0; // Ширина одного полного набора карточек
+    let singleSetWidth = 0; // Ширина одного полного набора карточек (8 карточек)
     let autoScrollInterval = null;
     let isHovered = false;
+    let isCardHovered = false; // Флаг наведения на карточку
     let hoverDirection = 0; // -1 влево, 0 нет, 1 вправо
     let hoverScrollSpeed = 0;
     let animationFrameId = null;
+    let autoScrollSpeed = 1.0; // Автоматическая прокрутка
     
-    // Вычисляем размеры
+    // Вычисляем размеры и клонируем карточки для бесконечной прокрутки
     function calcDimensions() {
-      const firstCard = track.querySelector('.business_unit_card');
+      const firstCard = track.querySelector('.business_unit_card:not(.clone)');
       if (!firstCard) return;
       const styles = getComputedStyle(track);
       gap = parseFloat(styles.gap || 0);
@@ -697,6 +698,32 @@ document.addEventListener('DOMContentLoaded', () => {
       // Вычисляем ширину одного полного набора (8 карточек)
       const totalCards = 8;
       singleSetWidth = (cardWidth + gap) * totalCards;
+      
+      // Удаляем существующие клоны
+      track.querySelectorAll('.business_unit_card.clone').forEach(clone => clone.remove());
+      
+      // Получаем оригинальные карточки (без клонов)
+      const originalCards = Array.from(track.querySelectorAll('.business_unit_card:not(.clone)'));
+      
+      // Клонируем карточки для бесконечной прокрутки
+      // Добавляем клоны в конец (для прокрутки влево)
+      const numClones = Math.ceil(carousel.offsetWidth / (cardWidth + gap)) + 2;
+      for (let i = 0; i < numClones; i++) {
+        const clone = originalCards[i % originalCards.length].cloneNode(true);
+        clone.classList.add('clone');
+        track.appendChild(clone);
+      }
+      
+      // Добавляем клоны в начало (для прокрутки вправо)
+      for (let i = 0; i < numClones; i++) {
+        const clone = originalCards[(originalCards.length - 1 - i) % originalCards.length].cloneNode(true);
+        clone.classList.add('clone');
+        track.insertBefore(clone, track.firstChild);
+      }
+      
+      // Устанавливаем начальную позицию (начинаем с оригинальных карточек)
+      currentTranslate = -singleSetWidth;
+      setTransform();
     }
     
     calcDimensions();
@@ -707,27 +734,40 @@ document.addEventListener('DOMContentLoaded', () => {
       track.style.transform = `translateX(${currentTranslate}px)`;
     }
     
-    // Функция для проверки и сброса позиции (бесконечная прокрутка)
+    // Функция для бесшовной бесконечной прокрутки
     function checkInfiniteLoop() {
-      // Если прокрутили вправо на полный набор, сбрасываем позицию
-      if (currentTranslate <= -singleSetWidth) {
+      // Если прокрутили слишком далеко влево (за оригинальные карточки), перескакиваем на клоны
+      if (currentTranslate <= -singleSetWidth * 2) {
         currentTranslate += singleSetWidth;
+        // Отключаем transition для мгновенного перехода
+        track.style.transition = 'none';
         setTransform();
+        // Принудительно перерисовываем
+        track.offsetWidth; // trigger reflow
+        // Включаем transition обратно
+        track.style.transition = '';
       }
-      // Если прокрутили влево за начало, переходим к концу
+      // Если прокрутили слишком далеко вправо (за оригинальные карточки), перескакиваем на клоны
       else if (currentTranslate > 0) {
         currentTranslate -= singleSetWidth;
+        // Отключаем transition для мгновенного перехода
+        track.style.transition = 'none';
         setTransform();
+        // Принудительно перерисовываем
+        track.offsetWidth; // trigger reflow
+        // Включаем transition обратно
+        track.style.transition = '';
       }
     }
     
-    // Автоматическая прокрутка вправо
+    // Автоматическая прокрутка влево
     function startAutoScroll() {
       if (autoScrollInterval) return;
       
       autoScrollInterval = setInterval(() => {
+        // Останавливаем прокрутку если наведена мышь на карусель или идет drag
         if (!isHovered && !isDown) {
-          currentTranslate -= 0.5; // Плавная прокрутка
+          currentTranslate -= autoScrollSpeed; // Медленная прокрутка влево
           setTransform();
           checkInfiniteLoop();
         }
@@ -741,14 +781,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    // Плавная прокрутка при наведении
+    // Плавная прокрутка при наведении на края карточек
     function handleHoverScroll() {
-      if (isDown || !isHovered) {
+      if (isDown) {
         animationFrameId = requestAnimationFrame(handleHoverScroll);
         return;
       }
       
-      if (hoverDirection !== 0 && hoverScrollSpeed > 0) {
+      if (hoverDirection !== 0 && hoverScrollSpeed > 0 && isHovered) {
         currentTranslate += hoverDirection * hoverScrollSpeed;
         setTransform();
         checkInfiniteLoop();
@@ -759,12 +799,32 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Запускаем автоматическую прокрутку
     startAutoScroll();
+    // Запускаем обработку hover-прокрутки
     handleHoverScroll();
     
-    // Mouse events
+    // Получаем все карточки
+    const cards = track.querySelectorAll('.business_unit_card');
+    
+    // Функция для определения крайних видимых карточек
+    function getVisibleCards() {
+      const carouselRect = carousel.getBoundingClientRect();
+      const visibleCards = [];
+      
+      cards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        // Проверяем, видна ли карточка в карусели
+        if (cardRect.right > carouselRect.left && cardRect.left < carouselRect.right) {
+          visibleCards.push({ card, index, left: cardRect.left, right: cardRect.right });
+        }
+      });
+      
+      return visibleCards;
+    }
+    
+    // Mouse events для карусели
     carousel.addEventListener('mouseenter', () => {
       isHovered = true;
-      stopAutoScroll();
+      stopAutoScroll(); // Останавливаем автоматическую прокрутку при наведении
     });
     
     carousel.addEventListener('mouseleave', () => {
@@ -778,49 +838,103 @@ document.addEventListener('DOMContentLoaded', () => {
         carousel.style.cursor = 'grab';
       }
       
+      // Запускаем автоматическую прокрутку обратно при уходе мыши
       startAutoScroll();
     });
     
     carousel.addEventListener('mousemove', (e) => {
       if (!isHovered) return;
       
-      const rect = carousel.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const carouselWidth = rect.width;
-      const centerX = carouselWidth / 2;
-      const edgeZone = carouselWidth * 0.15; // 15% от края для зоны прокрутки
-      
-      // Если drag - прокручиваем в сторону движения мыши
+      // Если drag - прокручиваем в сторону движения мыши (ИСПРАВЛЕНО направление)
       if (isDown) {
         e.preventDefault();
         const x = e.pageX - carousel.offsetLeft;
         const walk = (x - startX) * 1.2;
-        currentTranslate = scrollLeft - walk;
+        // ИСПРАВЛЕНО: при листании влево карусель идет влево
+        currentTranslate = scrollLeft + walk;
         setTransform();
         checkInfiniteLoop();
         return;
       }
       
-      // Прокрутка при наведении на края
-      if (mouseX < edgeZone) {
-        // Левая зона - прокрутка влево
-        hoverDirection = -1;
-        const distanceFromEdge = mouseX / edgeZone; // 0 до 1
-        hoverScrollSpeed = (1 - distanceFromEdge) * 3; // Скорость от 0 до 3
-      } else if (mouseX > carouselWidth - edgeZone) {
-        // Правая зона - прокрутка вправо
+      // Определяем позицию мыши относительно карусели
+      const carouselRect = carousel.getBoundingClientRect();
+      const mouseX = e.clientX;
+      const carouselLeft = carouselRect.left;
+      const carouselRight = carouselRect.right;
+      const carouselWidth = carouselRect.width;
+      const edgeZone = carouselWidth * 0.15; // 15% от края карусели для зоны прокрутки
+      const relativeX = mouseX - carouselLeft; // Позиция мыши относительно левого края карусели
+      
+      const visibleCards = getVisibleCards();
+      
+      if (visibleCards.length === 0) {
+        hoverDirection = 0;
+        hoverScrollSpeed = 0;
+        return;
+      }
+      
+      // Сортируем видимые карточки по позиции слева направо
+      const sortedVisibleCards = [...visibleCards].sort((a, b) => a.left - b.left);
+      const leftmostCard = sortedVisibleCards[0];
+      const rightmostCard = sortedVisibleCards[sortedVisibleCards.length - 1];
+      
+      // Проверяем, наведена ли мышь на края карусели (включая области между карточками)
+      if (relativeX < edgeZone) {
+        // Левая зона карусели - прокрутка ВПРАВО
         hoverDirection = 1;
-        const distanceFromEdge = (carouselWidth - mouseX) / edgeZone; // 0 до 1
-        hoverScrollSpeed = (1 - distanceFromEdge) * 3; // Скорость от 0 до 3
+        const distanceFromEdge = relativeX / edgeZone; // 0 до 1
+        hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
+      } else if (relativeX > carouselWidth - edgeZone) {
+        // Правая зона карусели - прокрутка ВЛЕВО
+        hoverDirection = -1;
+        const distanceFromEdge = (carouselWidth - relativeX) / edgeZone; // 0 до 1
+        hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
       } else {
-        // Центральная зона - определяем направление по позиции относительно центра
-        const distanceFromCenter = mouseX - centerX;
-        const normalizedDistance = distanceFromCenter / (carouselWidth / 2 - edgeZone); // -1 до 1
+        // Центральная зона - проверяем наведение на карточки
+        let hoveredCard = null;
+        for (const item of sortedVisibleCards) {
+          if (mouseX >= item.left && mouseX <= item.right) {
+            hoveredCard = item;
+            break;
+          }
+        }
         
-        if (Math.abs(normalizedDistance) > 0.1) {
-          hoverDirection = normalizedDistance > 0 ? 1 : -1;
-          hoverScrollSpeed = Math.abs(normalizedDistance) * 1.5; // Скорость от 0 до 1.5
+        if (hoveredCard) {
+          const cardWidth = hoveredCard.right - hoveredCard.left;
+          const cardLeft = hoveredCard.left;
+          const relativeCardX = mouseX - cardLeft; // Позиция мыши относительно левого края карточки
+          const cardEdgeZone = cardWidth * 0.2; // 20% от края карточки для зоны прокрутки
+          
+          const isLeftmost = hoveredCard.card === leftmostCard.card;
+          const isRightmost = hoveredCard.card === rightmostCard.card;
+          
+          // Проверяем, наведена ли мышь на края карточки
+          if (relativeCardX < cardEdgeZone) {
+            // Левая часть карточки - прокрутка ВПРАВО
+            hoverDirection = 1;
+            const distanceFromEdge = relativeCardX / cardEdgeZone; // 0 до 1
+            hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
+          } else if (relativeCardX > cardWidth - cardEdgeZone) {
+            // Правая часть карточки - прокрутка ВЛЕВО
+            hoverDirection = -1;
+            const distanceFromEdge = (cardWidth - relativeCardX) / cardEdgeZone; // 0 до 1
+            hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
+          } else if (isLeftmost) {
+            // Левая крайняя карточка в центральной части - прокрутка ВПРАВО
+            hoverDirection = 1;
+            hoverScrollSpeed = 1.5;
+          } else if (isRightmost) {
+            // Правая крайняя карточка в центральной части - прокрутка ВЛЕВО
+            hoverDirection = -1;
+            hoverScrollSpeed = 1.5;
+          } else {
+            // Центральная часть центральных карточек - нет прокрутки
+            hoverDirection = 0;
+            hoverScrollSpeed = 0;
+          }
         } else {
+          // Мышь между карточками в центральной зоне - нет прокрутки
           hoverDirection = 0;
           hoverScrollSpeed = 0;
         }
@@ -836,6 +950,7 @@ document.addEventListener('DOMContentLoaded', () => {
       carousel.style.cursor = 'grabbing';
       hoverDirection = 0;
       hoverScrollSpeed = 0;
+      stopAutoScroll(); // Останавливаем автоматическую прокрутку при drag
       e.preventDefault();
     });
     
@@ -846,8 +961,108 @@ document.addEventListener('DOMContentLoaded', () => {
         track.classList.add('smooth');
         carousel.style.cursor = 'grab';
         checkInfiniteLoop();
+        // Запускаем автоматическую прокрутку обратно, если мышь не на карусели
+        if (!isHovered) {
+          startAutoScroll();
+        }
       }
     });
+    
+    // Обработчики для карточек - не останавливаем прокрутку при наведении на крайние карточки
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    let touchStartCardX = 0;
+    let touchStartCardY = 0;
+    let hasMovedDuringTouch = false;
+    
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        // Не останавливаем прокрутку, если это крайняя карточка
+        // Логика прокрутки обрабатывается в mousemove карусели
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        // При уходе с карточки останавливаем прокрутку
+        // Проверяем, не наведена ли мышь на другую крайнюю карточку
+        // Это будет обработано в mousemove карусели
+        hoverDirection = 0;
+        hoverScrollSpeed = 0;
+      });
+      
+      // Предотвращаем клики на карточках во время drag
+      let hasMoved = false;
+      card.addEventListener('mousedown', () => {
+        hasMoved = false;
+      });
+      
+      card.addEventListener('mousemove', () => {
+        if (isDown) {
+          hasMoved = true;
+        }
+      });
+      
+      card.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+      
+      // Обработка touch событий для мобильных устройств
+      if (isMobile) {
+        let cardTouchStartX = 0;
+        let cardTouchStartY = 0;
+        let cardHasMoved = false;
+        
+        card.addEventListener('touchstart', (e) => {
+          cardTouchStartX = e.touches[0].clientX;
+          cardTouchStartY = e.touches[0].clientY;
+          cardHasMoved = false;
+          // Останавливаем распространение, чтобы карусель не обрабатывала это событие
+          e.stopPropagation();
+        }, { passive: true });
+        
+        card.addEventListener('touchmove', (e) => {
+          if (e.touches.length > 0) {
+            const deltaX = Math.abs(e.touches[0].clientX - cardTouchStartX);
+            const deltaY = Math.abs(e.touches[0].clientY - cardTouchStartY);
+            // Если движение больше 15px, считаем это drag
+            if (deltaX > 15 || deltaY > 15) {
+              cardHasMoved = true;
+            }
+          }
+          // Останавливаем распространение, чтобы карусель не обрабатывала это событие
+          e.stopPropagation();
+        }, { passive: true });
+        
+        card.addEventListener('touchend', (e) => {
+          // Если не было движения (это клик), активируем карточку
+          if (!cardHasMoved) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Убираем активный класс со всех карточек
+            cards.forEach(c => {
+              if (c !== card) {
+                c.classList.remove('active');
+              }
+            });
+            
+            // Переключаем активный класс на текущей карточке
+            card.classList.toggle('active');
+          }
+          cardHasMoved = false;
+        }, { passive: false });
+      }
+    });
+    
+    // Закрытие активной карточки при клике вне карусели (для мобильных)
+    if (isMobile) {
+      document.addEventListener('click', (e) => {
+        if (!carousel.contains(e.target)) {
+          cards.forEach(c => c.classList.remove('active'));
+        }
+      });
+    }
     
     // Touch events для мобильных
     let touchStartX = 0;
@@ -855,19 +1070,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let isTouching = false;
     
     carousel.addEventListener('touchstart', (e) => {
+      // Проверяем, не начался ли touch на карточке
+      const card = e.target.closest('.business_unit_card');
+      if (card) {
+        // Не обрабатываем drag карусели, если touch начался на карточке
+        // Но не вызываем preventDefault, чтобы click событие могло сработать
+        return;
+      }
+      
       isTouching = true;
       touchStartX = e.touches[0].pageX - carousel.offsetLeft;
       touchScrollLeft = currentTranslate;
       track.classList.add('dragging');
       track.classList.remove('smooth');
+      stopAutoScroll(); // Останавливаем автоматическую прокрутку при touch
       e.preventDefault();
     }, { passive: false });
     
     carousel.addEventListener('touchmove', (e) => {
       if (!isTouching) return;
+      // Проверяем, не начался ли touch на карточке
+      if (e.target.closest('.business_unit_card')) {
+        return; // Не обрабатываем, если touch на карточке
+      }
+      
       const x = e.touches[0].pageX - carousel.offsetLeft;
       const walk = (x - touchStartX) * 1.2;
-      currentTranslate = touchScrollLeft - walk;
+      // ИСПРАВЛЕНО: при листании влево карусель идет влево
+      currentTranslate = touchScrollLeft + walk;
       setTransform();
       checkInfiniteLoop();
       e.preventDefault();
@@ -880,29 +1110,11 @@ document.addEventListener('DOMContentLoaded', () => {
         track.classList.remove('dragging');
         track.classList.add('smooth');
         checkInfiniteLoop();
-      }
-    });
-    
-    // Предотвращаем клики на карточках во время drag
-    let hasMoved = false;
-    carousel.addEventListener('mousedown', () => {
-      hasMoved = false;
-    });
-    
-    carousel.addEventListener('mousemove', () => {
-      if (isDown) {
-        hasMoved = true;
-      }
-    });
-    
-    const cards = carousel.querySelectorAll('.business_unit_card');
-    cards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        if (hasMoved) {
-          e.preventDefault();
-          e.stopPropagation();
+        // Запускаем автоматическую прокрутку обратно
+        if (!isHovered) {
+          startAutoScroll();
         }
-      });
+      }
     });
   }
 });
