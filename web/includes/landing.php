@@ -86,6 +86,128 @@
         <h2 class="business_units_title" data-i18n="business_units_title">Organizamos nuestras soluciones en distintas unidades de negocio para adaptarnos a las necesidades de cada industria</h2>
         <div class="business_units_carousel">
             <div class="business_units_track">
+                <!-- Клоны в начале для прокрутки вправо -->
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/desinfeccion_uvc.png" alt="Desinfección UV-C" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
+                            <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit8_title">Sistemas especiales de desinfección - UV-C</h3>
+                        <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/seguridad_control.png" alt="Seguridad y Control" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
+                            <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit7_title">Seguridad y Control de Personal</h3>
+                        <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/industria_automotriz.png" alt="Industria Automotriz" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
+                            <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit6_title">Industria Automotriz</h3>
+                        <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/consorcios.png" alt="Consorcios" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
+                            <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
+                        <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/automatizacion.png" alt="Automatización" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
+                            <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
+                        <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/agro.png" alt="Agro" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
+                            <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit3_title">Soluciones específicas para el Agro</h3>
+                        <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/fintech.png" alt="Fin-Tech" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
+                            <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
+                        <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
+                    </div>
+                </div>
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
+                        <img src="img/carousel/ingenieria_desarrollo.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
+                        <div class="business_unit_overlay"></div>
+                        <div class="business_unit_content business_unit_content_overlay">
+                            <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
+                            <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
+                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                        </div>
+                    </div>
+                    <div class="business_unit_content business_unit_content_default">
+                        <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
+                        <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
+                    </div>
+                </div>
+                <!-- Оригинальные карточки -->
                 <div class="business_unit_card">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/ingenieria_desarrollo.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
@@ -206,8 +328,8 @@
                         <p class="business_unit_text" data-i18n="business_unit8_text">Dispositivos electrónicos para sanitización de aire, superficies y líquidos sin uso de químicos</p>
                     </div>
                 </div>
-                <!-- Дублируем все карточки для бесконечной прокрутки -->
-                <div class="business_unit_card">
+                <!-- Клоны для бесконечной прокрутки -->
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/ingenieria_desarrollo.png" alt="Ingeniería y Desarrollo" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -222,7 +344,7 @@
                         <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/fintech.png" alt="Fin-Tech" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -237,7 +359,7 @@
                         <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/agro.png" alt="Agro" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -252,7 +374,7 @@
                         <p class="business_unit_text" data-i18n="business_unit3_text">Tecnología aplicada al campo para monitoreo, automatización y control de procesos productivos en entornos rurales</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/automatizacion.png" alt="Automatización" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -267,7 +389,7 @@
                         <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/consorcios.png" alt="Consorcios" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -282,7 +404,7 @@
                         <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/industria_automotriz.png" alt="Industria Automotriz" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -297,7 +419,7 @@
                         <p class="business_unit_text" data-i18n="business_unit6_text">Sistemas electrónicos inteligentes para modernización estética y funcional de vehículos</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
+                <div class="business_unit_card clone">
                     <div class="business_unit_image_wrapper">
                         <img src="img/carousel/seguridad_control.png" alt="Seguridad y Control" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
@@ -312,8 +434,8 @@
                         <p class="business_unit_text" data-i18n="business_unit7_text">Gestión electrónica de accesos, presencia y trazabilidad de personas en entornos corporativos e industriales</p>
                     </div>
                 </div>
-                <div class="business_unit_card">
-                    <div class="business_unit_image_wrapper">   
+                <div class="business_unit_card clone">
+                    <div class="business_unit_image_wrapper">
                         <img src="img/carousel/desinfeccion_uvc.png" alt="Desinfección UV-C" class="business_unit_image">
                         <div class="business_unit_overlay"></div>
                         <div class="business_unit_content business_unit_content_overlay">
@@ -667,7 +789,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(statsSection);
   }
   
-  // Карусель с автоматической прокруткой и hover-управлением (бесконечная замкнутая)
+  // Карусель с drag-scrolling и бесконечной прокруткой
   const carousel = document.querySelector('.business_units_carousel');
   const track = document.querySelector('.business_units_track');
   
@@ -679,15 +801,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let cardWidth = 0;
     let gap = 0;
     let singleSetWidth = 0; // Ширина одного полного набора карточек (8 карточек)
-    let autoScrollInterval = null;
-    let isHovered = false;
-    let isCardHovered = false; // Флаг наведения на карточку
-    let hoverDirection = 0; // -1 влево, 0 нет, 1 вправо
-    let hoverScrollSpeed = 0;
-    let animationFrameId = null;
-    let autoScrollSpeed = 1.0; // Автоматическая прокрутка
     
-    // Вычисляем размеры и клонируем карточки для бесконечной прокрутки
+    // Вычисляем размеры для бесконечной прокрутки
     function calcDimensions() {
       const firstCard = track.querySelector('.business_unit_card:not(.clone)');
       if (!firstCard) return;
@@ -699,29 +814,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalCards = 8;
       singleSetWidth = (cardWidth + gap) * totalCards;
       
-      // Удаляем существующие клоны
-      track.querySelectorAll('.business_unit_card.clone').forEach(clone => clone.remove());
-      
-      // Получаем оригинальные карточки (без клонов)
-      const originalCards = Array.from(track.querySelectorAll('.business_unit_card:not(.clone)'));
-      
-      // Клонируем карточки для бесконечной прокрутки
-      // Добавляем клоны в конец (для прокрутки влево)
-      const numClones = Math.ceil(carousel.offsetWidth / (cardWidth + gap)) + 2;
-      for (let i = 0; i < numClones; i++) {
-        const clone = originalCards[i % originalCards.length].cloneNode(true);
-        clone.classList.add('clone');
-        track.appendChild(clone);
-      }
-      
-      // Добавляем клоны в начало (для прокрутки вправо)
-      for (let i = 0; i < numClones; i++) {
-        const clone = originalCards[(originalCards.length - 1 - i) % originalCards.length].cloneNode(true);
-        clone.classList.add('clone');
-        track.insertBefore(clone, track.firstChild);
-      }
-      
       // Устанавливаем начальную позицию (начинаем с оригинальных карточек)
+      // Смещаем на ширину одного набора клонов влево, чтобы начать с оригинальных карточек
       currentTranslate = -singleSetWidth;
       setTransform();
     }
@@ -736,7 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Функция для бесшовной бесконечной прокрутки
     function checkInfiniteLoop() {
-      // Если прокрутили слишком далеко влево (за оригинальные карточки), перескакиваем на клоны
+      // Если прокрутили слишком далеко влево (за оригинальные карточки), перескакиваем на клоны в конце
       if (currentTranslate <= -singleSetWidth * 2) {
         currentTranslate += singleSetWidth;
         // Отключаем transition для мгновенного перехода
@@ -747,8 +841,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Включаем transition обратно
         track.style.transition = '';
       }
-      // Если прокрутили слишком далеко вправо (за оригинальные карточки), перескакиваем на клоны
-      else if (currentTranslate > 0) {
+      // Если прокрутили слишком далеко вправо (за оригинальные карточки), перескакиваем на клоны в начале
+      else if (currentTranslate > -singleSetWidth) {
         currentTranslate -= singleSetWidth;
         // Отключаем transition для мгновенного перехода
         track.style.transition = 'none';
@@ -760,187 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
     
-    // Автоматическая прокрутка влево
-    function startAutoScroll() {
-      if (autoScrollInterval) return;
-      
-      autoScrollInterval = setInterval(() => {
-        // Останавливаем прокрутку если наведена мышь на карусель или идет drag
-        if (!isHovered && !isDown) {
-          currentTranslate -= autoScrollSpeed; // Медленная прокрутка влево
-          setTransform();
-          checkInfiniteLoop();
-        }
-      }, 16); // ~60fps
-    }
-    
-    function stopAutoScroll() {
-      if (autoScrollInterval) {
-        clearInterval(autoScrollInterval);
-        autoScrollInterval = null;
-      }
-    }
-    
-    // Плавная прокрутка при наведении на края карточек
-    function handleHoverScroll() {
-      if (isDown) {
-        animationFrameId = requestAnimationFrame(handleHoverScroll);
-        return;
-      }
-      
-      if (hoverDirection !== 0 && hoverScrollSpeed > 0 && isHovered) {
-        currentTranslate += hoverDirection * hoverScrollSpeed;
-        setTransform();
-        checkInfiniteLoop();
-      }
-      
-      animationFrameId = requestAnimationFrame(handleHoverScroll);
-    }
-    
-    // Запускаем автоматическую прокрутку
-    startAutoScroll();
-    // Запускаем обработку hover-прокрутки
-    handleHoverScroll();
-    
-    // Получаем все карточки
-    const cards = track.querySelectorAll('.business_unit_card');
-    
-    // Функция для определения крайних видимых карточек
-    function getVisibleCards() {
-      const carouselRect = carousel.getBoundingClientRect();
-      const visibleCards = [];
-      
-      cards.forEach((card, index) => {
-        const cardRect = card.getBoundingClientRect();
-        // Проверяем, видна ли карточка в карусели
-        if (cardRect.right > carouselRect.left && cardRect.left < carouselRect.right) {
-          visibleCards.push({ card, index, left: cardRect.left, right: cardRect.right });
-        }
-      });
-      
-      return visibleCards;
-    }
-    
-    // Mouse events для карусели
-    carousel.addEventListener('mouseenter', () => {
-      isHovered = true;
-      stopAutoScroll(); // Останавливаем автоматическую прокрутку при наведении
-    });
-    
-    carousel.addEventListener('mouseleave', () => {
-      isHovered = false;
-      hoverDirection = 0;
-      hoverScrollSpeed = 0;
-      
-      if (isDown) {
-        isDown = false;
-        track.classList.remove('dragging');
-        carousel.style.cursor = 'grab';
-      }
-      
-      // Запускаем автоматическую прокрутку обратно при уходе мыши
-      startAutoScroll();
-    });
-    
-    carousel.addEventListener('mousemove', (e) => {
-      if (!isHovered) return;
-      
-      // Если drag - прокручиваем в сторону движения мыши (ИСПРАВЛЕНО направление)
-      if (isDown) {
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 1.2;
-        // ИСПРАВЛЕНО: при листании влево карусель идет влево
-        currentTranslate = scrollLeft + walk;
-        setTransform();
-        checkInfiniteLoop();
-        return;
-      }
-      
-      // Определяем позицию мыши относительно карусели
-      const carouselRect = carousel.getBoundingClientRect();
-      const mouseX = e.clientX;
-      const carouselLeft = carouselRect.left;
-      const carouselRight = carouselRect.right;
-      const carouselWidth = carouselRect.width;
-      const edgeZone = carouselWidth * 0.15; // 15% от края карусели для зоны прокрутки
-      const relativeX = mouseX - carouselLeft; // Позиция мыши относительно левого края карусели
-      
-      const visibleCards = getVisibleCards();
-      
-      if (visibleCards.length === 0) {
-        hoverDirection = 0;
-        hoverScrollSpeed = 0;
-        return;
-      }
-      
-      // Сортируем видимые карточки по позиции слева направо
-      const sortedVisibleCards = [...visibleCards].sort((a, b) => a.left - b.left);
-      const leftmostCard = sortedVisibleCards[0];
-      const rightmostCard = sortedVisibleCards[sortedVisibleCards.length - 1];
-      
-      // Проверяем, наведена ли мышь на края карусели (включая области между карточками)
-      if (relativeX < edgeZone) {
-        // Левая зона карусели - прокрутка ВПРАВО
-        hoverDirection = 1;
-        const distanceFromEdge = relativeX / edgeZone; // 0 до 1
-        hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
-      } else if (relativeX > carouselWidth - edgeZone) {
-        // Правая зона карусели - прокрутка ВЛЕВО
-        hoverDirection = -1;
-        const distanceFromEdge = (carouselWidth - relativeX) / edgeZone; // 0 до 1
-        hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
-      } else {
-        // Центральная зона - проверяем наведение на карточки
-        let hoveredCard = null;
-        for (const item of sortedVisibleCards) {
-          if (mouseX >= item.left && mouseX <= item.right) {
-            hoveredCard = item;
-            break;
-          }
-        }
-        
-        if (hoveredCard) {
-          const cardWidth = hoveredCard.right - hoveredCard.left;
-          const cardLeft = hoveredCard.left;
-          const relativeCardX = mouseX - cardLeft; // Позиция мыши относительно левого края карточки
-          const cardEdgeZone = cardWidth * 0.2; // 20% от края карточки для зоны прокрутки
-          
-          const isLeftmost = hoveredCard.card === leftmostCard.card;
-          const isRightmost = hoveredCard.card === rightmostCard.card;
-          
-          // Проверяем, наведена ли мышь на края карточки
-          if (relativeCardX < cardEdgeZone) {
-            // Левая часть карточки - прокрутка ВПРАВО
-            hoverDirection = 1;
-            const distanceFromEdge = relativeCardX / cardEdgeZone; // 0 до 1
-            hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
-          } else if (relativeCardX > cardWidth - cardEdgeZone) {
-            // Правая часть карточки - прокрутка ВЛЕВО
-            hoverDirection = -1;
-            const distanceFromEdge = (cardWidth - relativeCardX) / cardEdgeZone; // 0 до 1
-            hoverScrollSpeed = (1 - distanceFromEdge) * 2.5; // Скорость от 0 до 2.5
-          } else if (isLeftmost) {
-            // Левая крайняя карточка в центральной части - прокрутка ВПРАВО
-            hoverDirection = 1;
-            hoverScrollSpeed = 1.5;
-          } else if (isRightmost) {
-            // Правая крайняя карточка в центральной части - прокрутка ВЛЕВО
-            hoverDirection = -1;
-            hoverScrollSpeed = 1.5;
-          } else {
-            // Центральная часть центральных карточек - нет прокрутки
-            hoverDirection = 0;
-            hoverScrollSpeed = 0;
-          }
-        } else {
-          // Мышь между карточками в центральной зоне - нет прокрутки
-          hoverDirection = 0;
-          hoverScrollSpeed = 0;
-        }
-      }
-    });
-    
+    // Mouse events
     carousel.addEventListener('mousedown', (e) => {
       isDown = true;
       startX = e.pageX - carousel.offsetLeft;
@@ -948,10 +862,17 @@ document.addEventListener('DOMContentLoaded', () => {
       track.classList.add('dragging');
       track.classList.remove('smooth');
       carousel.style.cursor = 'grabbing';
-      hoverDirection = 0;
-      hoverScrollSpeed = 0;
-      stopAutoScroll(); // Останавливаем автоматическую прокрутку при drag
       e.preventDefault();
+    });
+    
+    carousel.addEventListener('mouseleave', () => {
+      if (isDown) {
+        isDown = false;
+        track.classList.remove('dragging');
+        track.classList.add('smooth');
+        carousel.style.cursor = 'grab';
+        checkInfiniteLoop();
+      }
     });
     
     carousel.addEventListener('mouseup', () => {
@@ -961,108 +882,18 @@ document.addEventListener('DOMContentLoaded', () => {
         track.classList.add('smooth');
         carousel.style.cursor = 'grab';
         checkInfiniteLoop();
-        // Запускаем автоматическую прокрутку обратно, если мышь не на карусели
-        if (!isHovered) {
-          startAutoScroll();
-        }
       }
     });
     
-    // Обработчики для карточек - не останавливаем прокрутку при наведении на крайние карточки
-    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    let touchStartCardX = 0;
-    let touchStartCardY = 0;
-    let hasMovedDuringTouch = false;
-    
-    cards.forEach(card => {
-      card.addEventListener('mouseenter', () => {
-        // Не останавливаем прокрутку, если это крайняя карточка
-        // Логика прокрутки обрабатывается в mousemove карусели
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        // При уходе с карточки останавливаем прокрутку
-        // Проверяем, не наведена ли мышь на другую крайнюю карточку
-        // Это будет обработано в mousemove карусели
-        hoverDirection = 0;
-        hoverScrollSpeed = 0;
-      });
-      
-      // Предотвращаем клики на карточках во время drag
-      let hasMoved = false;
-      card.addEventListener('mousedown', () => {
-        hasMoved = false;
-      });
-      
-      card.addEventListener('mousemove', () => {
-        if (isDown) {
-          hasMoved = true;
-        }
-      });
-      
-      card.addEventListener('click', (e) => {
-        if (hasMoved) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
-      });
-      
-      // Обработка touch событий для мобильных устройств
-      if (isMobile) {
-        let cardTouchStartX = 0;
-        let cardTouchStartY = 0;
-        let cardHasMoved = false;
-        
-        card.addEventListener('touchstart', (e) => {
-          cardTouchStartX = e.touches[0].clientX;
-          cardTouchStartY = e.touches[0].clientY;
-          cardHasMoved = false;
-          // Останавливаем распространение, чтобы карусель не обрабатывала это событие
-          e.stopPropagation();
-        }, { passive: true });
-        
-        card.addEventListener('touchmove', (e) => {
-          if (e.touches.length > 0) {
-            const deltaX = Math.abs(e.touches[0].clientX - cardTouchStartX);
-            const deltaY = Math.abs(e.touches[0].clientY - cardTouchStartY);
-            // Если движение больше 15px, считаем это drag
-            if (deltaX > 15 || deltaY > 15) {
-              cardHasMoved = true;
-            }
-          }
-          // Останавливаем распространение, чтобы карусель не обрабатывала это событие
-          e.stopPropagation();
-        }, { passive: true });
-        
-        card.addEventListener('touchend', (e) => {
-          // Если не было движения (это клик), активируем карточку
-          if (!cardHasMoved) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Убираем активный класс со всех карточек
-            cards.forEach(c => {
-              if (c !== card) {
-                c.classList.remove('active');
-              }
-            });
-            
-            // Переключаем активный класс на текущей карточке
-            card.classList.toggle('active');
-          }
-          cardHasMoved = false;
-        }, { passive: false });
-      }
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 1.2; // Скорость прокрутки
+      currentTranslate = scrollLeft + walk;
+      setTransform();
+      checkInfiniteLoop();
     });
-    
-    // Закрытие активной карточки при клике вне карусели (для мобильных)
-    if (isMobile) {
-      document.addEventListener('click', (e) => {
-        if (!carousel.contains(e.target)) {
-          cards.forEach(c => c.classList.remove('active'));
-        }
-      });
-    }
     
     // Touch events для мобильных
     let touchStartX = 0;
@@ -1070,33 +901,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let isTouching = false;
     
     carousel.addEventListener('touchstart', (e) => {
-      // Проверяем, не начался ли touch на карточке
-      const card = e.target.closest('.business_unit_card');
-      if (card) {
-        // Не обрабатываем drag карусели, если touch начался на карточке
-        // Но не вызываем preventDefault, чтобы click событие могло сработать
-        return;
-      }
-      
       isTouching = true;
       touchStartX = e.touches[0].pageX - carousel.offsetLeft;
       touchScrollLeft = currentTranslate;
       track.classList.add('dragging');
       track.classList.remove('smooth');
-      stopAutoScroll(); // Останавливаем автоматическую прокрутку при touch
       e.preventDefault();
     }, { passive: false });
     
     carousel.addEventListener('touchmove', (e) => {
       if (!isTouching) return;
-      // Проверяем, не начался ли touch на карточке
-      if (e.target.closest('.business_unit_card')) {
-        return; // Не обрабатываем, если touch на карточке
-      }
-      
       const x = e.touches[0].pageX - carousel.offsetLeft;
-      const walk = (x - touchStartX) * 1.2;
-      // ИСПРАВЛЕНО: при листании влево карусель идет влево
+      const walk = (x - touchStartX) * 1.2; // Скорость прокрутки
       currentTranslate = touchScrollLeft + walk;
       setTransform();
       checkInfiniteLoop();
@@ -1110,13 +926,68 @@ document.addEventListener('DOMContentLoaded', () => {
         track.classList.remove('dragging');
         track.classList.add('smooth');
         checkInfiniteLoop();
-        // Запускаем автоматическую прокрутку обратно
-        if (!isHovered) {
-          startAutoScroll();
-        }
       }
     });
+    
+    // Обработка клика на карточки для мобильных устройств
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const cards = track.querySelectorAll('.business_unit_card');
+    
+    if (isMobile) {
+      cards.forEach(card => {
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchStartTime = 0;
+        let hasMoved = false;
+        
+        card.addEventListener('touchstart', (e) => {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+          hasMoved = false;
+        }, { passive: true });
+        
+        card.addEventListener('touchmove', (e) => {
+          if (e.touches.length > 0) {
+            const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+            const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+            // Если движение больше 10px, считаем это drag
+            if (deltaX > 10 || deltaY > 10) {
+              hasMoved = true;
+            }
+          }
+        }, { passive: true });
+        
+        card.addEventListener('touchend', (e) => {
+          const touchDuration = Date.now() - touchStartTime;
+          // Если не было движения и это быстрый тап (менее 300ms), активируем карточку
+          if (!hasMoved && touchDuration < 300) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Убираем активный класс со всех карточек
+            cards.forEach(c => {
+              if (c !== card) {
+                c.classList.remove('active');
+              }
+            });
+            
+            // Переключаем активный класс на текущей карточке
+            card.classList.toggle('active');
+          }
+          hasMoved = false;
+        }, { passive: false });
+      });
+      
+      // Закрытие активной карточки при клике вне карусели
+      document.addEventListener('click', (e) => {
+        if (!carousel.contains(e.target)) {
+          cards.forEach(c => c.classList.remove('active'));
+        }
+      });
+    }
   }
+  
 });
 
 document.addEventListener('click', function (e) {
