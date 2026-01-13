@@ -698,7 +698,32 @@ document.addEventListener('DOMContentLoaded', () => {
   
   if (whatWeDoContainer && whatWeDoList && howWeDoList && scrollProgressBar) {
     let scrollProgress = 0;
+    let targetProgress = 0;
     let isHovered = false;
+    let isAnimating = false;
+    let rafId = null;
+    
+    // Определяем мобильное устройство (более точная проверка)
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
+                     (window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
+    
+    // Плавная анимация прогресса с использованием requestAnimationFrame
+    function animateProgress() {
+      if (Math.abs(scrollProgress - targetProgress) < 0.001) {
+        scrollProgress = targetProgress;
+        isAnimating = false;
+        updateSections();
+        return;
+      }
+      
+      // Плавное приближение к целевому значению (easing)
+      scrollProgress += (targetProgress - scrollProgress) * 0.15;
+      updateSections();
+      
+      if (isAnimating) {
+        rafId = requestAnimationFrame(animateProgress);
+      }
+    }
     
     whatWeDoContainer.addEventListener('mouseenter', () => {
       isHovered = true;
@@ -706,11 +731,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     whatWeDoContainer.addEventListener('mouseleave', () => {
       isHovered = false;
-      // Возвращаем к начальному состоянию при уходе мыши
-      scrollProgress = 0;
-      updateSections();
+      // Плавно возвращаем к начальному состоянию
+      targetProgress = 0;
+      if (!isAnimating) {
+        isAnimating = true;
+        rafId = requestAnimationFrame(animateProgress);
+      }
     });
     
+    // Оптимизированный обработчик wheel для десктопа
     whatWeDoContainer.addEventListener('wheel', (e) => {
       if (!isHovered) return;
       
@@ -718,20 +747,103 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       
       // Увеличиваем прогресс при скролле вниз, уменьшаем при скролле вверх
+      const step = Math.min(Math.abs(e.deltaY) / 500, 0.15); // Адаптивный шаг
+      
       if (e.deltaY > 0) {
-        scrollProgress = Math.min(1, scrollProgress + 0.1);
+        targetProgress = Math.min(1, targetProgress + step);
       } else {
-        scrollProgress = Math.max(0, scrollProgress - 0.1);
+        targetProgress = Math.max(0, targetProgress - step);
       }
       
-      updateSections();
+      // Запускаем анимацию если еще не запущена
+      if (!isAnimating) {
+        isAnimating = true;
+        rafId = requestAnimationFrame(animateProgress);
+      }
     }, { passive: false });
     
+    // Обработка touch-событий для мобильных устройств
+    if (isMobile) {
+      let touchStartY = 0;
+      let touchStartTime = 0;
+      let lastTouchY = 0;
+      let isTouching = false;
+      let touchVelocity = 0;
+      let initialScrollProgress = 0;
+      
+      whatWeDoContainer.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isTouching = true;
+          touchStartY = e.touches[0].clientY;
+          lastTouchY = touchStartY;
+          touchStartTime = Date.now();
+          touchVelocity = 0;
+          initialScrollProgress = scrollProgress;
+          // Останавливаем анимацию при начале touch
+          if (rafId) {
+            cancelAnimationFrame(rafId);
+            isAnimating = false;
+          }
+        }
+      }, { passive: false });
+      
+      whatWeDoContainer.addEventListener('touchmove', (e) => {
+        if (!isTouching || e.touches.length !== 1) return;
+        
+        e.preventDefault(); // Предотвращаем стандартный скролл
+        
+        const currentY = e.touches[0].clientY;
+        const deltaY = touchStartY - currentY; // Положительное = свайп вверх
+        const timeDelta = Date.now() - touchStartTime;
+        
+        // Вычисляем скорость
+        touchVelocity = deltaY / Math.max(timeDelta, 1);
+        
+        // Обновляем прогресс напрямую на основе движения
+        const containerHeight = whatWeDoContainer.offsetHeight;
+        const progressDelta = deltaY / containerHeight; // Нормализуем по высоте контейнера
+        
+        scrollProgress = Math.max(0, Math.min(1, initialScrollProgress + progressDelta));
+        updateSections();
+        
+        lastTouchY = currentY;
+      }, { passive: false });
+      
+      whatWeDoContainer.addEventListener('touchend', (e) => {
+        if (!isTouching) return;
+        
+        isTouching = false;
+        
+        // Устанавливаем целевой прогресс на основе текущего
+        targetProgress = scrollProgress;
+        
+        // Применяем инерцию на основе скорости
+        if (Math.abs(touchVelocity) > 0.5) {
+          const inertiaStep = Math.min(Math.abs(touchVelocity) * 0.15, 0.3);
+          if (touchVelocity > 0) {
+            targetProgress = Math.max(0, targetProgress - inertiaStep);
+          } else {
+            targetProgress = Math.min(1, targetProgress + inertiaStep);
+          }
+        }
+        
+        // Запускаем финальную анимацию
+        if (!isAnimating) {
+          isAnimating = true;
+          rafId = requestAnimationFrame(animateProgress);
+        }
+      }, { passive: false });
+    }
+    
+    // Оптимизированное обновление секций
     function updateSections() {
+      // Запускаем анимацию если еще не запущена
+      if (!isAnimating && Math.abs(scrollProgress - targetProgress) > 0.001) {
+        isAnimating = true;
+        rafId = requestAnimationFrame(animateProgress);
+      }
+      
       // Обновляем градиент линии прогресса
-      // scrollProgress = 0: первая половина закрашена (#00b3ff), вторая белая (#ffffff)
-      // scrollProgress = 1: первая половина белая (#ffffff), вторая закрашена (#00b3ff)
-      // Граница всегда на 50%, но цвета меняются местами
       const firstHalfColor = scrollProgress <= 0.5 
         ? (scrollProgress === 0 ? '#00b3ff' : '#ffffff') 
         : '#ffffff';
@@ -741,14 +853,22 @@ document.addEventListener('DOMContentLoaded', () => {
       
       scrollProgressBar.style.background = `linear-gradient(to bottom, ${firstHalfColor} 0%, ${firstHalfColor} 50%, ${secondHalfColor} 50%, ${secondHalfColor} 100%)`;
       
-      if (scrollProgress > 0.3) {
+      // Обновляем классы только при изменении состояния (оптимизация)
+      const shouldShowSecond = scrollProgress > 0.3;
+      const hasScrolled = whatWeDoList.classList.contains('scrolled');
+      const isVisible = howWeDoList.classList.contains('visible');
+      
+      if (shouldShowSecond && !hasScrolled) {
         whatWeDoList.classList.add('scrolled');
         howWeDoList.classList.add('visible');
-      } else {
+      } else if (!shouldShowSecond && hasScrolled) {
         whatWeDoList.classList.remove('scrolled');
         howWeDoList.classList.remove('visible');
       }
     }
+    
+    // Инициализация
+    updateSections();
   }
   
   // Анимация счетчика для статистики
