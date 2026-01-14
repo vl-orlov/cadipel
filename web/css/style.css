@@ -491,13 +491,11 @@ h1, h2, h4, h5, h6,
     overflow: hidden;
     transition: height 0.3s ease;
     flex-shrink: 0;
-    border-radius: 20px 20px 0 0;
 }
 .business_unit_image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 20px 20px 0 0;
 }
 .business_unit_overlay {
     position: absolute;
@@ -565,7 +563,6 @@ h1, h2, h4, h5, h6,
 .business_unit_card:hover {
     transform: scale(1.1);
     z-index: 10;
-    border-radius: 20px;
     overflow: hidden;
 }
 .business_unit_card:hover .business_unit_image_wrapper {
@@ -576,20 +573,14 @@ h1, h2, h4, h5, h6,
     right: 0;
     bottom: 0;
     z-index: 1;
-    border-radius: 20px;
     overflow: hidden;
-}
-.business_unit_card:hover .business_unit_image {
-    border-radius: 20px;
 }
 .business_unit_card:hover .business_unit_overlay {
     opacity: 1;
-    border-radius: 20px;
 }
 .business_unit_card:hover .business_unit_content_overlay {
     opacity: 1;
     visibility: visible;
-    border-radius: 0 0 20px 20px;
 }
 .business_unit_card:hover .business_unit_content_default {
     opacity: 0;
@@ -610,9 +601,6 @@ h1, h2, h4, h5, h6,
 .business_unit_card:hover .business_unit_image_wrapper {
     height: 200px;
     position: relative;
-}
-.business_unit_card:hover .business_unit_image {
-    border-radius: 20px 20px 0 0;
 }
 .business_unit_card:hover .business_unit_overlay {
     opacity: 0;
@@ -635,7 +623,6 @@ h1, h2, h4, h5, h6,
 .business_unit_card.active {
     transform: scale(1.1);
     z-index: 10;
-    border-radius: 20px;
     overflow: hidden;
 }
 .business_unit_card.active .business_unit_image_wrapper {
@@ -646,20 +633,14 @@ h1, h2, h4, h5, h6,
     right: 0;
     bottom: 0;
     z-index: 1;
-    border-radius: 20px;
     overflow: hidden;
-}
-.business_unit_card.active .business_unit_image {
-    border-radius: 20px;
 }
 .business_unit_card.active .business_unit_overlay {
     opacity: 1;
-    border-radius: 20px;
 }
 .business_unit_card.active .business_unit_content_overlay {
     opacity: 1;
     visibility: visible;
-    border-radius: 0 0 20px 20px;
 }
 .business_unit_card.active .business_unit_content_default {
     opacity: 0;
@@ -690,7 +671,7 @@ h1, h2, h4, h5, h6,
 .business_units_carousel {
     margin: 0 -20px;
     padding: 20px 20px;
-    min-height: 490px;
+    min-height: 510px;
     overflow: visible;
 }
 .business_units_track {
