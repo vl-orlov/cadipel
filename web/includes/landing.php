@@ -1051,20 +1051,41 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Обработка клика на карточки для мобильных устройств
     const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const cards = track.querySelectorAll('.business_unit_card');
-    
     if (isMobile) {
+      const cards = track.querySelectorAll('.business_unit_card');
+      let buttonWasClicked = false;
+      
+      // Сначала обрабатываем кнопки с capture phase, чтобы они обработались первыми
+      const buttons = track.querySelectorAll('.business_unit_button');
+      buttons.forEach(button => {
+        button.addEventListener('touchstart', (e) => {
+          buttonWasClicked = true;
+          e.stopPropagation();
+        }, { passive: true, capture: true });
+        
+        button.addEventListener('touchend', (e) => {
+          buttonWasClicked = true;
+          e.stopPropagation();
+          // Сбрасываем флаг через задержку
+          setTimeout(() => {
+            buttonWasClicked = false;
+          }, 200);
+        }, { passive: true, capture: true });
+      });
+      
       cards.forEach(card => {
         let touchStartX = 0;
         let touchStartY = 0;
-        let touchStartTime = 0;
-        let hasMoved = false;
+        let isDragging = false;
         
         card.addEventListener('touchstart', (e) => {
+          // Если клик начался на кнопке, не обрабатываем
+          if (e.target.closest('.business_unit_button')) {
+            return;
+          }
           touchStartX = e.touches[0].clientX;
           touchStartY = e.touches[0].clientY;
-          touchStartTime = Date.now();
-          hasMoved = false;
+          isDragging = false;
         }, { passive: true });
         
         card.addEventListener('touchmove', (e) => {
@@ -1073,29 +1094,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
             // Если движение больше 10px, считаем это drag
             if (deltaX > 10 || deltaY > 10) {
-              hasMoved = true;
+              isDragging = true;
             }
           }
         }, { passive: true });
         
         card.addEventListener('touchend', (e) => {
-          const touchDuration = Date.now() - touchStartTime;
-          // Если не было движения и это быстрый тап (менее 300ms), активируем карточку
-          if (!hasMoved && touchDuration < 300) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Убираем активный класс со всех карточек
-            cards.forEach(c => {
-              if (c !== card) {
-                c.classList.remove('active');
-              }
-            });
-            
-            // Переключаем активный класс на текущей карточке
-            card.classList.toggle('active');
+          // Если был клик на кнопку, не обрабатываем
+          if (buttonWasClicked) {
+            return;
           }
-          hasMoved = false;
+          
+          // Если был drag, не обрабатываем клик
+          if (isDragging) {
+            return;
+          }
+          
+          // Проверяем, был ли клик на кнопку
+          const target = e.changedTouches[0] ? document.elementFromPoint(e.changedTouches[0].clientX, e.changedTouches[0].clientY) : e.target;
+          if (target && target.closest('.business_unit_button')) {
+            return;
+          }
+          
+          // Убираем активный класс со всех карточек
+          cards.forEach(c => {
+            if (c !== card) {
+              c.classList.remove('active');
+            }
+          });
+          
+          // Переключаем активный класс на текущей карточке
+          card.classList.toggle('active');
         }, { passive: false });
       });
       

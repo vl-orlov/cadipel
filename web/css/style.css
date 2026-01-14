@@ -482,13 +482,7 @@ h1, h2, h4, h5, h6,
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     position: relative;
-    isolation: isolate; /* Создает новый stacking context */
-}
-.business_unit_card:hover {
-    transform: scale(1.1);
-    z-index: 10;
-    border-radius: 20px;
-    overflow: hidden; /* Убеждаемся, что overflow работает при hover */
+    isolation: isolate;
 }
 .business_unit_image_wrapper {
     width: 100%;
@@ -499,27 +493,11 @@ h1, h2, h4, h5, h6,
     flex-shrink: 0;
     border-radius: 20px 20px 0 0;
 }
-.business_unit_card:hover .business_unit_image_wrapper {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    border-radius: 20px;
-    overflow: hidden;
-    clip-path: inset(0 round 20px); /* Дополнительное обрезание */
-}
 .business_unit_image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
-}
-.business_unit_card:hover .business_unit_image {
-    border-radius: 20px;
-    object-position: center;
 }
 .business_unit_overlay {
     position: absolute;
@@ -531,11 +509,6 @@ h1, h2, h4, h5, h6,
     z-index: 1;
     opacity: 0;
     transition: opacity 0.3s ease;
-}
-.business_unit_card:hover .business_unit_overlay {
-    opacity: 1;
-    border-radius: 20px;
-    clip-path: inset(0 round 20px); /* Дополнительное обрезание */
 }
 .business_unit_content {
     padding: 40px 25px;
@@ -553,24 +526,11 @@ h1, h2, h4, h5, h6,
     opacity: 0;
     visibility: hidden;
 }
-.business_unit_card:hover .business_unit_content_overlay {
-    opacity: 1;
-    visibility: visible;
-    border-radius: 0 0 20px 20px;
-}
 .business_unit_content_default {
     background: #062858;
     flex: 1;
     position: relative;
     z-index: 0;
-}
-.business_unit_card:hover .business_unit_content_default {
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
 }
 .business_unit_title {
     font-size: 20px;
@@ -602,38 +562,54 @@ h1, h2, h4, h5, h6,
     align-self: center;
     min-width: 150px;
 }
+.business_unit_card:hover {
+    transform: scale(1.1);
+    z-index: 10;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.business_unit_card:hover .business_unit_image_wrapper {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.business_unit_card:hover .business_unit_image {
+    border-radius: 20px;
+}
+.business_unit_card:hover .business_unit_overlay {
+    opacity: 1;
+    border-radius: 20px;
+}
+.business_unit_card:hover .business_unit_content_overlay {
+    opacity: 1;
+    visibility: visible;
+    border-radius: 0 0 20px 20px;
+}
+.business_unit_card:hover .business_unit_content_default {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
 .business_unit_card:hover .business_unit_button {
     opacity: 1;
     visibility: visible;
 }
-.business_unit_button:hover {
-    background: #0099cc;
-}
 @media (max-width: 1024px) {
-.business_units_title {
-    width: 100%;
-    font-size: 24px;
-    margin-bottom: 40px;
-}
-.business_unit_card {
-    flex: 0 0 280px;
-}
-.business_unit_image_wrapper {
-    height: 350px;
-}}
-@media (max-width: 768px) {
-.business_units_section {
-    padding: 40px 0;
-    overflow: hidden;
-}
-/* Отключаем hover эффект на мобильных, используем только active */
 .business_unit_card:hover {
     transform: none;
 }
 .business_unit_card:hover .business_unit_image_wrapper {
-    height: 250px;
+    height: 200px;
     position: relative;
-    border-radius: 20px 20px 0 0;
 }
 .business_unit_card:hover .business_unit_image {
     border-radius: 20px 20px 0 0;
@@ -649,11 +625,57 @@ h1, h2, h4, h5, h6,
     opacity: 1;
     visibility: visible;
     height: auto;
-    padding: 40px 25px;
+    padding: 25px 20px;
 }
 .business_unit_card:hover .business_unit_button {
     opacity: 0;
     visibility: hidden;
+}
+/* Раскрытие карточки при клике на мобильных */
+.business_unit_card.active {
+    transform: scale(1.1);
+    z-index: 10;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.business_unit_card.active .business_unit_image_wrapper {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.business_unit_card.active .business_unit_image {
+    border-radius: 20px;
+}
+.business_unit_card.active .business_unit_overlay {
+    opacity: 1;
+    border-radius: 20px;
+}
+.business_unit_card.active .business_unit_content_overlay {
+    opacity: 1;
+    visibility: visible;
+    border-radius: 0 0 20px 20px;
+}
+.business_unit_card.active .business_unit_content_default {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.business_unit_card.active .business_unit_button {
+    opacity: 1;
+    visibility: visible;
+}
+.business_units_section {
+    padding: 40px 0;
+    overflow: hidden;
 }
 .business_units_container {
     padding: 0 20px;
@@ -702,113 +724,7 @@ h1, h2, h4, h5, h6,
     padding: 10px 20px;
     font-size: 14px;
     min-width: 120px;
-}
-/* Активация карточки по клику на мобильных */
-.business_unit_card.active {
-    transform: scale(1.1) !important;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2) !important;
-    z-index: 10 !important;
-    border-radius: 20px !important;
-}
-.business_unit_card.active .business_unit_image_wrapper {
-    height: 100% !important;
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    z-index: 1 !important;
-    border-radius: 20px !important;
-    overflow: hidden !important;
-    border-top-left-radius: 20px !important;
-    border-top-right-radius: 20px !important;
-    border-bottom-left-radius: 20px !important;
-    border-bottom-right-radius: 20px !important;
-}
-.business_unit_card.active .business_unit_image {
-    border-radius: 20px !important;
-}
-.business_unit_card.active .business_unit_overlay {
-    opacity: 1 !important;
-    border-radius: 20px !important;
-    border-top-left-radius: 20px !important;
-    border-top-right-radius: 20px !important;
-    border-bottom-left-radius: 20px !important;
-    border-bottom-right-radius: 20px !important;
-}
-.business_unit_card.active .business_unit_content_overlay {
-    opacity: 1 !important;
-    visibility: visible !important;
-    border-radius: 0 0 20px 20px !important;
-}
-.business_unit_card.active .business_unit_content_default {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    overflow: hidden !important;
-}
-.business_unit_card.active .business_unit_button {
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-.business_unit_card.active .business_unit_text {
-    display: block !important;
-    -webkit-line-clamp: unset !important;
-    line-clamp: unset !important;
-    -webkit-box-orient: unset !important;
-    overflow: visible !important;
-}
-}
-@media (max-width: 480px) {
-.business_units_section {
-    padding: 30px 0;
-    overflow: hidden;
-}
-.business_units_container {
-    padding: 0 15px;
-}
-.business_units_title {
-    font-size: 20px;
-    margin-bottom: 20px;
-}
-.business_units_carousel {
-    margin: 0 -15px;
-    padding: 15px 15px;
-    min-height: 430px;
-    overflow: visible;
-}
-.business_units_track {
-    gap: 15px;
-}
-.business_unit_card {
-    flex: 0 0 250px;
-    height: 400px;
-}
-.business_unit_image_wrapper {
-    height: 180px;
-}
-.business_unit_content {
-    padding: 20px 15px;
-    gap: 8px;
-}
-.business_unit_title {
-    font-size: 16px;
-    line-height: 1.2;
-}
-.business_unit_text {
-    font-size: 13px;
-    line-height: 1.3;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-}
-.business_unit_button {
-    padding: 10px 18px;
-    font-size: 13px;
-    min-width: 110px;
-}
-}
+}}
 /* END BUSINESS UNITS CAROUSEL */
 
 /* WHAT WE DO SECTION */
