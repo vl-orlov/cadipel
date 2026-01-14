@@ -2014,6 +2014,12 @@ font-size: 22px;
     background: #062858;
     color: #ffffff;
 }
+.soluciones_agro_card {
+    background-image: url('../img/soluciones_agro_card_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .fin_tech_solution_card_light {
     background: #ffffff;
     padding: 25px;
