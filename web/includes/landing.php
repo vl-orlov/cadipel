@@ -184,7 +184,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
                             <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=fin_tech'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">
@@ -230,7 +230,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit2_title">Fin-Tech - Billeteras electrónicas</h3>
                             <p class="business_unit_text" data-i18n="business_unit2_text">Desarrollo y operación de billeteras electrónicas seguras, escalables y listas para integrarse con bancos y medios de pago</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=fin_tech'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">

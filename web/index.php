@@ -19,6 +19,7 @@
 $page = isset($_REQUEST['page']) ? htmlspecialchars($_REQUEST['page']) : '';
 
 SWITCH ( $page ) {
+    case 'fin_tech':             include "includes/fin_tech.php";               break;
     case 'landing':              include "includes/landing.php";                break;
     default:                     include "includes/landing.php";                break;
 }
