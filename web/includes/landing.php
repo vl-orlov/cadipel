@@ -199,7 +199,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
                             <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=ingenieria_desarrollo'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">
@@ -215,7 +215,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit1_title">Ingeniería y Desarrollo Hard & Soft</h3>
                             <p class="business_unit_text" data-i18n="business_unit1_text">Diseño electrónico, firmware y software a medida para proyectos que requieren alta especialización técnica</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=ingenieria_desarrollo'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">
