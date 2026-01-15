@@ -2014,6 +2014,12 @@ font-size: 22px;
     background: #062858;
     color: #ffffff;
 }
+.fin_tech_card {
+    background-image: url('../img/fin_tech_card_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .soluciones_agro_card {
     background-image: url('../img/soluciones_agro_card_background.png');
     background-size: cover;
@@ -2022,6 +2028,12 @@ font-size: 22px;
 }
 .ingenieria_desarrollo_card {
     background-image: url('../img/ingenieria_desarrollo_card_card_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.automatizacion_industrial_card {
+    background-image: url('../img/automatizacion_industrial_card_background.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -2072,7 +2084,7 @@ font-size: 22px;
 }
 .fin_tech_solution_card_list li {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.3;
     color: #ffffff;
     padding-left: 25px;
     position: relative;
@@ -2099,7 +2111,7 @@ font-size: 22px;
 }
 .fin_tech_solution_card_list_light li {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.3;
     color: #062858;
     padding-left: 20px;
     position: relative;
@@ -2111,7 +2123,7 @@ font-size: 22px;
     left: 0;
     color: #062858;
     font-size: 18px;
-    line-height: 1.6;
+    line-height: 1.3;
     font-weight: bold;
 }
 .fin_tech_solution_card_icon {

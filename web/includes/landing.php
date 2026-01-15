@@ -154,7 +154,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
                             <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=automatizacion_industrial'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">
@@ -260,7 +260,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit4_title">Automatización de líneas de producción</h3>
                             <p class="business_unit_text" data-i18n="business_unit4_text">Modernización electrónica y digital de maquinaria industrial sin necesidad de reemplazar equipos existentes</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=automatizacion_industrial'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">

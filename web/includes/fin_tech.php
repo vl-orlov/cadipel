@@ -91,7 +91,7 @@ include 'includes/landing_header.php';
         <h2 class="fin_tech_solution_title" data-i18n="fin_tech_solution_title">Solución / Arquitectura</h2>
         
         <div class="fin_tech_solution_top_grid">
-            <div class="fin_tech_solution_card fin_tech_solution_card_dark">
+            <div class="fin_tech_solution_card fin_tech_solution_card_dark fin_tech_card">
                 <h3 class="fin_tech_solution_card_title" data-i18n="fin_tech_platform_title">Plataforma Open-All</h3>
                 <ul class="fin_tech_solution_card_list">
                     <li data-i18n="fin_tech_platform_item_1">Plataforma Open-All como núcleo transaccional y de administración</li>
@@ -102,7 +102,7 @@ include 'includes/landing_header.php';
                 </ul>
             </div>
             
-            <div class="fin_tech_solution_card fin_tech_solution_card_dark">
+            <div class="fin_tech_solution_card fin_tech_solution_card_dark fin_tech_card">
                 <h3 class="fin_tech_solution_card_title" data-i18n="fin_tech_services_title">Servicios incluidos</h3>
                 <ul class="fin_tech_solution_card_list">
                     <li data-i18n="fin_tech_services_item_1">Descubrimiento y diseño funcional (alcance, flujos, roles, reglas)</li>
