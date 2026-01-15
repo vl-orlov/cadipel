@@ -139,7 +139,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
                             <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=soluciones_integrales'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">
@@ -275,7 +275,7 @@
                         <div class="business_unit_content business_unit_content_overlay">
                             <h3 class="business_unit_title" data-i18n="business_unit5_title">Soluciones integrales para Consorcios</h3>
                             <p class="business_unit_text" data-i18n="business_unit5_text">Plataforma digital para control de accesos y seguridad en edificios, viviendas y empresas</p>
-                            <a href="#" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
+                            <a onclick="window.location.href='?page=soluciones_integrales'" class="business_unit_button" data-i18n="business_unit_button">Ver solución</a>
                         </div>
                     </div>
                     <div class="business_unit_content business_unit_content_default">
