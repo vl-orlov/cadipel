@@ -1,15 +1,15 @@
 <? 
-$page = "ingenieria_desarrollo";
+$page = "seguridad_personal";
 include 'includes/landing_header.php';
 ?>
 <div class="hero_solucion">
     <div class="hero_solucion_background">
-        <img src="img/ingenieria_desarrollo_background.png" class="hero_solucion_bg_image">
+        <img src="img/seguridad_personal_background.png" class="hero_solucion_bg_image">
     </div>
     <div class="hero_solucion_content">
-        <h1 class="hero_solucion_title">Ingeniería y Desarrollo de Hard & Soft</h1>
-        <p class="hero_solucion_subtitle">Diseño, prototipado y fabricación de equipos electrónicos y software<br>a medida para terceros</p>
-        <a href="#" class="hero_solucion_cta">Consultar sobre esta solución</a>
+        <h1 class="hero_solucion_title" data-i18n="seguridad_personal_hero_title">Seguridad y Control de Personal</h1>
+        <p class="hero_solucion_subtitle" data-i18n-html="seguridad_personal_hero_subtitle">Gestión de accesos, presencia y trazabilidad<br>en entornos corporativos e industriales</p>
+        <a href="#" class="hero_solucion_cta" data-i18n="hero_solucion_cta">Consultar sobre esta solución</a>
     </div>
 </div>
 
@@ -17,11 +17,10 @@ include 'includes/landing_header.php';
 <div class="fin_tech_description_section">
     <div class="fin_tech_description_container">
         <div class="fin_tech_description_text">
-            <p class="fin_tech_description_paragraph">CADIPEL acompaña a empresas durante todo el ciclo<br>de desarrollo de productos electrónicos y de software,<br>desde la idea inicial hasta la fabricación en serie.</p>
-            <p class="fin_tech_description_paragraph">El equipo cuenta con amplia experiencia en hardware, firmware y software de usuario y servidor.</p>
+            <p class="fin_tech_description_paragraph" data-i18n="seguridad_personal_description">CADIPEL aplica la plataforma Open All para el control de accesos y gestión de personal en empresas, fábricas y plantas industriales.</p>
         </div>
         <div class="fin_tech_description_image">
-            <img src="img/ingenieria_desarrollo_description.png" class="fin_tech_payment_image">
+            <img src="img/seguridad_personal_description.png" class="fin_tech_payment_image">
         </div>
     </div>
 </div>
@@ -35,37 +34,31 @@ include 'includes/landing_header.php';
     </div>
     <div class="fin_tech_problems_container">
         <div class="fin_tech_problems_content">
-            <h2 class="fin_tech_problems_title">Problemas que resuelve</h2>
+            <h2 class="fin_tech_problems_title" data-i18n="seguridad_personal_problems_title">Problemas que resuelve</h2>
             <ul class="fin_tech_problems_list">
                 <li class="fin_tech_problem_item">
                     <div class="fin_tech_problem_icon">
                         <img src="img/icons/star_icon.png" alt="Icon">
                     </div>
-                    <span>Falta de capacidad interna de desarrollo</span>
+                    <span data-i18n="seguridad_personal_problem_1">Falta de control de accesos</span>
                 </li>
                 <li class="fin_tech_problem_item">
                     <div class="fin_tech_problem_icon">
                         <img src="img/icons/star_icon.png" alt="Icon">
                     </div>
-                    <span>Largos tiempos de llegada al mercado</span>
+                    <span data-i18n="seguridad_personal_problem_2">Registros manuales</span>
                 </li>
                 <li class="fin_tech_problem_item">
                     <div class="fin_tech_problem_icon">
                         <img src="img/icons/star_icon.png" alt="Icon">
                     </div>
-                    <span>Altos costos de fabricación propia</span>
+                    <span data-i18n="seguridad_personal_problem_3">Baja trazabilidad</span>
                 </li>
                 <li class="fin_tech_problem_item">
                     <div class="fin_tech_problem_icon">
                         <img src="img/icons/star_icon.png" alt="Icon">
                     </div>
-                    <span>Dificultad para escalar producción</span>
-                </li>
-                <li class="fin_tech_problem_item">
-                    <div class="fin_tech_problem_icon">
-                        <img src="img/icons/star_icon.png" alt="Icon">
-                    </div>
-                    <span>Necesidad de testeo y validación profesional</span>
+                    <span data-i18n="seguridad_personal_problem_4">Sistemas poco escalables</span>
                 </li>
             </ul>
         </div>
@@ -77,19 +70,13 @@ include 'includes/landing_header.php';
 <div class="fin_tech_solution_top_section">
     <div class="fin_tech_solution_container">
         <div class="fin_tech_solution_top_grid">
-            <div class="fin_tech_solution_card fin_tech_solution_card_dark ingenieria_desarrollo_card">
-                <h3 class="fin_tech_solution_card_title">Solución / Arquitectura</h3>
+            <div class="fin_tech_solution_card fin_tech_solution_card_dark seguridad_personal_card">
+                <h3 class="fin_tech_solution_card_title" data-i18n="seguridad_personal_solution_title">Solución / Arquitectura</h3>
                 <ul class="fin_tech_solution_card_list">
-                    <li>Diseño electrónico completo</li>
-                    <li>Software embebido y de interfaz</li>
-                    <li>Prototipado rápido (TTM)</li>
-                    <li>Diseño orientado a fabricación (DFM)</li>
+                    <li data-i18n="seguridad_personal_solution_item_1">Control de accesos vía smartphone</li>
+                    <li data-i18n="seguridad_personal_solution_item_2">Gestión centralizada</li>
+                    <li data-i18n="seguridad_personal_solution_item_3">Reportes y estadísticas</li>
                 </ul>
-            </div>
-
-            <div class="fin_tech_solution_card fin_tech_solution_card_dark ingenieria_desarrollo_card">
-                <h3 class="fin_tech_solution_card_title">Producción y escalado</h3>
-                <p class="fin_tech_solution_card_text">Alianza estratégica con ASSISI SRL, CEM con más de 20 años<br>de experiencia y capacidad de producción de millones de componentes mensuales.</p>
             </div>
         </div>
     </div>
@@ -101,14 +88,11 @@ include 'includes/landing_header.php';
     <div class="fin_tech_solution_bottom_container">
         <div class="fin_tech_solution_bottom_grid">
             <div class="fin_tech_solution_card_light">
-                <h3 class="fin_tech_solution_card_title_light">Aplicaciones típicas</h3>
+                <h3 class="fin_tech_solution_card_title_light" data-i18n="seguridad_personal_applications_title">Aplicaciones típicas</h3>
                 <ul class="fin_tech_solution_card_list_light">
-                    <li>Industria</li>
-                    <li>Seguridad</li>
-                    <li>Comunicaciones</li>
-                    <li>Automotriz</li>
-                    <li>Aeroespacial</li>
-                    <li>Electromedicina</li>
+                    <li data-i18n="seguridad_personal_applications_item_1">Fábricas</li>
+                    <li data-i18n="seguridad_personal_applications_item_2">Plantas industriales</li>
+                    <li data-i18n="seguridad_personal_applications_item_3">Oficinas corporativas</li>
                 </ul>
                 <div class="fin_tech_solution_card_icon">
                     <img src="img/icons/what_we_do_item2.png" alt="Icon">
@@ -116,12 +100,11 @@ include 'includes/landing_header.php';
             </div>
             
             <div class="fin_tech_solution_card_light">
-                <h3 class="fin_tech_solution_card_title_light">Beneficios clave</h3>
+                <h3 class="fin_tech_solution_card_title_light" data-i18n="seguridad_personal_benefits_title">Beneficios clave</h3>
                 <ul class="fin_tech_solution_card_list_light">
-                    <li>Reducción del Time To Market</li>
-                    <li>Producción escalable</li>
-                    <li>Calidad garantizada</li>
-                    <li>Optimización de costos</li>
+                    <li data-i18n="seguridad_personal_benefits_item_1">Seguridad mejorada</li>
+                    <li data-i18n="seguridad_personal_benefits_item_2">Trazabilidad completa</li>
+                    <li data-i18n="seguridad_personal_benefits_item_3">Eliminación de credenciales físicas</li>
                 </ul>
                 <div class="fin_tech_solution_card_icon">
                     <img src="img/icons/how_we_do_item2_title.png" alt="Icon">
@@ -129,12 +112,11 @@ include 'includes/landing_header.php';
             </div>
             
             <div class="fin_tech_solution_card_light">
-                <h3 class="fin_tech_solution_card_title_light">Tecnologías involucradas</h3>
+                <h3 class="fin_tech_solution_card_title_light" data-i18n="seguridad_personal_technologies_title">Tecnologías involucradas</h3>
                 <ul class="fin_tech_solution_card_list_light">
-                    <li>Microcontroladores</li>
-                    <li>Sistemas en tiempo real</li>
-                    <li>Montaje THT y SMT</li>
-                    <li>Metodologías DFM</li>
+                    <li data-i18n="seguridad_personal_technologies_item_1">Plataforma Open All</li>
+                    <li data-i18n="seguridad_personal_technologies_item_2">Cloud computing</li>
+                    <li data-i18n="seguridad_personal_technologies_item_3">Protocolos seguros</li>
                 </ul>
                 <div class="fin_tech_solution_card_icon">
                     <img src="img/icons/what_we_do_item4.png" alt="Icon">
@@ -152,18 +134,18 @@ include 'includes/landing_header.php';
             <div class="cta_logo_solution">
                 <img src="img/logo.png" alt="CADIPEL" class="cta_logo_image">
             </div>
-            <h2 class="cta_title_solution">Capacidades CADIPEL</h2>
+            <h2 class="cta_title_solution" data-i18n="seguridad_personal_cta_title">Capacidades CADIPEL</h2>
             <ul class="cta_list_solution">
-                <li>Desarrollo llave en mano</li>
-                <li>Prototipado rápido</li>
-                <li>Integración con CEM</li>
+                <li data-i18n="seguridad_personal_cta_item_1">Integración tecnológica</li>
+                <li data-i18n="seguridad_personal_cta_item_2">Escalabilidad</li>
+                <li data-i18n="seguridad_personal_cta_item_3">Soporte continuo</li>
             </ul>
-            <a href="#" class="cta_button_solution">Agendá tu reunión</a>
+            <a href="#" class="cta_button_solution" data-i18n="seguridad_personal_cta_button">Agendá tu reunión</a>
         </div>
         <div class="cta_image_wrapper_solution">
             <div class="cta_image_background_solution cta_image_background_left_solution"></div>
             <div class="cta_image_background_solution cta_image_background_right_solution"></div>
-            <img src="img/ingenieria_desarrollo_cta.png" class="cta_image_solution">
+            <img src="img/seguridad_personal_cta.png" class="cta_image_solution">
         </div>
     </div>
 </div>
@@ -178,5 +160,5 @@ function toggleLangMenu() {
   const menu = document.getElementById('home_lang_menu');
   menu.classList.toggle('hidden');
 }
-initLang('ingenieria_desarrollo');
+initLang('seguridad_personal');
 </script>

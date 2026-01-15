@@ -2047,6 +2047,18 @@ font-size: 22px;
     background-position: center;
     background-repeat: no-repeat;
 }
+.seguridad_personal_card {
+    background-image: url('../img/seguridad_personal_card_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.sistemas_especiales_card {
+    background-image: url('../img/sistemas_especiales_card_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .fin_tech_solution_card_light {
     background: #ffffff;
     padding: 25px;
@@ -2331,6 +2343,23 @@ font-size: 22px;
     font-size: 18px;
     line-height: 1;
     font-weight: bold;
+}
+.cta_security_note {
+    margin-top: 8px;
+}
+.cta_security_note_title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #062858;
+    line-height: 1.3;
+    margin: 0;
+}
+.cta_security_note_text {
+    font-size: 13px;
+    color: #666666;
+    line-height: 1.3;
+    margin: 0;
 }
 .cta_button_solution {
     display: inline-block;
