@@ -24,6 +24,7 @@ SWITCH ( $page ) {
     case 'ingenieria_desarrollo':           include "includes/ingenieria_desarrollo.php";       break;
     case 'automatizacion_industrial':       include "includes/automatizacion_industrial.php";   break;
     case 'soluciones_integrales':           include "includes/soluciones_integrales.php";       break;
+    case 'soluciones_industria':            include "includes/soluciones_industria.php";        break;
     case 'landing':                         include "includes/landing.php";                     break;
     default:                                include "includes/landing.php";                     break;
 }

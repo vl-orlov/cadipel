@@ -2162,6 +2162,9 @@ font-size: 22px;
     margin: 0 auto;
     padding: 0 40px;
 }
+.fin_tech_solution_bottom_container_top {
+    margin-top: 70px;
+}
 @media (max-width: 1024px) {
 .fin_tech_solution_top_section {
     padding: 60px 0;
