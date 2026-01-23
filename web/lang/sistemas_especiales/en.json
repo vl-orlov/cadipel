@@ -19,7 +19,7 @@
   "sistemas_especiales_benefits_title": "Key benefits",
   "sistemas_especiales_benefits_item_1": "Real-time sanitization (operational continuity)",
   "sistemas_especiales_benefits_item_2": "No chemicals (no residues or product handling)",
-  "sistemas_especiales_benefits_item_3": "Automation and control by sensors and operation<br>modes",
+  "sistemas_especiales_benefits_item_3": "Automation and control by sensors and operation modes",
   "sistemas_especiales_benefits_item_4": "Improvement of environmental hygiene at critical points",
   "sistemas_especiales_technologies_title": "Technologies involved",
   "sistemas_especiales_technologies_item_1": "LED UV-C",
@@ -38,6 +38,6 @@
   "footer_phone": "+54 11 6264 4638",
   "footer_email": "info@cadipel.com.ar",
   "footer_title": "Your technological ally",
-  "footer_description": "We listen to your needs and design a custom solution to take your project to production.",
+  "footer_description": "We listen to your needs<br>and design a custom solution<br>to take your project to production.",
   "footer_copyright": "© CADIPEL - All rights reserved."
 }

@@ -148,9 +148,9 @@ include 'includes/landing_header.php';
             </div>
             <h2 class="cta_title_solution" data-i18n="agro_cta_title">Capacidades CADIPEL</h2>
             <ul class="cta_list_solution">
-                <li data-i18n="agro_cta_item_1">Diseño de ecosistemas fintech</li>
-                <li data-i18n="agro_cta_item_2">Integración con ERPs</li>
-                <li data-i18n="agro_cta_item_3">Desarrollo continuo y seguro</li>
+                <li data-i18n="agro_cta_item_1">Diseño electrónico a medida</li>
+                <li data-i18n="agro_cta_item_2">Integración hardware + software</li>
+                <li data-i18n="agro_cta_item_3">Experiencia en entornos productivos</li>
             </ul>
             <a href="#" class="cta_button_solution" data-i18n="agro_cta_button">Agendá tu reunión</a>
         </div>

@@ -17,7 +17,7 @@ include 'includes/landing_header.php';
 <div class="fin_tech_description_section">
     <div class="fin_tech_description_container">
         <div class="fin_tech_description_text">
-            <p class="fin_tech_description_paragraph" data-i18n="seguridad_personal_description">CADIPEL aplica la plataforma Open All para el control de accesos y gestión de personal en empresas, fábricas y plantas industriales.</p>
+            <p class="fin_tech_description_paragraph bottom_margin" data-i18n="seguridad_personal_description">CADIPEL aplica la plataforma Open All para el control de accesos y gestión de personal en empresas, fábricas y plantas industriales.</p>
         </div>
         <div class="fin_tech_description_image">
             <img src="img/seguridad_personal_description.png" class="fin_tech_payment_image">

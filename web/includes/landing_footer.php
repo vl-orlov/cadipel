@@ -17,7 +17,7 @@
         </div>
         <div class="footer_right">
             <h3 class="footer_title" data-i18n="footer_title">Tu aliado tecnológico</h3>
-            <p class="footer_description" data-i18n="footer_description">Escuchamos tu necesidad y diseñamos una solución a medida para llevar tu proyecto a producción.</p>
+            <p class="footer_description" data-i18n-html="footer_description">Escuchamos tu necesidad y diseñamos una solución a medida para llevar tu proyecto a producción.</p>
         </div>
     </div>
     <div class="footer_copyright">

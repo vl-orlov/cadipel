@@ -18,8 +18,8 @@
   "sistemas_especiales_applications_item_2": "<strong>Dispositivo fijo para áreas comunes</strong><br>Diseñado para espacios de concentración y baja ventilación (ej.: ascensores, salas pequeñas, accesos). Opera con automatización por presencia.",
   "sistemas_especiales_benefits_title": "Beneficios clave",
   "sistemas_especiales_benefits_item_1": "Sanitización en tiempo real (continuidad operativa)",
-  "sistemas_especiales_benefits_item_2": "Sin químicos (sin residuos ni manipulación<br>de productos)",
-  "sistemas_especiales_benefits_item_3": "Automatización y control por sensores y modos<br>de operación",
+  "sistemas_especiales_benefits_item_2": "Sin químicos (sin residuos ni manipulación de productos)",
+  "sistemas_especiales_benefits_item_3": "Automatización y control por sensores y modos de operación",
   "sistemas_especiales_benefits_item_4": "Mejora de higiene ambiental en puntos críticos",
   "sistemas_especiales_technologies_title": "Tecnologías involucradas",
   "sistemas_especiales_technologies_item_1": "LED UV-C",
@@ -38,6 +38,6 @@
   "footer_phone": "+54 11 6264 4638",
   "footer_email": "info@cadipel.com.ar",
   "footer_title": "Tu aliado tecnológico",
-  "footer_description": "Escuchamos tu necesidad y diseñamos una solución a medida para llevar tu proyecto a producción.",
+  "footer_description": "Escuchamos tu necesidad<br>y diseñamos una solución<br>a medida para llevar<br>tu proyecto a producción.",
   "footer_copyright": "© CADIPEL - Todos los derechos reservados."
 }

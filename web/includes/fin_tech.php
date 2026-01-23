@@ -176,9 +176,9 @@ include 'includes/landing_header.php';
             </div>
             <h2 class="cta_title_solution" data-i18n="cta_solution_title">Capacidades CADIPEL</h2>
             <ul class="cta_list_solution">
-                <li>Diseño electrónico a medida</li>
-                <li>Integración hardware + software</li>
-                <li>Experiencia en entornos productivos</li>
+                <li data-i18n="cta_solution_item_1">Diseño de ecosistemas fintech</li>
+                <li data-i18n="cta_solution_item_2">Integración con ERPs</li>
+                <li data-i18n="cta_solution_item_3">Desarrollo continuo y seguro</li>
             </ul>
             <a href="#" class="cta_button_solution" data-i18n="cta_solution_button">Agendá tu reunión</a>
         </div>

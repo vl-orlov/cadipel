@@ -17,7 +17,7 @@ include 'includes/landing_header.php';
 <div class="fin_tech_description_section">
     <div class="fin_tech_description_container">
         <div class="fin_tech_description_text">
-            <p class="fin_tech_description_paragraph" data-i18n="soluciones_integrales_description">Open All reemplaza llaves, tarjetas y controles por el uso del smartphone, permitiendo control de accesos seguro y remoto para edificios y viviendas.</p>
+            <p class="fin_tech_description_paragraph bottom_margin" data-i18n-html="soluciones_integrales_description">Open All reemplaza llaves, tarjetas y controles por el uso del smartphone, permitiendo control de accesos seguro y remoto para edificios y viviendas.</p>
         </div>
         <div class="fin_tech_description_image">
             <img src="img/soluciones_integrales_description.png" class="fin_tech_payment_image">

@@ -3,7 +3,7 @@
   "ingenieria_hero_subtitle": "Diseño, prototipado y fabricación de equipos electrónicos y software<br>a medida para terceros",
   "ingenieria_hero_cta": "Consultar sobre esta solución",
   "ingenieria_description_1": "CADIPEL acompaña a empresas durante todo el ciclo<br>de desarrollo de productos electrónicos y de software,<br>desde la idea inicial hasta la fabricación en serie.",
-  "ingenieria_description_2": "El equipo cuenta con amplia experiencia en hardware, firmware y software de usuario y servidor.",
+  "ingenieria_description_2": "El equipo cuenta con amplia experiencia en hardware,<br>firmware y software de usuario y servidor.",
   "ingenieria_problems_title": "Problemas que resuelve",
   "ingenieria_problem_1": "Falta de capacidad interna de desarrollo",
   "ingenieria_problem_2": "Largos tiempos de llegada al mercado",
@@ -43,6 +43,6 @@
   "footer_phone": "+54 11 6264 4638",
   "footer_email": "info@cadipel.com.ar",
   "footer_title": "Tu aliado tecnológico",
-  "footer_description": "Escuchamos tu necesidad y diseñamos una solución a medida para llevar tu proyecto a producción.",
+  "footer_description": "Escuchamos tu necesidad<br>y diseñamos una solución<br>a medida para llevar<br>tu proyecto a producción.",
   "footer_copyright": "© CADIPEL - Todos los derechos reservados."
 }

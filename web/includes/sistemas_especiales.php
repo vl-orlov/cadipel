@@ -103,8 +103,8 @@ include 'includes/landing_header.php';
                 <h3 class="fin_tech_solution_card_title_light" data-i18n="sistemas_especiales_benefits_title">Beneficios clave</h3>
                 <ul class="fin_tech_solution_card_list_light">
                     <li data-i18n="sistemas_especiales_benefits_item_1">Sanitización en tiempo real (continuidad operativa)</li>
-                    <li data-i18n-html="sistemas_especiales_benefits_item_2">Sin químicos (sin residuos ni manipulación<br>de productos)</li>
-                    <li data-i18n-html="sistemas_especiales_benefits_item_3">Automatización y control por sensores y modos<br>de operación</li>
+                    <li data-i18n="sistemas_especiales_benefits_item_2">Sin químicos (sin residuos ni manipulación de productos)</li>
+                    <li data-i18n="sistemas_especiales_benefits_item_3">Automatización y control por sensores y modos de operación</li>
                     <li data-i18n="sistemas_especiales_benefits_item_4">Mejora de higiene ambiental en puntos críticos</li>
                 </ul>
                 <div class="fin_tech_solution_card_icon">
@@ -150,8 +150,8 @@ include 'includes/landing_header.php';
             <a href="#" class="cta_button_solution" data-i18n="sistemas_especiales_cta_button">Agendá tu reunión</a>
         </div>
         <div class="cta_image_wrapper_solution">
-            <div class="cta_image_background_solution cta_image_background_left_solution"></div>
-            <div class="cta_image_background_solution cta_image_background_right_solution"></div>
+            <div class="cta_image_background_solution cta_image_background_left_sistemas_especiales"></div>
+            <div class="cta_image_background_solution cta_image_background_right_sistemas_especiales"></div>
             <img src="img/sistemas_especiales_cta.png" class="cta_image_solution">
         </div>
     </div>
