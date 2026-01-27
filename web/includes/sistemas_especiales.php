@@ -8,7 +8,7 @@ include 'includes/landing_header.php';
     </div>
     <div class="hero_solucion_content">
         <h1 class="hero_solucion_title" data-i18n-html="sistemas_especiales_hero_title">Sistemas especiales de desinfección – UV-C</h1>
-        <p class="hero_solucion_subtitle" data-i18n="sistemas_especiales_hero_subtitle">Dispositivos para sanitización de aire, superficies y líquidos sin químicos</p>
+        <p class="hero_solucion_subtitle" data-i18n-html="sistemas_especiales_hero_subtitle">Dispositivos para sanitización de aire, superficies y líquidos sin químicos</p>
         <a href="#" class="hero_solucion_cta" data-i18n="hero_solucion_cta">Consultar sobre esta solución</a>
     </div>
 </div>

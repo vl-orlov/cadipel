@@ -18,7 +18,7 @@ include 'includes/landing_header.php';
     <div class="fin_tech_description_container">
         <div class="fin_tech_description_text">
             <p class="fin_tech_description_paragraph" data-i18n="fin_tech_description_1">CADIPEL diseña e implementa billeteras virtuales mediante Open-All, habilitando a empresas a operar su propio ecosistema de pagos y saldo digital con control operativo y de negocio.</p>
-            <p class="fin_tech_description_paragraph" data-i18n="fin_tech_description_2">La solución se integra con sistemas contables y comerciales existentes (ERP / POS / e-commerce), de forma directa o vía APIs, con foco en seguridad, trazabilidad y escalabilidad.</p>
+            <p class="fin_tech_description_paragraph" data-i18n-html="fin_tech_description_2">La solución se integra con sistemas contables y comerciales existentes (ERP / POS / e-commerce), de forma directa o vía APIs, con foco en seguridad, trazabilidad y escalabilidad.</p>
         </div>
         <div class="fin_tech_description_image">
             <img src="img/fin_tech_payment.png" alt="Pago con billetera virtual" class="fin_tech_payment_image">

@@ -8,7 +8,7 @@ include 'includes/landing_header.php';
     </div>
     <div class="hero_solucion_content">
         <h1 class="hero_solucion_title" data-i18n-html="hero_solucion_title">Soluciones integrales<br>para consorcios – Open All</h1>
-        <p class="hero_solucion_subtitle" data-i18n="hero_solucion_subtitle">Plataforma en la nube para control de accesos y seguridad basada en smartphone</p>
+        <p class="hero_solucion_subtitle" data-i18n-html="hero_solucion_subtitle">Plataforma en la nube para control de accesos y seguridad basada en smartphone</p>
         <a href="#" class="hero_solucion_cta" data-i18n="hero_solucion_cta">Consultar sobre esta solución</a>
     </div>
 </div>

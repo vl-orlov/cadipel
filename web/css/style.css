@@ -2367,6 +2367,7 @@ font-size: 22px;
     margin: 0;
 }
 .cta_security_note_text {
+    width: 85%;
     font-size: 13px;
     color: #666666;
     line-height: 1.3;
