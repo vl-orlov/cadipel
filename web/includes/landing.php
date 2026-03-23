@@ -1,33 +1,5 @@
 <!-- HEADER -->
-<div class="header">
-    <div class="header_container">
-        <div class="logo">
-            <img src="img/logo.png" alt="CADIPEL" class="logo_image">
-        </div>
-        <div class="header_right">
-            <nav class="nav" id="nav_menu">
-                <a href="#" data-i18n="nav_business_units">Unidades de negocio</a>
-                <a href="#" data-i18n="nav_companies">Compañías</a>
-                <a href="#" data-i18n="nav_success_cases">Casos de éxito</a>
-                <a href="#" data-i18n="nav_about">Sobre CADIPEL</a>
-                <a href="#" data-i18n="nav_contact">Contacto</a>
-            </nav>
-            <button class="burger_menu" onclick="toggleNavMenu()" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="home_lang" onclick="toggleLangMenu()">
-                <img src="img/icons/lang.png">
-                <span id="current_lang">ES</span>
-                <ul id="home_lang_menu" class="home_lang_menu hidden">
-                    <li onclick="setLang('landing', 'es')">Español</li>
-                    <li onclick="setLang('landing', 'en')">English</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+<?php include __DIR__ . '/site_header.php'; ?>
 <!-- END HEADER -->
 
 <!-- HERO SECTION -->
@@ -645,8 +617,40 @@
 </div>
 <!-- END CTA SECTION -->
 
+<?php
+$companies_logos_dir = __DIR__ . '/../img/logos_company';
+$companies_logos_files = [];
+if (is_dir($companies_logos_dir)) {
+    foreach (glob($companies_logos_dir . '/*') as $companies_logo_path) {
+        if (is_file($companies_logo_path) && preg_match('/\.(png|jpe?g|svg|webp)$/i', $companies_logo_path)) {
+            $companies_logos_files[] = basename($companies_logo_path);
+        }
+    }
+    sort($companies_logos_files, SORT_NATURAL | SORT_FLAG_CASE);
+}
+?>
+<!-- COMPANIES SECTION -->
+<section class="companies_section" aria-labelledby="companies_section_title">
+    <div class="companies_inner">
+        <div class="companies_logos_wrap">
+            <div class="companies_logos_grid">
+                <?php foreach ($companies_logos_files as $companies_logo_file): ?>
+                <div class="companies_logo_cell">
+                    <img src="img/logos_company/<?php echo rawurlencode($companies_logo_file); ?>" alt="" loading="lazy">
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="companies_panel">
+            <h2 id="companies_section_title" class="companies_title" data-i18n="companies_title">Empresas</h2>
+            <p class="companies_text" data-i18n="companies_text">Algunas de las organizaciones que eligieron a Cadipel para integrar tecnología electrónica y software en sus operaciones y proyectos.</p>
+        </div>
+    </div>
+</section>
+<!-- END COMPANIES SECTION -->
+
 <!-- FOOTER -->
-<div class="footer">
+<div id="contacto" class="footer">
     <div class="footer_container">
         <div class="footer_left">
             <div class="footer_contact">

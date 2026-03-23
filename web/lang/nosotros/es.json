@@ -1,0 +1,21 @@
+{
+  "nav_business_units": "Nosotros",
+  "nav_companies": "Compañías asociadas",
+  "nav_success_cases": "Lo que hacemos",
+  "nav_about": "Casos de éxito",
+  "nav_contact": "Contacto",
+  "nosotros_hero_title": "Sobre CADIPEL",
+  "nosotros_hero_back": "Volver",
+  "nosotros_row1_p1": "Somos un grupo de Compañías Internacionales e Instituciones con amplia trayectoria (entre 15 y más de 60 años), que Investigan, Desarrollan y Fabrican equipamiento y software en el campo de la Tecnología de la Información y la Biometría.",
+  "nosotros_row1_p2": "Nuestra labor comprende todo el ciclo de diseño y desarrollo de equipos electrónicos desde la idea del producto, dando soporte desde la fase de especificación hasta la entrega del producto llave en mano.",
+  "nosotros_row1_p3": "Nuestros profesionales son expertos en diseño de hardware electrónico, diseño de software embebido y diseño de software de interfaces de usuario / servidor.",
+  "nosotros_row2_p1": "Entregamos productos llave en mano según los requisitos particulares requeridos por el cliente.",
+  "nosotros_row2_p2": "Nuestros diseños para sistemas embebidos abarcan sistemas de lógica programable, sistemas basados en microcontroladores de bajo consumo para alimentación a baterías y diseños de sistemas en tiempo real basados en microprocesadores de última generación.",
+  "nosotros_row2_p3": "Operamos en Latinoamérica, Europa y Norteamérica, ofreciendo soluciones para los sectores aeronáutico, agrícola, industrial, automotriz, médico, bancario y de seguridad.",
+  "footer_address": "Av. Independencia 4281, CABA (CP 1226)",
+  "footer_phone": "+54 11 6264 4638",
+  "footer_email": "info@cadipel.com.ar",
+  "footer_title": "Tu aliado tecnológico",
+  "footer_description": "Escuchamos tu necesidad<br>y diseñamos una solución<br>a medida para llevar<br>tu proyecto a producción.",
+  "footer_copyright": "© CADIPEL - Todos los derechos reservados."
+}

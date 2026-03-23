@@ -19,6 +19,10 @@
 $page = isset($_REQUEST['page']) ? htmlspecialchars($_REQUEST['page']) : '';
 
 SWITCH ( $page ) {
+    case 'nosotros':                        include "includes/nosotros.php";                     break;
+    case 'companias_asociadas':             include "includes/companias_asociadas.php";          break;
+    case 'lo_que_hacemos':                  include "includes/lo_que_hacemos.php";               break;
+    case 'casos_de_exito':                  include "includes/casos_de_exito.php";               break;
     case 'fin_tech':                        include "includes/fin_tech.php";                    break;
     case 'soluciones_agro':                 include "includes/soluciones_agro.php";             break;
     case 'ingenieria_desarrollo':           include "includes/ingenieria_desarrollo.php";       break;
