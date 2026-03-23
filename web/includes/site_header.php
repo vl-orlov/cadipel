@@ -8,7 +8,9 @@ $header_i18n_ns_esc = htmlspecialchars($header_i18n_ns, ENT_QUOTES, 'UTF-8');
 <div class="header">
     <div class="header_container">
         <div class="logo">
-            <img src="img/logo.png" alt="CADIPEL" class="logo_image">
+            <a href="?" aria-label="CADIPEL home">
+                <img src="img/logo.png" alt="CADIPEL" class="logo_image">
+            </a>
         </div>
         <div class="header_right">
             <nav class="nav" id="nav_menu" aria-label="Principal">

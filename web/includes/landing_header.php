@@ -1,7 +1,9 @@
 <div class="header">
     <div class="header_container">
         <div class="logo">
-            <img src="img/logo.png" alt="CADIPEL" class="logo_image">
+            <a href="?" aria-label="CADIPEL home">
+                <img src="img/logo.png" alt="CADIPEL" class="logo_image">
+            </a>
         </div>
         <div class="header_right">
             <button class="header_back_button" onclick="history.back()" aria-label="Volver">
