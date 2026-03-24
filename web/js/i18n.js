@@ -32,6 +32,12 @@ async function setLang(page, lang) {
         el.innerHTML = dict[key];
       }
     });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria-label');
+      if (dict[key]) {
+        el.setAttribute('aria-label', dict[key]);
+      }
+    });
 
   } catch (err) {
     console.error(`Language load error for ${lang}:`, err);
@@ -47,4 +53,23 @@ function initLang(page = 'landing', defaultLang = 'es') {
   const lang = storedLang ?? (supportedLangs.includes(browserLang) ? browserLang : defaultLang);
 
   setLang(page, lang);
+}
+
+/** Smooth scroll from hero subpages (.nosotros_page_hero) to the block directly below the hero. */
+function initHeroNosotrosScroll() {
+  document.querySelectorAll('.nosotros_page_hero .hero_nosotros_scroll').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      const hero = this.closest('.nosotros_page_hero');
+      const target = hero?.nextElementSibling;
+      if (target && target.nodeType === Node.ELEMENT_NODE) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initHeroNosotrosScroll);
+} else {
+  initHeroNosotrosScroll();
 }

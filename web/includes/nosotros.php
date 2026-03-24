@@ -1,16 +1,22 @@
 <?php include __DIR__ . '/site_header.php'; ?>
-<div class="hero_solucion hero_nosotros">
+<div class="hero_solucion hero_nosotros nosotros_page_hero">
     <div class="hero_solucion_background">
         <img src="img/nosotros/nosotros0.png" alt="" class="hero_solucion_bg_image hero_nosotros_bg_image">
     </div>
     <div class="hero_solucion_content hero_nosotros_content">
         <h1 class="hero_solucion_title hero_nosotros_title" data-i18n="nosotros_hero_title">Sobre CADIPEL</h1>
-        <a onclick="window.location.href='?page=landing'" class="hero_nosotros_back" data-i18n="nosotros_hero_back">Volver</a>
+        <button type="button" class="hero_nosotros_scroll" data-i18n-aria-label="nosotros_hero_scroll_aria" aria-label="Ir al contenido principal">
+            <svg class="hero_nosotros_scroll_icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.25"/>
+                <path d="M24 17v10M18 25l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
     </div>
+    <a href="?page=landing" class="hero_nosotros_back" data-i18n="nosotros_hero_back">Volver</a>
 </div>
 
 <!-- NOSOTROS CONTENT -->
-<div class="nosotros_story_section" aria-label="Sobre CADIPEL">
+<div id="nosotros_main" class="nosotros_story_section" aria-label="Sobre CADIPEL">
     <div class="nosotros_story_inner">
         <div class="nosotros_story_row">
             <div class="nosotros_story_text">

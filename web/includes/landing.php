@@ -521,7 +521,7 @@
                         <span class="stats_icon">
                             <img src="img/icons/star_icon.png" alt="Icon">
                         </span>
-                        <span data-i18n="stats_description1">Componentes electrónicos montados por mes junto a ASSISI (en un solo turno)</span>
+                        <span data-i18n="stats_description3">Experiencia en ingeniería y montaje electrónico</span>
                     </div>
                 </div>
                 <div class="stats_item">
@@ -545,7 +545,7 @@
                         <span class="stats_icon">
                             <img src="img/icons/star_icon.png" alt="Icon">
                         </span>
-                        <span data-i18n="stats_description3">Experiencia en ingeniería y montaje electrónico</span>
+                        <span data-i18n="stats_description1">Componentes electrónicos montados por mes junto a ASSISI (en un solo turno)</span>
                     </div>
                 </div>
             </div>
@@ -1018,6 +1018,26 @@ document.addEventListener('DOMContentLoaded', () => {
       setTransform();
       checkInfiniteLoop();
     });
+
+    carousel.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) return;
+      let dy = e.deltaY;
+      let dx = e.deltaX;
+      if (e.deltaMode === 1) {
+        dy *= 16;
+        dx *= 16;
+      } else if (e.deltaMode === 2) {
+        dy *= carousel.clientWidth || 300;
+        dx *= carousel.clientWidth || 300;
+      }
+      const delta = (dy + dx) * 1.2;
+      if (delta === 0) return;
+      e.preventDefault();
+      track.classList.remove('smooth');
+      currentTranslate -= delta;
+      setTransform();
+      checkInfiniteLoop();
+    }, { passive: false });
     
     // Touch events для мобильных
     let touchStartX = 0;
