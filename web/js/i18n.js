@@ -73,3 +73,29 @@ if (document.readyState === 'loading') {
 } else {
   initHeroNosotrosScroll();
 }
+
+function toggleNavMenu() {
+  const nav = document.getElementById('nav_menu');
+  const burger = document.querySelector('.burger_menu');
+  if (!nav || !burger) {
+    return;
+  }
+  nav.classList.toggle('nav_open');
+  burger.classList.toggle('burger_active');
+}
+
+document.addEventListener('click', function (e) {
+  const langBox = document.querySelector('.home_lang');
+  const langMenu = document.getElementById('home_lang_menu');
+  const nav = document.getElementById('nav_menu');
+  const burger = document.querySelector('.burger_menu');
+
+  if (langBox && langMenu && !langBox.contains(e.target)) {
+    langMenu.classList.add('hidden');
+  }
+
+  if (nav && burger && !nav.contains(e.target) && !burger.contains(e.target)) {
+    nav.classList.remove('nav_open');
+    burger.classList.remove('burger_active');
+  }
+});

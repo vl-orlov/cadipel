@@ -2,9 +2,10 @@
     <div class="footer_container">
         <div class="footer_left">
             <div class="footer_contact">
-                <p class="footer_address" data-i18n="footer_address">Av. Independencia 4281, CABA (CP 1226)</p>
-                <p class="footer_phone" data-i18n="footer_phone">+54 11 6264 4638</p>
-                <p class="footer_email" data-i18n="footer_email">info@cadipel.com.ar</p>
+                <p class="footer_address">Av. Independencia 4281, CABA (CP 1226)</p>
+                <p class="footer_phone">+54 9 11 6264-4638</p>
+                <p class="footer_phone">+54 9 11 6980-1588</p>
+                <p class="footer_email">info@cadipel.com.ar</p>
             </div>
             <div class="footer_social">
                 <a href="#" class="social_link" aria-label="LinkedIn">

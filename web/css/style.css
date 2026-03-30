@@ -164,6 +164,7 @@ h1, h2, h4, h5, h6,
 .nav.nav_open {
     transform: translateY(0);
     top: 60px;
+    z-index: 1002;
 }}
 .nav a {
     color: #062858;
@@ -325,6 +326,11 @@ h1, h2, h4, h5, h6,
 .hero_cta {
     padding: 14px 32px;
     font-size: 16px;
+}
+.hero_title {
+    font-size: 35px;
+    line-height: 1.2;
+    margin-bottom: 30px;
 }}
 @media (max-width: 480px) {
 .hero_cta {

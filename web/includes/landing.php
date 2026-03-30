@@ -10,7 +10,7 @@
     </div>
     <div class="hero_content">
         <h1 class="hero_title" data-i18n-html="hero_title">Compañía internacional<br>desarrolladora y fabricante<br>de tecnologías en electrónica<br>y software</h1>
-        <a href="#" class="hero_cta" data-i18n="hero_cta">Descubrir nuestras soluciones</a>
+        <a href="#soluciones" class="hero_cta" data-i18n="hero_cta">Descubrí nuestras soluciones</a>
     </div>
 </div>
 <!-- END HERO SECTION -->
@@ -53,7 +53,7 @@
 <!-- END SERVICES SECTION -->
 
 <!-- BUSINESS UNITS CAROUSEL -->
-<div class="business_units_section">
+<div id="soluciones" class="business_units_section">
     <div class="business_units_container">
         <h2 class="business_units_title" data-i18n="business_units_title">Organizamos nuestras soluciones en distintas unidades de negocio para adaptarnos a las necesidades de cada industria</h2>
         <div class="business_units_carousel">
@@ -654,9 +654,10 @@ if (is_dir($companies_logos_dir)) {
     <div class="footer_container">
         <div class="footer_left">
             <div class="footer_contact">
-                <p class="footer_address" data-i18n="footer_address">Av. Independencia 4281, CABA (CP 1226)</p>
-                <p class="footer_phone" data-i18n="footer_phone">+54 11 6264 4638</p>
-                <p class="footer_email" data-i18n="footer_email">info@cadipel.com.ar</p>
+                <p class="footer_address">Av. Independencia 4281, CABA (CP 1226)</p>
+                <p class="footer_phone">+54 9 11 6264-4638</p>
+                <p class="footer_phone">+54 9 11 6980-1588</p>
+                <p class="footer_email">info@cadipel.com.ar</p>
             </div>
             <div class="footer_social">
                 <a href="#" class="social_link" aria-label="LinkedIn">
@@ -682,13 +683,6 @@ if (is_dir($companies_logos_dir)) {
 function toggleLangMenu() {
   const menu = document.getElementById('home_lang_menu');
   menu.classList.toggle('hidden');
-}
-
-function toggleNavMenu() {
-  const nav = document.getElementById('nav_menu');
-  const burger = document.querySelector('.burger_menu');
-  nav.classList.toggle('nav_open');
-  burger.classList.toggle('burger_active');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1161,22 +1155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
-});
-
-document.addEventListener('click', function (e) {
-  const langBox = document.querySelector('.home_lang');
-  const langMenu = document.getElementById('home_lang_menu');
-  const nav = document.getElementById('nav_menu');
-  const burger = document.querySelector('.burger_menu');
-  
-  if (langBox && !langBox.contains(e.target)) {
-    langMenu.classList.add('hidden');
-  }
-  
-  if (nav && burger && !nav.contains(e.target) && !burger.contains(e.target)) {
-    nav.classList.remove('nav_open');
-    burger.classList.remove('burger_active');
-  }
 });
 </script>
 
