@@ -2,14 +2,19 @@
 $page = "soluciones_industria";
 include 'includes/landing_header.php';
 ?>
-<div class="hero_solucion">
+<div class="hero_solucion nosotros_page_hero">
     <div class="hero_solucion_background">
         <img src="img/soluciones_industria_background.png" class="hero_solucion_bg_image">
     </div>
     <div class="hero_solucion_content">
         <h1 class="hero_solucion_title" data-i18n="soluciones_industria_hero_title">Soluciones para la Industria Automotriz</h1>
         <p class="hero_solucion_subtitle" data-i18n-html="soluciones_industria_hero_subtitle">Sistemas electrónicos LED inteligentes para modernización <br>estética y funcional</p>
-        <a href="#" class="hero_solucion_cta" data-i18n="hero_solucion_cta">Consultar sobre esta solución</a>
+        <button type="button" class="hero_nosotros_scroll" data-i18n-aria-label="hero_solucion_cta" aria-label="Consultar sobre esta solución">
+            <svg class="hero_nosotros_scroll_icon" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.25"/>
+                <path d="M24 17v10M18 25l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
     </div>
 </div>
 
@@ -113,7 +118,7 @@ include 'includes/landing_header.php';
                 <li data-i18n="soluciones_industria_cta_item_2">Programación electrónica</li>
                 <li data-i18n="soluciones_industria_cta_item_3">Producción nacional</li>
             </ul>
-            <a href="#" class="cta_button_solution" data-i18n="soluciones_industria_cta_button">Agendá tu reunión</a>
+            <a href="https://wa.me/5491162644638?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20reuni%C3%B3n%20con%20el%20equipo%20de%20Cadipel." target="_blank" rel="noopener noreferrer" class="cta_button_solution" data-i18n="soluciones_industria_cta_button" data-i18n-href="cta_whatsapp_href">Agendá tu reunión</a>
         </div>
         <div class="cta_image_wrapper_solution">
             <div class="cta_image_background_solution cta_image_background_left_solution"></div>

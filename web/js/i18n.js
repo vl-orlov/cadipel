@@ -38,6 +38,12 @@ async function setLang(page, lang) {
         el.setAttribute('aria-label', dict[key]);
       }
     });
+    document.querySelectorAll('[data-i18n-href]').forEach(el => {
+      const key = el.getAttribute('data-i18n-href');
+      if (dict[key]) {
+        el.setAttribute('href', dict[key]);
+      }
+    });
 
   } catch (err) {
     console.error(`Language load error for ${lang}:`, err);
@@ -55,7 +61,7 @@ function initLang(page = 'landing', defaultLang = 'es') {
   setLang(page, lang);
 }
 
-/** Smooth scroll from hero subpages (.nosotros_page_hero) to the block directly below the hero. */
+/** Smooth scroll from hero blocks (.nosotros_page_hero: nosotros, soluciones, etc.) to the section below. */
 function initHeroNosotrosScroll() {
   document.querySelectorAll('.nosotros_page_hero .hero_nosotros_scroll').forEach(function (btn) {
     btn.addEventListener('click', function () {

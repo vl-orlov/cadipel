@@ -565,7 +565,7 @@
                     <div class="project_overlay"></div>
                     <div class="project_content">
                         <span class="project_category" data-i18n="project1_category">Industria / Automatización</span>
-                        <h3 class="project_card_title" data-i18n="project1_title">Nombre del proyecto</h3>
+                        <h3 class="project_card_title" data-i18n="project1_title">ENVASADORA Y BLISTEADORA</h3>
                         <p class="project_card_text" data-i18n="project1_text">Modernización de una línea existente mediante electrónica de control, sensado y visualización. Se redujeron tiempos operativos y se mejoró la repetitividad del proceso sin reemplazar maquinaria.</p>
                     </div>
                 </div>
@@ -576,7 +576,7 @@
                     <div class="project_overlay"></div>
                     <div class="project_content">
                         <span class="project_category" data-i18n="project2_category">Electrónica / Producto</span>
-                        <h3 class="project_card_title" data-i18n="project2_title">Nombre del proyecto</h3>
+                        <h3 class="project_card_title" data-i18n="project2_title">LED A-GIRO</h3>
                         <p class="project_card_text" data-i18n="project2_text">Diseño de hardware, firmware y software asociado, con prototipado rápido y validación funcional. Escalado a fabricación aplicando criterios DFM para asegurar viabilidad en serie.</p>
                     </div>
                 </div>
@@ -587,7 +587,7 @@
                     <div class="project_overlay"></div>
                     <div class="project_content">
                         <span class="project_category" data-i18n="project3_category">Seguridad / Accesos</span>
-                        <h3 class="project_card_title" data-i18n="project3_title">Nombre del proyecto</h3>
+                        <h3 class="project_card_title" data-i18n="project3_title">QR-PASS DINÁMICO</h3>
                         <p class="project_card_text" data-i18n="project3_text">Implementación de un sistema de acceso y gestión remota, reemplazando llaves y credenciales físicas. Se mejoró la seguridad, el control de usuarios y la trazabilidad de eventos.</p>
                     </div>
                 </div>
@@ -606,7 +606,7 @@
             </div>
             <h2 class="cta_title" data-i18n="cta_title">Agenda una cita con nuestro equipo</h2>
             <p class="cta_text" data-i18n="cta_text">Contanos sobre tu proyecto y evaluemos juntos cómo podemos ayudarte con ingeniería electrónica y software a medida</p>
-            <a href="#" class="cta_button" data-i18n="cta_button">Agendar reunión</a>
+            <a href="https://wa.me/5491162644638?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20reuni%C3%B3n%20con%20el%20equipo%20de%20Cadipel." target="_blank" rel="noopener noreferrer" class="cta_button" data-i18n="cta_button" data-i18n-href="cta_whatsapp_href">Agendá tu reunión</a>
         </div>
         <div class="cta_image_wrapper">
             <div class="cta_image_background cta_image_background_left"></div>
