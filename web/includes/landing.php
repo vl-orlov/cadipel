@@ -5,15 +5,170 @@
 <!-- HERO SECTION -->
 <div class="hero">
     <div class="hero_background">
-        <img src="img/circuit-board.jpg" alt="Circuit board" class="hero_bg_image">
-        <div class="hero_overlay"></div>
+        <video class="hero_bg_video hero_bg_video_desktop" autoplay muted loop playsinline preload="metadata" poster="img/landscape.jpg" aria-hidden="true">
+            <source src="video/hero-desktop.mp4" type="video/mp4">
+        </video>
+        <video class="hero_bg_video hero_bg_video_mobile" autoplay muted loop playsinline preload="metadata" poster="img/portrait.jpg" aria-hidden="true">
+            <source src="video/hero-mobile.mp4" type="video/mp4">
+        </video>
     </div>
+    <div class="hero_overlay" aria-hidden="true"></div>
     <div class="hero_content">
-        <h1 class="hero_title" data-i18n-html="hero_title">Compañía internacional<br>desarrolladora y fabricante<br>de tecnologías en electrónica<br>y software</h1>
-        <a href="#soluciones" class="hero_cta" data-i18n="hero_cta">Descubrí nuestras soluciones</a>
+        <h1 class="hero_title" data-i18n-html="hero_title"><span class="hero_title_line">De la idea</span><span class="hero_title_line">a las tecnologías</span><span class="hero_title_line hero_title_accent">del futuro</span></h1>
+        <p class="hero_subtitle" data-i18n="hero_subtitle">Transformamos ideas complejas de ingeniería en productos inteligentes y soluciones tecnológicas que impulsan el futuro</p>
+        <a href="#soluciones" class="hero_cta" data-i18n="hero_cta">Descubre nuestras soluciones</a>
     </div>
 </div>
 <!-- END HERO SECTION -->
+
+<!-- EXPERTISE SECTION -->
+<section class="expertise_section">
+    <div class="expertise_container">
+        <div class="cycle_block">
+            <p class="expertise_eyebrow" data-i18n="cycle_eyebrow">Ciclo de desarrollo</p>
+            <h2 class="expertise_title" data-i18n="cycle_title">De la idea a la implantación industrial</h2>
+            <div class="cycle_timeline_wrap">
+                <div class="cycle_timeline">
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">01</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step1">Idea</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_01_idea.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">02</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step2">Diseño</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_02_design.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">03</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step3">Hardware</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_03_hardware.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">04</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step4">Sistemas</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_04_systems.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">05</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step5">Integración</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_05_integration.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">06</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step6">Cloud</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_06_cloud.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">07</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step7">Producto</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_07_product.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                    <div class="cycle_step">
+                        <div class="cycle_step_text">
+                            <span class="cycle_step_num">08</span>
+                            <span class="cycle_step_label" data-i18n="cycle_step8">Escalado</span>
+                        </div>
+                        <span class="cycle_step_connector" aria-hidden="true"></span>
+                        <div class="cycle_step_icon">
+                            <img src="img/icons/cycle_08_scale.svg" alt="" width="28" height="28">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech_block">
+            <div class="tech_header">
+                <div class="tech_header_text">
+                    <p class="expertise_eyebrow" data-i18n="tech_eyebrow">Nuestra experticia</p>
+                    <h2 class="expertise_title" data-i18n="tech_title">Tecnologías que crean ventaja</h2>
+                </div>
+                <a href="?page=lo_que_hacemos" class="tech_link" data-i18n="tech_link">Ver todas las competencias →</a>
+            </div>
+            <div class="tech_grid">
+                <article class="tech_card">
+                    <div class="tech_card_icon">
+                        <img src="img/icons/tech_electronics.svg" alt="" width="28" height="28">
+                    </div>
+                    <h3 class="tech_card_title" data-i18n="tech_card1_title">Electrónica</h3>
+                    <p class="tech_card_text" data-i18n="tech_card1_text">Electronía y despokiike electronica</p>
+                </article>
+                <article class="tech_card">
+                    <div class="tech_card_icon">
+                        <img src="img/icons/tech_software.svg" alt="" width="28" height="28">
+                    </div>
+                    <h3 class="tech_card_title" data-i18n="tech_card2_title">Software complejo</h3>
+                    <p class="tech_card_text" data-i18n="tech_card2_text">Tecnología aplicada con u nadesen complejo</p>
+                </article>
+                <article class="tech_card">
+                    <div class="tech_card_icon">
+                        <img src="img/icons/tech_ai.svg" alt="" width="28" height="28">
+                    </div>
+                    <h3 class="tech_card_title" data-i18n="tech_card3_title">Soluciones de IA</h3>
+                    <p class="tech_card_text" data-i18n="tech_card3_text">Hescecomentos inteonenas nereziaziges, incetcs patieeos na cesom processem</p>
+                </article>
+                <article class="tech_card">
+                    <div class="tech_card_icon">
+                        <img src="img/icons/tech_digital.svg" alt="" width="28" height="28">
+                    </div>
+                    <h3 class="tech_card_title" data-i18n="tech_card4_title">Acompañamiento digital</h3>
+                    <p class="tech_card_text" data-i18n="tech_card4_text">Outumización, it tareggen it : ratagen e eminenze akplak</p>
+                </article>
+                <article class="tech_card">
+                    <div class="tech_card_icon">
+                        <img src="img/icons/tech_automation.svg" alt="" width="28" height="28">
+                    </div>
+                    <h3 class="tech_card_title" data-i18n="tech_card5_title">Líneas automatizadas</h3>
+                    <p class="tech_card_text" data-i18n="tech_card5_text">Fuocortoneecamento setomatkiuo automatmeckam</p>
+                </article>
+                <article class="tech_card">
+                    <div class="tech_card_icon">
+                        <img src="img/icons/tech_specialized.svg" alt="" width="28" height="28">
+                    </div>
+                    <h3 class="tech_card_title" data-i18n="tech_card6_title">Soluciones especializadas</h3>
+                    <p class="tech_card_text" data-i18n="tech_card6_text">Reation en puistoro proceso uiscofog, aceneros y respiones</p>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END EXPERTISE SECTION -->
 
 <!-- SERVICES SECTION -->
 <div class="services_section">
