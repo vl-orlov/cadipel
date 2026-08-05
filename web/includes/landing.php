@@ -27,86 +27,88 @@
         <div class="cycle_block">
             <p class="expertise_eyebrow" data-i18n="cycle_eyebrow">Ciclo de desarrollo</p>
             <h2 class="expertise_title" data-i18n="cycle_title">De la idea a la implantación industrial</h2>
-            <div class="cycle_timeline_wrap">
-                <div class="cycle_timeline">
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">01</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step1">Idea</span>
+            <div class="cycle_timeline_scroller">
+                <div class="cycle_timeline_wrap">
+                    <div class="cycle_timeline">
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">01</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step1">Idea</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_01_idea.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_01_idea.svg" alt="" width="28" height="28">
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">02</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step2">Diseño</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_02_design.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">02</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step2">Diseño</span>
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">03</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step3">Hardware</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_03_hardware.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_02_design.svg" alt="" width="28" height="28">
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">04</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step4">Sistemas</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_04_systems.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">03</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step3">Hardware</span>
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">05</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step5">Integración</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_05_integration.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_03_hardware.svg" alt="" width="28" height="28">
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">06</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step6">Cloud</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_06_cloud.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">04</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step4">Sistemas</span>
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">07</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step7">Producto</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_07_product.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_04_systems.svg" alt="" width="28" height="28">
-                        </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">05</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step5">Integración</span>
-                        </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_05_integration.svg" alt="" width="28" height="28">
-                        </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">06</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step6">Cloud</span>
-                        </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_06_cloud.svg" alt="" width="28" height="28">
-                        </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">07</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step7">Producto</span>
-                        </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_07_product.svg" alt="" width="28" height="28">
-                        </div>
-                    </div>
-                    <div class="cycle_step">
-                        <div class="cycle_step_text">
-                            <span class="cycle_step_num">08</span>
-                            <span class="cycle_step_label" data-i18n="cycle_step8">Escalado</span>
-                        </div>
-                        <span class="cycle_step_connector" aria-hidden="true"></span>
-                        <div class="cycle_step_icon">
-                            <img src="img/icons/cycle_08_scale.svg" alt="" width="28" height="28">
+                        <div class="cycle_step">
+                            <div class="cycle_step_text">
+                                <span class="cycle_step_num">08</span>
+                                <span class="cycle_step_label" data-i18n="cycle_step8">Escalado</span>
+                            </div>
+                            <span class="cycle_step_connector" aria-hidden="true"></span>
+                            <div class="cycle_step_icon">
+                                <img src="img/icons/cycle_08_scale.svg" alt="" width="28" height="28">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -842,6 +844,20 @@ function toggleLangMenu() {
 
 document.addEventListener('DOMContentLoaded', () => {
   initLang('landing');
+
+  const cycleScroller = document.querySelector('.cycle_timeline_scroller');
+  const cycleWrap = cycleScroller && cycleScroller.querySelector('.cycle_timeline_wrap');
+  if (cycleScroller && cycleWrap) {
+    const updateCycleScrollHint = () => {
+      const maxScroll = cycleWrap.scrollWidth - cycleWrap.clientWidth;
+      const atEnd = maxScroll <= 4 || cycleWrap.scrollLeft >= maxScroll - 4;
+      cycleScroller.classList.toggle('is-scroll-end', atEnd);
+      cycleScroller.classList.toggle('is-scrollable', maxScroll > 4);
+    };
+    cycleWrap.addEventListener('scroll', updateCycleScrollHint, { passive: true });
+    window.addEventListener('resize', updateCycleScrollHint);
+    updateCycleScrollHint();
+  }
   
   // Вертикальный слайдер для секций "Lo que hacemos" и "Cómo lo hacemos"
   const whatWeDoContainer = document.querySelector('.what_we_do_container');

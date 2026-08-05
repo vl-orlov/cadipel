@@ -491,6 +491,12 @@ h1, h2, h4, h5, h6,
 .cycle_block {
     margin-bottom: 88px;
 }
+.cycle_timeline_scroller {
+    position: relative;
+}
+.cycle_timeline_scroller::after {
+    display: none;
+}
 .cycle_timeline_wrap {
     margin-top: 56px;
     overflow-x: auto;
@@ -665,58 +671,8 @@ h1, h2, h4, h5, h6,
 .cycle_block {
     margin-bottom: 72px;
 }
-.cycle_timeline_wrap {
-    margin-top: 40px;
-    overflow: visible;
-}
 .cycle_timeline {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    min-width: 0;
-    width: 100%;
-    padding: 0;
-}
-.cycle_timeline::before {
-    left: calc(50% - 73px);
-    right: auto;
-    top: 36px;
-    bottom: 36px;
-    width: 6px;
-    height: auto;
-    transform: none;
-    background: linear-gradient(180deg, #E4F0FF 0%, #74B0FF 100%);
-    border-radius: 999px;
-}
-.cycle_step {
-    flex: none;
-    display: grid;
-    grid-template-columns: 76px 120px;
-    align-items: center;
-    gap: 20px;
-    width: 216px;
-    min-width: 0;
-    padding: 12px 0;
-}
-.cycle_step::before {
-    display: none;
-}
-.cycle_step_text {
-    order: 2;
-    min-height: 0;
-    padding-left: 0;
-    min-width: 0;
-}
-.cycle_step_connector {
-    display: none;
-}
-.cycle_step_icon {
-    order: 1;
-    width: 76px;
-    height: 76px;
-    align-self: center;
-    justify-self: center;
+    min-width: 920px;
 }
 .tech_grid {
     gap: 16px;
@@ -737,70 +693,102 @@ h1, h2, h4, h5, h6,
 }
 .cycle_timeline_wrap {
     position: relative;
+    margin-top: 0;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 0 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #c5d8f5 transparent;
+}
+.cycle_timeline_scroller {
     margin-top: 28px;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0;
-    overflow: visible;
+}
+.cycle_timeline_scroller::after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -16px;
+    bottom: 16px;
+    width: 64px;
+    background: linear-gradient(90deg, rgba(244, 246, 249, 0) 0%, #f4f6f9 55%, #f4f6f9 100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    z-index: 2;
+}
+.cycle_timeline_scroller.is-scrollable:not(.is-scroll-end)::after {
+    opacity: 1;
+}
+.cycle_timeline_wrap::-webkit-scrollbar {
+    height: 4px;
+}
+.cycle_timeline_wrap::-webkit-scrollbar-thumb {
+    background: #c5d8f5;
+    border-radius: 999px;
 }
 .cycle_timeline {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-end;
     justify-content: flex-start;
-    gap: 0;
     min-width: 0;
-    width: 100%;
-    padding: 0;
+    width: max-content;
+    gap: 0;
+    padding: 0 16px 4px;
+    padding-right: 48px;
+    scroll-snap-type: x mandatory;
 }
 .cycle_timeline::before {
-    left: calc(50% - 66px);
-    right: auto;
-    top: 28px;
-    bottom: 28px;
-    width: 6px;
-    height: auto;
+    left: 16px;
+    right: 16px;
+    top: auto;
+    bottom: 32px;
+    width: auto;
+    height: 6px;
     transform: none;
-    background: linear-gradient(180deg, #E4F0FF 0%, #74B0FF 100%);
-    border-radius: 999px;
+    background: linear-gradient(90deg, #E4F0FF 0%, #74B0FF 100%);
 }
 .cycle_step {
-    flex: none;
-    display: grid;
-    grid-template-columns: 56px 110px;
-    align-items: center;
-    gap: 16px;
-    width: 182px;
-    min-width: 0;
-    padding: 10px 0;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: stretch;
+    width: 112px;
+    min-width: 112px;
+    padding: 0;
+    scroll-snap-align: start;
 }
 .cycle_step::before {
-    display: none;
+    display: block;
+    height: calc(100% - 64px - 8px);
 }
 .cycle_step_text {
-    order: 2;
-    min-height: 0;
-    padding-left: 0;
-    border-left: none;
-    justify-content: center;
+    order: 0;
+    min-height: 44px;
+    padding-left: 10px;
     min-width: 0;
 }
 .cycle_step_num {
     font-size: 16px;
 }
 .cycle_step_label {
-    font-size: 14px;
+    font-size: 13px;
 }
 .cycle_step_connector {
-    display: none;
+    display: block;
+    height: 28px;
+    margin-top: 8px;
 }
 .cycle_step_icon {
-    order: 1;
-    width: 56px;
-    height: 56px;
+    order: 0;
+    width: 64px;
+    height: 64px;
     align-self: center;
-    justify-self: center;
-    flex-shrink: 0;
+    justify-self: auto;
 }
 .cycle_step_icon img {
     width: 22px;
@@ -852,21 +840,22 @@ h1, h2, h4, h5, h6,
     font-size: 24px;
 }
 .cycle_step {
-    gap: 14px;
-    padding: 8px 0;
-    grid-template-columns: 52px 100px;
-    width: 166px;
+    width: 100px;
+    min-width: 100px;
 }
 .cycle_step_icon {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
 }
 .cycle_step_icon img {
     width: 20px;
     height: 20px;
 }
+.cycle_step::before {
+    height: calc(100% - 56px - 8px);
+}
 .cycle_timeline::before {
-    left: calc(50% - 60px);
+    bottom: 28px;
 }
 .tech_grid {
     grid-template-columns: 1fr;
