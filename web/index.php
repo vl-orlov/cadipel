@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/assistant.css">
     <script src="js/i18n.js"></script>
 </head>
 <body>
@@ -35,6 +36,18 @@ SWITCH ( $page ) {
     default:                                include "includes/landing.php";                     break;
 }
 ?>
+
+<!-- ASISTENTE IA -->
+<div id="cadipel-assistant-root"></div>
+<script src="js/assistant-lipsync.js" defer></script>
+<script src="js/assistant-avatar.js" defer></script>
+<script src="js/assistant-tts.js" defer></script>
+<script src="js/assistant-voice.js" defer></script>
+<script src="js/assistant-mic-feedback.js" defer></script>
+<script src="js/assistant-voice-hold.js" defer></script>
+<script src="js/assistant-chat.js" defer></script>
+<script src="js/assistant.js" defer></script>
+<!-- END ASISTENTE IA -->
 
 </body>
 </html>
