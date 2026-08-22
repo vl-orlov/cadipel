@@ -1,18 +1,19 @@
-/* Asistente IA de Cadipel — puerto literal del diseño de mi-oshka/CamIA (mismos
-   colores, radios, sombras y animaciones de style.css: assistant_float/btn/bubble,
-   mozo_avatar*, mozo_overlay*, mozo_msg*, mozo_mic_btn/mozo_send_btn). */
+/* Asistente IA de Cadipel — layout portado de CamIA/Mozo, colores y tipografía
+   alineados al brand del landing (#062858 / #1e6bff / Space Grotesk). */
 
 #cadipel-assistant-root {
-  --ca-bg: #f5f5f5;
+  --ca-bg: #f4f6f9;
   --ca-white: #ffffff;
   --ca-beige: #E4F0FF;
   --ca-border: #dce6f5;
   --ca-text: #062858;
   --ca-secondary: #6b7280;
-  --ca-brown: #0CC0DF;
-  --ca-dark-brown: #0899b3;
+  --ca-accent: #1e6bff;
+  --ca-accent-dark: #1558db;
+  --ca-shadow: rgba(6, 40, 88, 0.14);
   position: relative;
   z-index: 9999;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* ---------- Floating button + bubble (camia-float__*: burbuja apilada arriba del botón) ---------- */
@@ -40,20 +41,20 @@
   border: none;
   border-radius: 50%;
   background: var(--ca-white, #ffffff);
-  box-shadow: 0 10px 28px rgba(42, 38, 36, 0.16);
+  box-shadow: 0 10px 28px var(--ca-shadow, rgba(6, 40, 88, 0.14));
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
 .cadipel_assistant_btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(42, 38, 36, 0.2);
+  box-shadow: 0 14px 32px rgba(6, 40, 88, 0.2);
 }
 .cadipel_assistant_btn_ring {
   position: absolute;
   inset: -3px;
   border-radius: 50%;
-  border: 1.5px solid rgba(12, 192, 223, 0.45);
+  border: 1.5px solid rgba(30, 107, 255, 0.5);
   animation: cadipelFloatRingPulse 3.6s ease-in-out infinite;
   pointer-events: none;
 }
@@ -76,7 +77,7 @@
   border: 1px solid var(--ca-border, #dce6f5);
   border-radius: 14px;
   padding: 12px 34px 12px 14px;
-  box-shadow: 0 8px 24px rgba(42, 38, 36, 0.12);
+  box-shadow: 0 8px 24px var(--ca-shadow, rgba(6, 40, 88, 0.14));
   opacity: 0;
   transform: translateY(8px) scale(0.96);
   pointer-events: none;
@@ -102,7 +103,7 @@
   margin: 0 0 2px;
   font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
-  color: var(--ca-dark-brown, #0899b3);
+  color: var(--ca-accent-dark, #1558db);
 }
 .cadipel_assistant_bubble_text {
   margin: 0;
@@ -148,7 +149,7 @@
   border: 1px solid var(--ca-border);
   border-bottom: none;
   border-radius: 12px 12px 0 0;
-  box-shadow: 0 -4px 24px rgba(42, 38, 36, 0.14), 0 0 0 1px rgba(42, 38, 36, 0.04);
+  box-shadow: 0 -4px 24px var(--ca-shadow, rgba(6, 40, 88, 0.14)), 0 0 0 1px rgba(6, 40, 88, 0.05);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -158,7 +159,7 @@
   pointer-events: none;
   transition: opacity 0.2s ease, transform 0.2s ease, height 0.28s cubic-bezier(0.22, 1, 0.36, 1), max-height 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   z-index: 9999;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 .cadipel_assistant_panel.is-open {
   opacity: 1;
@@ -237,13 +238,14 @@
 }
 .cadipel_assistant_panel_title {
   font-family: 'Space Grotesk', sans-serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 18px;
   color: var(--ca-text, #062858);
   line-height: 1.15;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  letter-spacing: -0.01em;
 }
 
 .cadipel_assistant_tools {
@@ -259,7 +261,7 @@
   padding: 0;
   border: 1px solid var(--ca-border, #dce6f5);
   background: var(--ca-white, #ffffff);
-  color: var(--ca-dark-brown, #0899b3);
+  color: var(--ca-accent, #1e6bff);
   border-radius: 50%;
   cursor: pointer;
   display: inline-flex;
@@ -276,14 +278,14 @@
   height: 14px;
 }
 .cadipel_assistant_tool:hover {
-  background: var(--ca-bg, #f5f5f5);
-  border-color: var(--ca-brown, #0CC0DF);
-  color: var(--ca-dark-brown, #0899b3);
+  background: var(--ca-bg, #f4f6f9);
+  border-color: var(--ca-accent, #1e6bff);
+  color: var(--ca-accent-dark, #1558db);
 }
 .cadipel_assistant_tool--active {
-  border-color: var(--ca-brown, #0CC0DF);
-  background: var(--ca-bg, #f5f5f5);
-  color: var(--ca-dark-brown, #0899b3);
+  border-color: var(--ca-accent, #1e6bff);
+  background: var(--ca-bg, #f4f6f9);
+  color: var(--ca-accent-dark, #1558db);
 }
 .cadipel_assistant_chevron {
   color: var(--ca-secondary, #6b7280);
@@ -313,7 +315,7 @@
   flex: 1 1 auto;
   min-height: 0;
   position: relative;
-  background: var(--ca-bg, #f5f5f5);
+  background: var(--ca-bg, #f4f6f9);
 }
 
 /* ---------- Text mode: messages (mozo_msg / mozo_chat_area) ---------- */
@@ -422,7 +424,7 @@
   justify-content: center;
   border: none;
   border-radius: 8px;
-  color: var(--ca-dark-brown, #0899b3);
+  color: var(--ca-accent-dark, #1558db);
   background: transparent;
   cursor: pointer;
   transition: background 0.15s ease;
@@ -483,11 +485,11 @@
   display: block;
   width: 16px;
   height: 16px;
-  filter: brightness(0) saturate(100%) invert(18%) sepia(62%) saturate(1200%) hue-rotate(350deg) brightness(0.85);
+  filter: brightness(0) saturate(100%) invert(27%) sepia(98%) saturate(2476%) hue-rotate(212deg) brightness(98%) contrast(101%);
 }
 .cadipel_assistant_stop_tts_btn:hover {
   background: var(--ca-beige, #E4F0FF);
-  border-color: var(--ca-brown, #0CC0DF);
+  border-color: var(--ca-accent, #1e6bff);
 }
 @keyframes cadipelTtsPulse {
   0%, 100% { opacity: 1; }
@@ -510,7 +512,7 @@
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  border: 1px solid rgba(12, 192, 223, 0.28);
+  border: 1px solid rgba(30, 107, 255, 0.28);
 }
 .cadipel_assistant_voice_orb_wrap::before {
   width: calc(100% + 20px);
@@ -527,7 +529,7 @@
 .cadipel_assistant_voice_orb_wrap--live::before,
 .cadipel_assistant_voice_orb_wrap--live::after {
   animation-duration: 1.7s;
-  border-color: rgba(12, 192, 223, calc(0.35 + var(--cadipel-mic-level, 0) * 0.3));
+  border-color: rgba(30, 107, 255, calc(0.35 + var(--cadipel-mic-level, 0) * 0.3));
 }
 @keyframes cadipelOrbAuraBreathe {
   0%, 100% { opacity: 0.35; transform: translate(-50%, -50%) scale(0.985); }
@@ -545,12 +547,12 @@
   touch-action: none;
   background:
     radial-gradient(circle at 50% 28%, rgba(255, 255, 255, 0.28), transparent 42%),
-    linear-gradient(180deg, #0899b3 0%, #0CC0DF 48%, #5cdaf0 100%);
+    linear-gradient(180deg, #1558db 0%, #1e6bff 48%, #74B0FF 100%);
   box-shadow:
-    0 14px 32px rgba(8, 153, 179, 0.26),
+    0 14px 32px rgba(21, 88, 219, 0.26),
     0 0 0 8px rgba(255, 255, 255, 0.9),
     inset 0 2px 3px rgba(255, 255, 255, 0.2),
-    inset 0 -8px 14px rgba(4, 90, 110, 0.16);
+    inset 0 -8px 14px rgba(6, 40, 88, 0.16);
   transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s ease, filter 0.16s ease;
   display: flex;
   align-items: center;
@@ -561,19 +563,19 @@
   transform: scale(0.94);
   filter: brightness(0.93);
   box-shadow:
-    0 8px 20px rgba(8, 153, 179, 0.28),
+    0 8px 20px rgba(21, 88, 219, 0.28),
     0 0 0 8px rgba(255, 255, 255, 0.85),
-    inset 0 4px 12px rgba(3, 70, 90, 0.28);
+    inset 0 4px 12px rgba(4, 28, 70, 0.28);
 }
 .cadipel_assistant_voice_orb--live:not(.cadipel_assistant_voice_orb--pressing) {
   transform: scale(1.02);
 }
 .cadipel_assistant_voice_orb--live {
   box-shadow:
-    0 16px 36px rgba(8, 153, 179, calc(0.28 + var(--cadipel-mic-level, 0) * 0.18)),
+    0 16px 36px rgba(21, 88, 219, calc(0.28 + var(--cadipel-mic-level, 0) * 0.18)),
     0 0 0 calc(8px + var(--cadipel-mic-level, 0) * 3px) rgba(255, 255, 255, 0.9),
     inset 0 2px 3px rgba(255, 255, 255, 0.2),
-    inset 0 -8px 14px rgba(4, 90, 110, 0.16);
+    inset 0 -8px 14px rgba(6, 40, 88, 0.16);
 }
 @keyframes cadipelMicRecordPulse {
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -626,7 +628,7 @@
   font-size: 12px;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
-  color: var(--ca-dark-brown, #0899b3);
+  color: var(--ca-accent-dark, #1558db);
   letter-spacing: 0.02em;
 }
 .cadipel_assistant_voice_status {
@@ -635,7 +637,7 @@
   font-size: 13px;
   font-weight: 600;
   line-height: 1.35;
-  color: var(--ca-dark-brown, #0899b3);
+  color: var(--ca-accent-dark, #1558db);
   text-align: center;
 }
 
@@ -665,14 +667,14 @@
   box-sizing: border-box;
   padding: 10px 14px;
   border-radius: 22px;
-  background: var(--ca-bg, #f5f5f5);
+  background: var(--ca-bg, #f4f6f9);
   border: 1px solid var(--ca-border, #dce6f5);
   position: relative;
   transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 .cadipel_assistant_text_field:focus-within {
-  border-color: var(--ca-brown, #0CC0DF);
-  box-shadow: 0 0 0 1px rgba(12, 192, 223, 0.18);
+  border-color: var(--ca-accent, #1e6bff);
+  box-shadow: 0 0 0 1px rgba(30, 107, 255, 0.18);
   background: var(--ca-white, #ffffff);
 }
 .cadipel_assistant_text_field--swiping-cancel {
@@ -724,8 +726,8 @@
   max-width: none;
 }
 .cadipel_assistant_send_btn {
-  background: var(--ca-dark-brown, #0899b3);
-  box-shadow: 0 2px 8px rgba(8, 153, 179, 0.3);
+  background: var(--ca-accent-dark, #1558db);
+  box-shadow: 0 2px 8px rgba(21, 88, 219, 0.3);
 }
 .cadipel_assistant_send_btn img {
   width: 18px;
@@ -733,7 +735,7 @@
   filter: brightness(0) invert(1);
 }
 .cadipel_assistant_send_btn:hover {
-  background: var(--ca-brown, #0CC0DF);
+  background: var(--ca-accent, #1e6bff);
 }
 .cadipel_assistant_voice_toggle_btn img {
   width: 44px;
@@ -779,8 +781,8 @@
   background: var(--ca-beige, #E4F0FF);
 }
 .cadipel_mic_btn--recording {
-  background: var(--ca-dark-brown, #0899b3);
-  box-shadow: 0 0 0 3px rgba(8, 153, 179, 0.14);
+  background: var(--ca-accent-dark, #1558db);
+  box-shadow: 0 0 0 3px rgba(21, 88, 219, 0.14);
   animation: cadipelMicRecordPulse 0.85s ease-in-out infinite;
 }
 .cadipel_mic_btn--recording img {
@@ -813,8 +815,8 @@
   transition: transform 0.08s linear, opacity 0.08s linear, border-color 0.15s ease, background 0.15s ease;
 }
 .cadipel_mic_lock_zone--armed {
-  color: var(--ca-dark-brown, #0899b3);
-  border-color: var(--ca-brown, #0CC0DF);
+  color: var(--ca-accent-dark, #1558db);
+  border-color: var(--ca-accent, #1e6bff);
   background: var(--ca-beige, #E4F0FF);
 }
 .cadipel_mic_lock_icon {
@@ -871,7 +873,7 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--ca-brown, #0CC0DF);
+  background: var(--ca-accent, #1e6bff);
   flex-shrink: 0;
   animation: cadipelMicLockedDotPulse 1.4s ease-in-out infinite;
 }
@@ -921,7 +923,7 @@
   display: block;
   width: 3px;
   min-height: 3px;
-  background: var(--ca-brown, #0CC0DF);
+  background: var(--ca-accent, #1e6bff);
   border-radius: 3px;
   transition: height 0.08s ease-out;
 }
@@ -940,20 +942,20 @@
   height: 40px;
   border: none;
   border-radius: 50%;
-  background: var(--ca-dark-brown, #0899b3);
+  background: var(--ca-accent-dark, #1558db);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  box-shadow: 0 0 0 3px rgba(8, 153, 179, 0.14);
+  box-shadow: 0 0 0 3px rgba(21, 88, 219, 0.14);
   transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.12s ease;
   animation: cadipelMicLockedSendIn 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .cadipel_mic_locked_send:hover:not(:disabled) {
-  background: var(--ca-brown, #0CC0DF);
-  box-shadow: 0 0 0 4px rgba(12, 192, 223, 0.18);
+  background: var(--ca-accent, #1e6bff);
+  box-shadow: 0 0 0 4px rgba(30, 107, 255, 0.18);
 }
 .cadipel_mic_locked_send:active:not(:disabled) {
   transform: scale(0.95);
@@ -989,8 +991,8 @@
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 .cadipel_mic_locked_cancel:hover {
-  color: var(--ca-brown, #0CC0DF);
-  border-color: var(--ca-brown, #0CC0DF);
+  color: var(--ca-accent, #1e6bff);
+  border-color: var(--ca-accent, #1e6bff);
 }
 .cadipel_mic_locked_cancel:active {
   transform: translateX(-50%) scale(0.9);
@@ -1086,7 +1088,7 @@
   100%     { transform: translateX(0); }
 }
 
-/* ---------- Avatar (assistant-avatar.js — puerto literal de MozoAvatar.tsx) ---------- */
+/* ---------- Avatar (assistant-avatar.js — visual portado de SecretaryAvatar.tsx, pri-bridge) ---------- */
 
 .cadipel_avatar {
   position: relative;
@@ -1108,6 +1110,9 @@
 }
 .cadipel_avatar[data-activity="thinking"] .cadipel_avatar_head {
   animation: cadipelAvatarThinking 1.5s ease-in-out infinite;
+}
+.cadipel_avatar[data-activity="listening"] .cadipel_avatar_head {
+  transform: rotate(-1.5deg);
 }
 @keyframes cadipelAvatarIdleBreath {
   0%, 100% { transform: scale(1) translateY(0); }
@@ -1139,7 +1144,7 @@
   top: 50%;
   transform: translate(-50%, -50%) scale(0.92);
   border-radius: 50%;
-  border: 2px solid rgba(12, 192, 223, 0.35);
+  border: 2px solid rgba(30, 107, 255, 0.35);
   pointer-events: none;
   z-index: 0;
   opacity: 0;
@@ -1149,7 +1154,7 @@
 .cadipel_avatar_ring--3 { width: 138%; height: 138%; }
 .cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring {
   animation: cadipelAvatarRing 1.6s ease-out infinite;
-  border-color: rgba(12, 192, 223, 0.55);
+  border-color: rgba(30, 107, 255, 0.55);
 }
 .cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring--1 { animation-delay: 0s; }
 .cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring--2 { animation-delay: 0.55s; }

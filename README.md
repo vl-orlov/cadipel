@@ -24,3 +24,14 @@ pero responde con un error de "servicio no disponible"):
 - `GOOGLE_TTS_KEY` — último fallback de voz
 
 `config.php` está en `.gitignore` — nunca subir claves reales al repositorio.
+
+### Admin
+
+Panel de administración en `/admin/` (usuario único, sin base de datos). En `config.php`
+completar:
+```
+define('ADMIN_LOGIN', 'admin');
+define('ADMIN_PASSWORD_HASH', ''); // generar con: php -r "echo password_hash('tu_clave', PASSWORD_DEFAULT);"
+```
+Desde la pestaña "Prompt IA" se edita el texto de `web/api/custom_prompt.txt` (tampoco versionado),
+que se agrega al final del prompt del sistema del asistente.

@@ -54,7 +54,6 @@
         body: JSON.stringify({
           text,
           lang: opts.lang || 'es',
-          gender: opts.gender || 'f',
           rate: opts.rate || 1,
         }),
         signal,

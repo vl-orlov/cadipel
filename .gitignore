@@ -1,2 +1,4 @@
 web/api/config.php
+web/api/custom_prompt.txt
+web/api/login_attempts.json
 .DS_Store

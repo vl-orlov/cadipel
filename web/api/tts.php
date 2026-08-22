@@ -17,13 +17,13 @@ function cadipel_detect_tts_language(string $text, string $uiLang = ''): string
     return 'es-ES';
 }
 
-function cadipel_voice_name(string $langCode, string $gender = 'f'): string
+function cadipel_voice_name(string $langCode): string
 {
     $voices = [
-        'es-ES' => ['f' => 'es-ES-Neural2-A', 'm' => 'es-ES-Neural2-B'],
-        'en-US' => ['f' => 'en-US-Neural2-F', 'm' => 'en-US-Neural2-D'],
+        'es-ES' => 'es-ES-Neural2-A',
+        'en-US' => 'en-US-Neural2-F',
     ];
-    return $voices[$langCode][$gender] ?? $voices['es-ES']['f'];
+    return $voices[$langCode] ?? $voices['es-ES'];
 }
 
 /** Plain text for short lines; SSML with pauses after sentences for longer speech. */
@@ -38,12 +38,12 @@ function cadipel_build_speech_input(string $text): array
 }
 
 // ---- Azure TTS (primary, Spanish) ----
-function cadipel_synthesize_azure(string $text, string $gender, float $rate): ?string
+function cadipel_synthesize_azure(string $text, float $rate): ?string
 {
     if (AZURE_TTS_KEY === '' || AZURE_TTS_REGION === '') {
         return null;
     }
-    $voice   = $gender === 'm' ? 'es-AR-TomasNeural' : 'es-AR-ElenaNeural';
+    $voice   = 'es-AR-ElenaNeural';
     $escaped = htmlspecialchars($text, ENT_XML1 | ENT_QUOTES, 'UTF-8');
     if (mb_strlen($text) >= 100) {
         $escaped = preg_replace('/([.!?…])\s+/u', '$1<break time="280ms"/> ', $escaped) ?? $escaped;
@@ -84,12 +84,12 @@ function cadipel_synthesize_azure(string $text, string $gender, float $rate): ?s
 }
 
 // ---- OpenAI TTS (fallback 1) ----
-function cadipel_synthesize_openai(string $text, string $gender, float $rate): ?string
+function cadipel_synthesize_openai(string $text, float $rate): ?string
 {
     if (OPENAI_KEY === '') {
         return null;
     }
-    $voice = $gender === 'm' ? 'onyx' : 'nova';
+    $voice = 'nova';
 
     $ch = curl_init('https://api.openai.com/v1/audio/speech');
     curl_setopt_array($ch, [
@@ -157,7 +157,6 @@ if ($text === '') {
 }
 
 $uiLang = strtolower(trim((string) ($body['lang'] ?? '')));
-$gender = isset($body['gender']) && $body['gender'] === 'm' ? 'm' : 'f';
 $rate   = (float) ($body['rate'] ?? 1.0);
 if (!is_finite($rate)) {
     $rate = 1.0;
@@ -170,17 +169,17 @@ $audio = null;
 
 // Azure (primary, Spanish only — the site's default language)
 if ($audio === null && str_starts_with($langCode, 'es-')) {
-    $audio = cadipel_synthesize_azure($text, $gender, $rate);
+    $audio = cadipel_synthesize_azure($text, $rate);
 }
 
 // OpenAI (fallback 1, any language)
 if ($audio === null) {
-    $audio = cadipel_synthesize_openai($text, $gender, $rate);
+    $audio = cadipel_synthesize_openai($text, $rate);
 }
 
 // Google (fallback 2)
 if ($audio === null) {
-    $voiceName = cadipel_voice_name($langCode, $gender);
+    $voiceName = cadipel_voice_name($langCode);
     $input     = cadipel_build_speech_input($text);
     $audio     = cadipel_synthesize_google($langCode, $voiceName, $rate, $input);
 }

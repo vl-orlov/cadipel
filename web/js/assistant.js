@@ -15,14 +15,10 @@
   const RESHOW_AFTER_MS = 120000;
   const TTS_SPEEDS = [1, 1.25, 1.5, 1.75, 2];
   const SPEED_KEY = 'cadipel_assistant_tts_speed';
-  const GENDER_KEY = 'cadipel_assistant_tts_gender';
 
   function getStoredSpeed() {
     const v = Number(localStorage.getItem(SPEED_KEY));
     return TTS_SPEEDS.includes(v) ? v : 1;
-  }
-  function getStoredGender() {
-    return localStorage.getItem(GENDER_KEY) === 'm' ? 'm' : 'f';
   }
 
   let i18nDict = { es: {}, en: {} };
@@ -71,7 +67,6 @@
       expanded: true,
       busy: false,
       ttsSpeed: getStoredSpeed(),
-      ttsGender: getStoredGender(),
     };
     // ---------- Floating button + bubble (camia-float__*: columna, burbuja arriba) ----------
     const float = el('div', 'cadipel_assistant_float');
@@ -151,12 +146,10 @@
 
     const tools = el('div', 'cadipel_assistant_tools');
     const speedBtn = el('button', 'cadipel_assistant_tool', { type: 'button', 'aria-label': t('assistant_speed_aria'), title: t('assistant_speed_aria') });
-    const genderBtn = el('button', 'cadipel_assistant_tool', { type: 'button', 'aria-label': t('assistant_gender_aria'), title: t('assistant_gender_aria') });
     const chevronBtn = el('button', 'cadipel_assistant_tool cadipel_assistant_chevron', { type: 'button' });
     const headerClose = el('button', 'cadipel_assistant_tool cadipel_assistant_panel_close', { type: 'button', 'aria-label': t('assistant_close_aria') });
     headerClose.innerHTML = '✕';
     tools.appendChild(speedBtn);
-    tools.appendChild(genderBtn);
     tools.appendChild(chevronBtn);
     tools.appendChild(headerClose);
     tools.addEventListener('click', (e) => e.stopPropagation());
@@ -361,8 +354,6 @@
       speedBtn.textContent = state.ttsSpeed === 1 ? '1×' : `${state.ttsSpeed}×`;
       speedBtn.classList.toggle('cadipel_assistant_tool--active', state.ttsSpeed !== 1);
       speedBtn.style.display = state.expanded ? '' : 'none';
-      genderBtn.innerHTML = `<img src="${state.ttsGender === 'f' ? '/img/icons/woman_voice_icon.svg' : '/img/icons/man_voice_icon.svg'}" alt="" width="14" height="14" />`;
-      genderBtn.style.display = (state.expanded && state.voiceMode) ? '' : 'none';
       chevronBtn.innerHTML = chevronSvg(state.expanded);
       chevronBtn.setAttribute('aria-label', state.expanded ? t('assistant_minimize_aria') : t('assistant_expand_aria'));
     }
@@ -372,11 +363,6 @@
       localStorage.setItem(SPEED_KEY, String(state.ttsSpeed));
       updateToolsUI();
     }
-    function toggleGender() {
-      state.ttsGender = state.ttsGender === 'f' ? 'm' : 'f';
-      localStorage.setItem(GENDER_KEY, state.ttsGender);
-      updateToolsUI();
-    }
     function setExpanded(v) {
       state.expanded = v;
       panel.classList.toggle('cadipel_assistant_panel--collapsed', !v);
@@ -384,11 +370,10 @@
       updateToolsUI();
     }
     speedBtn.addEventListener('click', () => cycleSpeed());
-    genderBtn.addEventListener('click', () => toggleGender());
     updateToolsUI();
 
     function ttsOptsForVoice() {
-      return { lang: currentLang(), gender: state.ttsGender, rate: state.ttsSpeed };
+      return { lang: currentLang(), rate: state.ttsSpeed };
     }
 
     // ---------- Panel open/close ----------

@@ -15,3 +15,8 @@ define('AZURE_TTS_REGION', '');
 
 // Google Cloud Text-to-Speech (último fallback de voz)
 define('GOOGLE_TTS_KEY', '');
+
+// Panel de administración (web/admin/) — sin base de datos, un único usuario.
+// Generar el hash con: php -r "echo password_hash('tu_clave', PASSWORD_DEFAULT);"
+define('ADMIN_LOGIN', 'admin');
+define('ADMIN_PASSWORD_HASH', '');

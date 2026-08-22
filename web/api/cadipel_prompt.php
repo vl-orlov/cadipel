@@ -68,6 +68,20 @@ function cadipel_knowledge_base(): string
         TXT;
 }
 
+/**
+ * Instrucciones adicionales cargadas por el equipo de Cadipel desde el panel de
+ * administración (web/admin/, pestaña "Prompt IA"). Sin BD: se guardan en un archivo
+ * de texto plano que no forma parte del repositorio (ver .gitignore).
+ */
+function cadipel_custom_instructions(): string
+{
+    $path = __DIR__ . '/custom_prompt.txt';
+    if (!is_file($path)) {
+        return '';
+    }
+    return trim((string) file_get_contents($path));
+}
+
 function build_cadipel_system_prompt(string $replyLang = 'es'): string
 {
     $replyLang = in_array($replyLang, ['es', 'en'], true) ? $replyLang : 'es';
@@ -76,6 +90,16 @@ function build_cadipel_system_prompt(string $replyLang = 'es'): string
         : 'Responde siempre en español (es el idioma por defecto del sitio).';
 
     $kb = cadipel_knowledge_base();
+    $custom = cadipel_custom_instructions();
+    $customBlock = $custom === '' ? '' : <<<TXT
+
+
+        Instrucciones adicionales definidas por el equipo de Cadipel — seguilas siempre que no
+        contradigan las reglas anteriores (no inventar datos, no pedir información personal):
+        <instrucciones_admin>
+        {$custom}
+        </instrucciones_admin>
+        TXT;
 
     return <<<TXT
         Sos el asistente virtual del sitio web de Cadipel (empresa de ingeniería electrónica, software y
@@ -95,5 +119,6 @@ function build_cadipel_system_prompt(string $replyLang = 'es'): string
         <info_cadipel>
         {$kb}
         </info_cadipel>
+        {$customBlock}
         TXT;
 }
