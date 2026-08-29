@@ -388,7 +388,7 @@ h1, h2, h4, h5, h6,
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    min-height: 0;
+    min-height: calc(100dvh - 70px);
     height: auto;
 }
 .hero_background {
@@ -399,9 +399,18 @@ h1, h2, h4, h5, h6,
     bottom: auto;
     left: auto;
     width: 100%;
+    flex: 1 1 auto;
     height: auto;
-    aspect-ratio: 900 / 1070;
-    max-height: min(62vh, 620px);
+    aspect-ratio: auto;
+    min-height: 320px;
+    max-height: none;
+    overflow: hidden;
+}
+.hero_bg_video_mobile {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
 }
 .hero_background::before {
     content: '';
@@ -409,8 +418,8 @@ h1, h2, h4, h5, h6,
     top: 0;
     left: 0;
     right: 0;
-    height: 72px;
-    background: linear-gradient(180deg, #05091a 0%, rgba(5, 9, 26, 0) 100%);
+    height: 200px;
+    background: linear-gradient(180deg, #05091a 0%, rgba(5, 9, 26, 0.55) 45%, rgba(5, 9, 26, 0) 100%);
     z-index: 2;
     pointer-events: none;
 }
@@ -428,19 +437,27 @@ h1, h2, h4, h5, h6,
     order: 1;
     position: relative;
     z-index: 3;
-    padding: 28px 24px 12px;
+    padding: clamp(28px, 7vh, 56px) 24px 200px;
+    margin-bottom: -200px;
     max-width: 100%;
-    background: #05091a;
+    background: linear-gradient(
+        180deg,
+        #05091a 0%,
+        #05091a 42%,
+        rgba(5, 9, 26, 0.92) 62%,
+        rgba(5, 9, 26, 0.55) 80%,
+        rgba(5, 9, 26, 0) 100%
+    );
 }
 .hero_title {
-    font-size: clamp(28px, 8vw, 34px);
-    margin-bottom: 12px;
-    line-height: 1.15;
+    font-size: clamp(34px, 9.6vw, 44px);
+    margin-bottom: 16px;
+    line-height: 1.14;
 }
 .hero_subtitle {
-    font-size: 14px;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    font-size: 15.5px;
+    line-height: 1.55;
+    margin-bottom: 26px;
     max-width: 100%;
 }
 .hero_cta {
@@ -449,17 +466,21 @@ h1, h2, h4, h5, h6,
 }}
 @media (max-width: 480px) {
 .hero_background {
-    max-height: min(58vh, 540px);
+    min-height: 280px;
 }
 .hero_content {
-    padding: 24px 20px 8px;
+    padding: clamp(24px, 6vh, 44px) 20px 176px;
+    margin-bottom: -176px;
 }
 .hero_title {
-    font-size: clamp(26px, 7.4vw, 30px);
+    font-size: clamp(30px, 8.8vw, 38px);
+}
+.hero_subtitle {
+    font-size: 15px;
 }
 .hero_cta {
-    padding: 12px 22px;
-    font-size: 13px;
+    padding: 13px 24px;
+    font-size: 13.5px;
 }}
 /* END HERO */
 
