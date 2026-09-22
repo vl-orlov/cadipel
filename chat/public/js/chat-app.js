@@ -44,7 +44,7 @@
     streaming: false,
     abort: null,
     transcribing: false,
-    voiceMode: false,
+    voiceMode: true,
   };
   const persistentAvatars = []; // cabecera + pantalla de voz: viven toda la sesión
   let welcomeAvatar = null;      // se crea/destruye junto con la pantalla de bienvenida
@@ -831,9 +831,9 @@
     window.addEventListener('storage', (e) => { if (e.key === 'cadipel_chat_v2') resync(); });
     document.addEventListener('visibilitychange', () => { if (!document.hidden) resync(); });
 
+    setVoiceMode(true);
     renderAll();
     renderMicHold(micHold.getSnapshot());
-    els.input.focus();
   }
 
   init().finally(() => document.body.classList.add('is-ready'));
