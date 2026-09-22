@@ -89,7 +89,7 @@ esos dos directorios — nunca se tocan en un redeploy.
 ## Landing (FTP a www.cadipel.com.ar, carpeta `web/`)
 Subir/reemplazar: `index.php`, `css/style.css`, `js/i18n.js`, `api/bootstrap.php`, `api/prompt_public.php`,
 `api/.htaccess`, `admin/includes/prompt.php`, `admin/includes/login_check.php`, `admin/js/login.js`,
-`img/icons/chat_avatar.png`.
+`css/avatar.css`, `js/assistant-avatar.js`, `img/assistant_avatar/` (los mismos archivos que en el chat, sin el retrato viejo).
 En `api/config.php` **del servidor**: agregar `define('PROMPT_SYNC_TOKEN', '<mismo token que en chat/config.php>');`
 y **borrar** las claves de IA (GEMINI_KEY, OPENAI_KEY, AZURE_*, GOOGLE_TTS_KEY): ya no se usan ahí.
 

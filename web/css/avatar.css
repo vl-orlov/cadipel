@@ -1,0 +1,75 @@
+/* ---------- Avatar (assistant-avatar.js — visual portado de SecretaryAvatar.tsx, pri-bridge) ---------- */
+
+.cadipel_avatar {
+  position: relative;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.cadipel_avatar_head {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transition: transform 0.08s ease-out;
+  will-change: transform;
+}
+
+.cadipel_avatar[data-activity="idle"] .cadipel_avatar_head {
+  animation: cadipelAvatarIdleBreath 5.5s ease-in-out infinite;
+}
+.cadipel_avatar[data-activity="thinking"] .cadipel_avatar_head {
+  animation: cadipelAvatarThinking 1.5s ease-in-out infinite;
+}
+.cadipel_avatar[data-activity="listening"] .cadipel_avatar_head {
+  transform: rotate(-1.5deg);
+}
+@keyframes cadipelAvatarIdleBreath {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.008) translateY(-0.5px); }
+}
+@keyframes cadipelAvatarThinking {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  35% { transform: translateY(-2px) rotate(-0.8deg); }
+  65% { transform: translateY(-1px) rotate(0.6deg); }
+}
+
+.cadipel_avatar_layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.cadipel_avatar_layer--base {
+  z-index: 1;
+}
+
+.cadipel_avatar_ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  border-radius: 50%;
+  border: 2px solid rgba(30, 107, 255, 0.35);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+}
+.cadipel_avatar_ring--1 { width: 108%; height: 108%; }
+.cadipel_avatar_ring--2 { width: 123%; height: 123%; }
+.cadipel_avatar_ring--3 { width: 138%; height: 138%; }
+.cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring {
+  animation: cadipelAvatarRing 1.6s ease-out infinite;
+  border-color: rgba(30, 107, 255, 0.55);
+}
+.cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring--1 { animation-delay: 0s; }
+.cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring--2 { animation-delay: 0.55s; }
+.cadipel_avatar[data-activity="speaking"] .cadipel_avatar_ring--3 { animation-delay: 1.1s; }
+@keyframes cadipelAvatarRing {
+  0% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.92); }
+  70%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.08); }
+}

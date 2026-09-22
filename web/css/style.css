@@ -3603,11 +3603,9 @@ font-size: 22px;
     animation: cadipelFloatRingPulse 3.6s ease-in-out infinite;
     pointer-events: none;
 }
-.cadipel_assistant_float_avatar img {
-    width: 58px;
-    height: 58px;
-    border-radius: 50%;
-    object-fit: cover;
+.cadipel_assistant_float_avatar .cadipel_avatar {
+    width: 64px;
+    height: 64px;
 }
 .cadipel_assistant_float:hover .cadipel_assistant_float_avatar {
     transform: translateY(-2px);
