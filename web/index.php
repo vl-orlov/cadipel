@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/assistant.css">
     <script src="js/i18n.js"></script>
 </head>
 <body>
@@ -37,16 +36,11 @@ SWITCH ( $page ) {
 }
 ?>
 
-<!-- ASISTENTE IA -->
-<div id="cadipel-assistant-root"></div>
-<script src="js/assistant-lipsync.js" defer></script>
-<script src="js/assistant-avatar.js" defer></script>
-<script src="js/assistant-tts.js" defer></script>
-<script src="js/assistant-voice.js" defer></script>
-<script src="js/assistant-mic-feedback.js" defer></script>
-<script src="js/assistant-voice-hold.js" defer></script>
-<script src="js/assistant-chat.js" defer></script>
-<script src="js/assistant.js" defer></script>
+<!-- ASISTENTE IA: chat a pantalla completa en otro dominio -->
+<a class="cadipel_assistant_float" href="https://cadipel.pribridge.pro/?lang=es" target="_blank" rel="noopener" data-chat-link aria-label="Asistente IA de Cadipel">
+    <span class="cadipel_assistant_float_label">Asistente IA</span>
+    <span class="cadipel_assistant_float_avatar"><img src="img/icons/chat_avatar.png" alt="" width="58" height="58"></span>
+</a>
 <!-- END ASISTENTE IA -->
 
 </body>

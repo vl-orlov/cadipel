@@ -1,21 +1,18 @@
 <?php
 
-require_once __DIR__ . '/bootstrap.php';
-require_once __DIR__ . '/cadipel_prompt.php';
+require_once __DIR__ . '/../../src/bootstrap.php';
+require_once __DIR__ . '/../../src/prompt.php';
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-    json_error(405, 'Method not allowed');
-}
+require_post();
+require_allowed_origin();
+rate_limit('chat', 20, 200);
 
-$body = read_json_body();
-
-$messages = $body['messages'] ?? [];
+$body     = read_json_body(100000);
+$messages = sanitize_messages($body['messages'] ?? []);
 $lang     = trim((string) ($body['lang'] ?? 'es'));
 
-if (!is_array($messages) || empty($messages)) {
-    header('Content-Type: application/json');
-    echo json_encode(['error' => 'Missing messages']);
-    exit;
+if (empty($messages) || end($messages)['role'] !== 'user') {
+    json_error(400, 'Missing messages');
 }
 
 $systemPrompt = build_cadipel_system_prompt($lang);
@@ -45,7 +42,7 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
         $payload['systemInstruction'] = ['parts' => [['text' => $systemPrompt]]];
     }
 
-    $url        = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=' . GEMINI_KEY;
+    $url        = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse';
     $lineBuffer = '';
     $streamed   = false;
 
@@ -53,7 +50,7 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
     curl_setopt_array($ch, [
         CURLOPT_POST          => true,
         CURLOPT_POSTFIELDS    => json_encode($payload),
-        CURLOPT_HTTPHEADER    => ['Content-Type: application/json'],
+        CURLOPT_HTTPHEADER    => ['Content-Type: application/json', 'x-goog-api-key: ' . GEMINI_KEY],
         CURLOPT_TIMEOUT       => 60,
         CURLOPT_WRITEFUNCTION => function ($ch, $data) use (&$lineBuffer, &$streamed) {
             $lineBuffer .= $data;
@@ -71,7 +68,16 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
                 }
 
                 $parsed = json_decode($raw, true);
-                $text   = $parsed['candidates'][0]['content']['parts'][0]['text'] ?? '';
+                $text   = '';
+                $parts  = is_array($parsed) ? ($parsed['candidates'][0]['content']['parts'] ?? []) : [];
+                if (is_array($parts)) {
+                    foreach ($parts as $part) {
+                        if (!is_array($part) || !empty($part['thought'])) {
+                            continue;
+                        }
+                        $text .= (string) ($part['text'] ?? '');
+                    }
+                }
                 if ($text !== '') {
                     $streamed = true;
                     echo 'data: ' . json_encode(['text' => $text]) . "\n\n";
@@ -85,12 +91,12 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
     curl_exec($ch);
     $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr  = curl_error($ch);
-    curl_close($ch);
 
-    if ($curlErr !== '' || ($httpCode !== 0 && $httpCode !== 200)) {
-        return false;
+    if ($curlErr !== '' || $httpCode !== 200) {
+        error_log('cadipel-chat gemini: ' . ($curlErr !== '' ? $curlErr : 'HTTP ' . $httpCode));
     }
 
+    // Texto ya enviado no se repite con OpenAI: el cliente se quedaría con las dos respuestas.
     return $streamed;
 }
 
@@ -124,9 +130,9 @@ function cadipel_fetch_openai_reply(array $messages, string $systemPrompt): stri
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr  = curl_error($ch);
-    curl_close($ch);
 
     if ($curlErr !== '' || $httpCode !== 200) {
+        error_log('cadipel-chat openai: ' . ($curlErr !== '' ? $curlErr : 'HTTP ' . $httpCode));
         return '';
     }
 

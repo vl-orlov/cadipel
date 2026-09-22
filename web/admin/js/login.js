@@ -1,6 +1,6 @@
 function loginAdm() {
     var login = document.getElementById('inputLogin').value.trim();
-    var pass = document.getElementById('inputPassword').value.trim();
+    var pass = document.getElementById('inputPassword').value;
     var mensaje = document.getElementById('mensaje');
 
     mensaje.textContent = '';

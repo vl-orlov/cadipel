@@ -1,17 +1,21 @@
 <?php
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/../../src/bootstrap.php';
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-    json_error(405, 'Method not allowed');
-}
+require_post();
+require_allowed_origin();
+rate_limit('tts', 7, 70);
 
 function cadipel_detect_tts_language(string $text, string $uiLang = ''): string
 {
-    if (preg_match('/\b(the|and|you|hello|please|contact|about|company)\b/i', $text)) {
+    $uiLang = strtolower(trim($uiLang));
+    if ($uiLang === 'en') {
         return 'en-US';
     }
-    if (strtolower(trim($uiLang)) === 'en') {
+    if ($uiLang === 'es') {
+        return 'es-ES';
+    }
+    if (preg_match('/\b(the|and|you|hello|please|contact|about|company)\b/i', $text)) {
         return 'en-US';
     }
     return 'es-ES';
@@ -75,7 +79,6 @@ function cadipel_synthesize_azure(string $text, float $rate): ?string
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr  = curl_error($ch);
-    curl_close($ch);
 
     if ($curlErr !== '' || $httpCode !== 200) {
         return null;
@@ -109,7 +112,6 @@ function cadipel_synthesize_openai(string $text, float $rate): ?string
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr  = curl_error($ch);
-    curl_close($ch);
 
     if ($curlErr !== '' || $httpCode !== 200) {
         return null;
@@ -129,19 +131,18 @@ function cadipel_synthesize_google(string $langCode, string $voiceName, float $r
         'audioConfig' => ['audioEncoding' => 'MP3', 'speakingRate' => $rate],
     ];
 
-    $ch = curl_init('https://texttospeech.googleapis.com/v1/text:synthesize?key=' . GOOGLE_TTS_KEY);
+    $ch = curl_init('https://texttospeech.googleapis.com/v1/text:synthesize');
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => json_encode($payload),
-        CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json', 'x-goog-api-key: ' . GOOGLE_TTS_KEY],
         CURLOPT_TIMEOUT        => 15,
     ]);
 
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr  = curl_error($ch);
-    curl_close($ch);
 
     if ($curlErr !== '' || $httpCode !== 200) {
         return null;
@@ -150,8 +151,8 @@ function cadipel_synthesize_google(string $langCode, string $voiceName, float $r
     return $data['audioContent'] ?? null;
 }
 
-$body   = read_json_body();
-$text   = trim((string) ($body['text'] ?? ''));
+$body   = read_json_body(20000);
+$text   = mb_substr(trim((string) ($body['text'] ?? '')), 0, 500);
 if ($text === '') {
     json_error(400, 'Missing text');
 }

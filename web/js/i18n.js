@@ -4,16 +4,26 @@ async function setLang(page, lang) {
     currentLangEl.textContent = lang.toUpperCase();
   }
   localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-chat-link]').forEach(a => {
+    a.href = 'https://cadipel.pribridge.pro/?lang=' + (lang === 'en' ? 'en' : 'es');
+    const label = a.querySelector('.cadipel_assistant_float_label');
+    if (label) label.textContent = lang === 'en' ? 'AI Assistant' : 'Asistente IA';
+  });
 
   try {
     const url = `lang/${page}/${lang}.json`;
-    const res = await fetch(url);
+    const [res, navRes] = await Promise.all([
+      fetch(url),
+      fetch(`lang/nav/${lang}.json`),
+    ]);
 
     if (!res.ok) {
       throw new Error(`Failed to load ${url}, status ${res.status}`);
     }
 
-    const dict = await res.json();
+    const pageDict = await res.json();
+    const navDict = navRes.ok ? await navRes.json() : {};
+    const dict = { ...pageDict, ...navDict };
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (dict[key]) {

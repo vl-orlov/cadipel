@@ -88,7 +88,15 @@
 
   async function startRecording() {
     await requestMic();
+    try {
+      startRecorder();
+    } catch (e) {
+      stopAnalyser();
+      throw e;
+    }
+  }
 
+  function startRecorder() {
     const Ctx = window.AudioContext || window.webkitAudioContext;
     analyserCtx = new Ctx();
     const source = analyserCtx.createMediaStreamSource(stream);
@@ -127,6 +135,13 @@
     timeBuffer = null;
     recStartedAtWall = null;
     emitLevels(idleLevels());
+    releaseMic();
+  }
+
+  function releaseMic() {
+    if (!stream) return;
+    for (const track of stream.getTracks()) track.stop();
+    stream = null;
   }
 
   /** Detiene la grabación y devuelve { blob, mimeType } o null si fue demasiado corta/silenciosa. */
@@ -181,11 +196,12 @@
   async function transcribe(recording, lang) {
     if (!recording) return '';
     const base64 = await blobToBase64(recording.blob);
-    const res = await fetch('/api/ai_transcribe.php', {
+    const res = await fetch('api/ai_transcribe.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ audio: base64, audioMime: recording.mimeType, lang: lang || 'es' }),
     });
+    if (res.status === 429) throw new Error('rate');
     if (!res.ok) return '';
     const data = await res.json();
     return (data && data.transcript) || '';

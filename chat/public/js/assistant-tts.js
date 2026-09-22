@@ -8,7 +8,7 @@
 
   window.CadipelAssistant = window.CadipelAssistant || {};
 
-  const MIN_CHUNK_LEN = 12;
+  const MIN_CHUNK_LEN = 80; // agrupa 1-2 frases por request: TTS tiene rate limit
   const MAX_CHUNK_LEN = 220;
 
   /** Divide el texto en frases hablables — mismo criterio que extractCompleteSentences (mozoAiStream.ts). */
@@ -20,10 +20,14 @@
     const chunks = [];
     let buffer = '';
     for (const part of raw) {
-      buffer = buffer ? `${buffer} ${part}` : part;
-      if (buffer.length >= MIN_CHUNK_LEN || buffer.length >= MAX_CHUNK_LEN) {
+      const next = buffer ? `${buffer} ${part}` : part;
+      // Junta frases hasta ~220 caracteres. Por debajo de 80 no corta: un request por frase
+      // quema el rate limit. Una frase sola más larga que el máximo se manda entera.
+      if (buffer && buffer.length >= MIN_CHUNK_LEN && next.length > MAX_CHUNK_LEN) {
         chunks.push(buffer.trim());
-        buffer = '';
+        buffer = part;
+      } else {
+        buffer = next;
       }
     }
     if (buffer.trim()) chunks.push(buffer.trim());
@@ -35,6 +39,8 @@
   let session = 0;
   let currentAbort = null;
   let currentAudio = null;
+  let onRateLimit = null;
+  let rateNotified = false;
   const stateListeners = new Set();
 
   function setPlaying(isPlaying) {
@@ -48,7 +54,7 @@
 
   async function fetchTtsPayload(text, opts, signal) {
     try {
-      const res = await fetch('/api/tts.php', {
+      const res = await fetch('api/tts.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -58,6 +64,7 @@
         }),
         signal,
       });
+      if (res.status === 429) return { rateLimited: true };
       if (!res.ok) return null;
       const data = await res.json();
       if (data && data.audio && !data.error) {
@@ -121,6 +128,10 @@
         const chunk = queue.shift();
         const payload = prefetched;
         prefetched = null;
+        if (payload && payload.rateLimited) {
+          noteRateLimit();
+          break;
+        }
 
         let nextFetch = null;
         if (queue.length > 0 && alive()) {
@@ -145,6 +156,13 @@
     }
   }
 
+  function noteRateLimit() {
+    queue = [];
+    if (rateNotified) return;
+    rateNotified = true;
+    if (onRateLimit) onRateLimit();
+  }
+
   async function speak(text, opts) {
     const chunks = splitIntoTtsChunks(text);
     if (chunks.length === 0) return;
@@ -155,6 +173,7 @@
 
   /** Agrega frases a la cola sin interrumpir la reproducción en curso (para streaming). */
   function enqueue(text, opts) {
+    if (rateNotified) return;
     const chunks = splitIntoTtsChunks(text);
     if (chunks.length === 0) return;
     queue.push(...chunks);
@@ -162,6 +181,7 @@
   }
 
   function stop() {
+    rateNotified = false;
     session++;
     if (currentAbort) currentAbort.abort();
     if (currentAudio) {
@@ -177,5 +197,7 @@
     return running;
   }
 
-  window.CadipelAssistant.tts = { speak, enqueue, stop, isPlaying, onPlaybackChange, splitIntoTtsChunks };
+  window.CadipelAssistant.tts = {
+    speak, enqueue, stop, isPlaying, onPlaybackChange, splitIntoTtsChunks, setOnRateLimit(fn) { onRateLimit = fn; },
+  };
 })();

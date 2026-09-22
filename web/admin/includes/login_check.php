@@ -10,28 +10,52 @@ const LOGIN_LOCK_SECONDS = 900; // 15 min
 
 $attemptsPath = __DIR__ . '/../../api/login_attempts.json';
 
-function load_login_attempts(string $path): array
+function client_ip_admin(): string
 {
-    $data = is_file($path) ? json_decode((string) file_get_contents($path), true) : null;
-    return is_array($data) ? $data : ['count' => 0, 'window_start' => 0, 'locked_until' => 0];
+    $ip = (string) ($_SERVER['REMOTE_ADDR'] ?? '');
+    return $ip !== '' ? $ip : '0.0.0.0';
 }
 
-function save_login_attempts(string $path, array $state): void
+/** @return array{count: int, window_start: int, locked_until: int} */
+function blank_attempt(): array
 {
-    file_put_contents($path, json_encode($state));
-}
-
-$state = load_login_attempts($attemptsPath);
-$now = time();
-
-if ($state['locked_until'] > $now) {
-    echo json_encode(['ok' => 0, 'locked' => 1]);
-    exit;
+    return ['count' => 0, 'window_start' => 0, 'locked_until' => 0];
 }
 
 $input = read_json_body();
 $login = isset($input['login']) ? trim((string) $input['login']) : '';
-$pass = isset($input['pass']) ? (string) $input['pass'] : '';
+$pass  = isset($input['pass']) ? (string) $input['pass'] : '';
+$ip    = client_ip_admin();
+$now   = time();
+
+$fh = @fopen($attemptsPath, 'c+');
+$ips = [];
+$haveFile = $fh !== false;
+if ($haveFile) {
+    flock($fh, LOCK_EX);
+    $data = json_decode((string) stream_get_contents($fh), true);
+    if (is_array($data) && isset($data['ips']) && is_array($data['ips'])) {
+        $ips = $data['ips'];
+    }
+    foreach ($ips as $key => $rowOld) {
+        if (!is_array($rowOld)) {
+            unset($ips[$key]);
+            continue;
+        }
+        $idle = $now - (int) ($rowOld['window_start'] ?? 0);
+        if ($idle > LOGIN_LOCK_SECONDS && (int) ($rowOld['locked_until'] ?? 0) <= $now) {
+            unset($ips[$key]);
+        }
+    }
+}
+
+$row = (isset($ips[$ip]) && is_array($ips[$ip])) ? $ips[$ip] : blank_attempt();
+if ($haveFile && (int) ($row['locked_until'] ?? 0) > $now) {
+    flock($fh, LOCK_UN);
+    fclose($fh);
+    echo json_encode(['ok' => 0, 'locked' => 1]);
+    exit;
+}
 
 $ok = 0;
 if ($login !== '' && $pass !== '' && ADMIN_PASSWORD_HASH !== ''
@@ -40,16 +64,30 @@ if ($login !== '' && $pass !== '' && ADMIN_PASSWORD_HASH !== ''
     session_regenerate_id(true);
     $_SESSION['cadipel_admin'] = $login;
     $ok = 1;
-    save_login_attempts($attemptsPath, ['count' => 0, 'window_start' => 0, 'locked_until' => 0]);
+    $ips[$ip] = blank_attempt();
+} elseif ($haveFile) {
+    if ($now - (int) ($row['window_start'] ?? 0) > LOGIN_LOCK_SECONDS) {
+        $row = ['count' => 0, 'window_start' => $now, 'locked_until' => 0];
+    }
+    if ((int) ($row['window_start'] ?? 0) === 0) {
+        $row['window_start'] = $now;
+    }
+    $row['count'] = (int) ($row['count'] ?? 0) + 1;
+    if ($row['count'] >= LOGIN_MAX_ATTEMPTS) {
+        $row['locked_until'] = $now + LOGIN_LOCK_SECONDS;
+    }
+    $ips[$ip] = $row;
+}
+
+if ($haveFile) {
+    ftruncate($fh, 0);
+    rewind($fh);
+    fwrite($fh, json_encode(['ips' => $ips]));
+    fflush($fh);
+    flock($fh, LOCK_UN);
+    fclose($fh);
 } else {
-    if ($now - $state['window_start'] > LOGIN_LOCK_SECONDS) {
-        $state = ['count' => 0, 'window_start' => $now, 'locked_until' => 0];
-    }
-    $state['count']++;
-    if ($state['count'] >= LOGIN_MAX_ATTEMPTS) {
-        $state['locked_until'] = $now + LOGIN_LOCK_SECONDS;
-    }
-    save_login_attempts($attemptsPath, $state);
+    error_log('cadipel admin: no se puede escribir api/login_attempts.json');
 }
 
 echo json_encode(['ok' => $ok]);

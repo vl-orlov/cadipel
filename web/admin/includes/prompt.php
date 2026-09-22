@@ -13,7 +13,8 @@ $customPromptText = is_file($customPromptPath) ? (string) file_get_contents($cus
             <p class="text-muted">
                 Este texto se agrega al final del prompt del sistema del asistente (junto con la
                 información base del sitio) en cada conversación. Usalo para ajustar el tono,
-                sumar avisos temporales o corregir algún comportamiento — sin tocar código.
+                sumar avisos temporales o corregir algún comportamiento — sin tocar código. El chat
+                (cadipel.pribridge.pro) toma los cambios en hasta 2 minutos.
             </p>
             <form id="promptForm">
                 <div class="form-group">

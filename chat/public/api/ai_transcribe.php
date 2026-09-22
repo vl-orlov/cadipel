@@ -1,12 +1,19 @@
 <?php
 
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/../../src/bootstrap.php';
 
-if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
-    json_error(405, 'Method not allowed');
-}
+require_post();
+require_allowed_origin();
+rate_limit('stt', 7, 70);
 
 const CADIPEL_MIN_AUDIO_BYTES = 512;
+
+function cadipel_normalize_audio_mime(string $mime): string
+{
+    $base    = strtolower(trim(explode(';', $mime, 2)[0]));
+    $allowed = ['audio/webm', 'audio/ogg', 'audio/mp4', 'audio/wav', 'audio/mpeg'];
+    return in_array($base, $allowed, true) ? $base : 'audio/webm';
+}
 
 function cadipel_validate_audio_payload(string $audioBase64): void
 {
@@ -19,7 +26,9 @@ function cadipel_validate_audio_payload(string $audioBase64): void
 function cadipel_whisper_transcribe(string $audioBase64, string $audioMime, string $replyLang): string
 {
     $ext     = ['audio/webm' => 'webm', 'audio/ogg' => 'ogg', 'audio/mp4' => 'mp4', 'audio/wav' => 'wav', 'audio/mpeg' => 'mp3'][$audioMime] ?? 'webm';
-    $tmpFile = tempnam(sys_get_temp_dir(), 'cadipel_whisper_') . '.' . $ext;
+    $base    = tempnam(sys_get_temp_dir(), 'cadipel_whisper_');
+    $tmpFile = $base . '.' . $ext;
+    rename($base, $tmpFile);
     file_put_contents($tmpFile, base64_decode($audioBase64));
 
     $fields = [
@@ -95,19 +104,18 @@ function cadipel_gemini_transcribe(string $audioBase64, string $audioMime): stri
         ]]],
     ];
 
-    $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' . GEMINI_KEY;
+    $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
     $ch  = curl_init($url);
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST           => true,
         CURLOPT_POSTFIELDS     => json_encode($payload),
-        CURLOPT_HTTPHEADER     => ['Content-Type: application/json'],
+        CURLOPT_HTTPHEADER     => ['Content-Type: application/json', 'x-goog-api-key: ' . GEMINI_KEY],
         CURLOPT_TIMEOUT        => 30,
     ]);
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $curlErr  = curl_error($ch);
-    curl_close($ch);
 
     if ($curlErr)          throw new RuntimeException('cURL error: ' . $curlErr);
     $data = json_decode($response, true) ?? [];
@@ -139,9 +147,9 @@ function cadipel_sanitize_transcript(string $transcript): string
     return $text;
 }
 
-$body      = read_json_body();
+$body      = read_json_body(6000000);
 $audio     = (string) ($body['audio'] ?? '');
-$audioMime = (string) ($body['audioMime'] ?? 'audio/webm');
+$audioMime = cadipel_normalize_audio_mime((string) ($body['audioMime'] ?? 'audio/webm'));
 $replyLang = trim((string) ($body['lang'] ?? '')) ?: 'es';
 
 if ($audio === '') {
@@ -149,18 +157,32 @@ if ($audio === '') {
 }
 cadipel_validate_audio_payload($audio);
 
-try {
-    if (OPENAI_KEY !== '') {
-        $transcript = cadipel_sanitize_transcript(cadipel_whisper_transcribe($audio, $audioMime, $replyLang));
-    } elseif (GEMINI_KEY !== '') {
+if (GEMINI_KEY === '' && OPENAI_KEY === '') {
+    json_error(503, 'No transcription provider configured');
+}
+
+// Gemini es el proveedor principal (igual que el chat). Whisper solo si Gemini no está
+// o esta llamada falló. Un transcript vacío es válido (silencio): no se reintenta.
+$transcript = '';
+$got        = false;
+if (GEMINI_KEY !== '') {
+    try {
         $transcript = cadipel_sanitize_transcript(cadipel_gemini_transcribe($audio, $audioMime));
-    } else {
-        json_error(503, 'No transcription provider configured');
-        exit;
+        $got        = true;
+    } catch (RuntimeException $e) {
+        error_log('cadipel-chat gemini stt: ' . $e->getMessage());
     }
-} catch (RuntimeException $e) {
-    json_error(502, 'Audio transcription failed: ' . $e->getMessage());
-    exit;
+}
+if (!$got && OPENAI_KEY !== '') {
+    try {
+        $transcript = cadipel_sanitize_transcript(cadipel_whisper_transcribe($audio, $audioMime, $replyLang));
+        $got        = true;
+    } catch (RuntimeException $e) {
+        error_log('cadipel-chat whisper stt: ' . $e->getMessage());
+    }
+}
+if (!$got) {
+    json_error(502, 'Audio transcription failed');
 }
 
 echo json_encode(['transcript' => $transcript]);

@@ -7,13 +7,9 @@ if (is_file($configFile)) {
     require_once __DIR__ . '/config.example.php';
 }
 
-if (!defined('GEMINI_KEY'))      define('GEMINI_KEY', '');
-if (!defined('OPENAI_KEY'))      define('OPENAI_KEY', '');
-if (!defined('AZURE_TTS_KEY'))   define('AZURE_TTS_KEY', '');
-if (!defined('AZURE_TTS_REGION')) define('AZURE_TTS_REGION', '');
-if (!defined('GOOGLE_TTS_KEY'))  define('GOOGLE_TTS_KEY', '');
 if (!defined('ADMIN_LOGIN'))          define('ADMIN_LOGIN', 'admin');
 if (!defined('ADMIN_PASSWORD_HASH'))  define('ADMIN_PASSWORD_HASH', '');
+if (!defined('PROMPT_SYNC_TOKEN'))    define('PROMPT_SYNC_TOKEN', '');
 
 header('Content-Type: application/json; charset=utf-8');
 

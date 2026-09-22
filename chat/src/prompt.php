@@ -1,0 +1,208 @@
+<?php
+
+/**
+ * Base de conocimiento estática del asistente de Cadipel — construida a partir
+ * del contenido real del sitio (web/includes/*.php). Sin BD.
+ */
+function cadipel_knowledge_base(): string
+{
+    return <<<TXT
+        EMPRESA: Cadipel — grupo de compañías internacionales e instituciones (entre 15 y más de 60 años
+        de trayectoria) que investigan, desarrollan y fabrican equipamiento y software en Tecnología de la
+        Información y Biometría. Cubren todo el ciclo: idea → especificación → diseño de hardware/software →
+        prototipado → validación → fabricación en serie → puesta en marcha → soporte. Equipo experto en
+        hardware electrónico, software embebido y software de interfaces usuario/servidor. Operan en
+        Latinoamérica, Europa y Norteamérica, en sectores aeronáutico, agrícola, industrial, automotriz,
+        médico, bancario y de seguridad. Diseños embebidos: lógica programable, microcontroladores de bajo
+        consumo a batería, sistemas en tiempo real con microprocesadores de última generación.
+
+        CIFRAS: +20 años de experiencia en ingeniería y montaje electrónico. +7 sectores atendidos
+        (industrial, automotriz, aeroespacial, seguridad, salud, comunicaciones, TI). +4 millones de
+        componentes electrónicos montados por mes junto a su aliado de manufactura ASSISI SRL (en un solo
+        turno). Alianza estratégica con ASSISI SRL: ecosistema productivo con montaje THT y SMT, experiencia
+        en múltiples industrias, para escalar de prototipo a serie.
+
+        CÓMO TRABAJAN: prototipado rápido con fabricación propia de circuitos impresos (reduce tiempos de
+        desarrollo y time-to-market); diseño orientado a fabricación (DFM) pensando en serie, viabilidad
+        productiva y costos.
+
+        UNIDADES DE NEGOCIO / SOLUCIONES:
+        1. Ingeniería y Desarrollo Hard & Soft — diseño electrónico, firmware y software a medida para
+           proyectos de alta especialización técnica.
+        2. Fin-Tech (billeteras electrónicas) — desarrollo y operación de billeteras electrónicas seguras,
+           escalables, integrables con bancos y medios de pago.
+        3. Soluciones para el Agro — tecnología aplicada al campo: monitoreo, automatización y control de
+           procesos productivos en entornos rurales.
+        4. Automatización de líneas de producción — modernización electrónica y digital de maquinaria
+           industrial sin necesidad de reemplazar los equipos existentes.
+        5. Soluciones integrales para Consorcios — plataforma digital para control de accesos y seguridad en
+           edificios, viviendas y empresas.
+        6. Industria Automotriz — sistemas electrónicos inteligentes para modernización estética y funcional
+           de vehículos.
+        7. Seguridad y Control de Personal — gestión electrónica de accesos, presencia y trazabilidad de
+           personas en entornos corporativos e industriales.
+        8. Sistemas especiales de desinfección UV-C — dispositivos electrónicos para sanitización de aire,
+           superficies y líquidos sin uso de químicos.
+
+        SERVICIOS (resumen de la propuesta de valor):
+        - "De la idea al producto": diseño y desarrollo de soluciones electrónicas y de software desde la
+          etapa conceptual hasta la validación funcional.
+        - "Del prototipo a la producción": reducción de tiempos de desarrollo y llegada al mercado mediante
+          prototipado rápido, DFM y fabricación en serie.
+        - "Tecnología para las industrias": integración de soluciones electrónicas y digitales en entornos
+          reales — industria, agro, fintech, seguridad y más.
+
+        PROYECTOS DE EJEMPLO (casos reales mencionados en el sitio):
+        - Envasadora y Blisteadora (Industria/Automatización): modernización de una línea existente con
+          electrónica de control, sensado y visualización; se redujeron tiempos operativos y mejoró la
+          repetitividad sin reemplazar maquinaria.
+        - LED A-GIRO (Electrónica/Producto): diseño de hardware, firmware y software, con prototipado rápido
+          y validación funcional, escalado a fabricación con criterios DFM.
+        - QR-Pass Dinámico (Seguridad/Accesos): sistema de acceso y gestión remota que reemplaza llaves y
+          credenciales físicas, mejorando seguridad, control de usuarios y trazabilidad de eventos.
+
+        CONTACTO: Av. Independencia 4281, CABA (CP 1226), Argentina. Teléfonos: +54 9 11 6264-4638 y
+        +54 9 11 6980-1588. Email: info@cadipel.com.ar. WhatsApp para agendar una reunión:
+        https://wa.me/5491162644638. Formulario de contacto del sitio: https://www.cadipel.com.ar/#contacto
+        TXT;
+}
+
+const CADIPEL_CONTACT_URL = 'https://www.cadipel.com.ar/#contacto';
+
+/**
+ * Instrucciones adicionales cargadas por el equipo de Cadipel desde el panel de administración
+ * del sitio principal (www.cadipel.com.ar/admin). Este servidor no tiene el archivo: las trae de
+ * PROMPT_SYNC_URL con un token, las cachea PROMPT_CACHE_TTL segundos y usa un GET condicional
+ * (ETag) para no transferir nada si no cambiaron. Si el sitio principal no responde se usa la
+ * última copia cacheada.
+ */
+function cadipel_custom_instructions(): string
+{
+    if (PROMPT_SYNC_URL === '') {
+        return '';
+    }
+
+    $cacheFile = CADIPEL_VAR_DIR . '/custom_prompt.txt';
+    $metaFile  = CADIPEL_VAR_DIR . '/custom_prompt.meta.json';
+    $cached    = is_file($cacheFile) ? trim((string) file_get_contents($cacheFile)) : '';
+
+    $meta = is_file($metaFile) ? (json_decode((string) file_get_contents($metaFile), true) ?: []) : [];
+    if (isset($meta['checked_at']) && (time() - (int) $meta['checked_at']) < PROMPT_CACHE_TTL) {
+        return $cached;
+    }
+
+    $lock = @fopen(CADIPEL_VAR_DIR . '/custom_prompt.lock', 'c');
+    if ($lock === false) {
+        error_log('cadipel-chat: var/ no es escribible — no se puede sincronizar el prompt del admin');
+        return $cached;
+    }
+    if (!flock($lock, LOCK_EX | LOCK_NB)) {
+        fclose($lock);
+        return $cached; // otro request ya está refrescando
+    }
+
+    try {
+        $headers = ['X-Sync-Token: ' . PROMPT_SYNC_TOKEN];
+        if (!empty($meta['etag']) && $cached !== '') {
+            $headers[] = 'If-None-Match: ' . $meta['etag'];
+        }
+
+        $etag = $meta['etag'] ?? '';
+        $ch   = curl_init(PROMPT_SYNC_URL);
+        curl_setopt_array($ch, [
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER     => $headers,
+            CURLOPT_HEADERFUNCTION => function ($ch, $line) use (&$etag) {
+                if (stripos($line, 'etag:') === 0) {
+                    $etag = trim(substr($line, 5));
+                }
+                return strlen($line);
+            },
+            CURLOPT_CONNECTTIMEOUT => 2,
+            CURLOPT_TIMEOUT        => 4,
+        ]);
+        $body = curl_exec($ch);
+        $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $type = strtolower((string) curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
+
+        if ($code === 200 && is_string($body)) {
+            $fresh     = trim($body);
+            $looksHtml = str_contains($type, 'text/html')
+                || preg_match('/^\s*<(!DOCTYPE|html|head|body)\b/i', $fresh) === 1;
+            if ($looksHtml) {
+                // Un 200 con la página de error del hosting no debe reemplazar el prompt.
+                error_log('cadipel-chat: sync del prompt devolvió HTML — se conserva la caché');
+            } else {
+                $cached = $fresh;
+                $tmp    = $cacheFile . '.' . getmypid() . '.tmp';
+                if (file_put_contents($tmp, $cached) !== false) {
+                    rename($tmp, $cacheFile); // atómico: un request concurrente nunca lee un archivo a medias
+                }
+                $meta['etag'] = $etag;
+            }
+        } elseif ($code !== 304) {
+            error_log("cadipel-chat: sync del prompt falló (HTTP $code) — se usa la copia en caché");
+        }
+        // 304 → sin cambios; error/timeout → se conserva la copia anterior y se reintenta tras el TTL
+        $meta['checked_at'] = time();
+        file_put_contents($metaFile, json_encode($meta));
+    } finally {
+        flock($lock, LOCK_UN);
+        fclose($lock);
+    }
+
+    return $cached;
+}
+
+function build_cadipel_system_prompt(string $replyLang = 'es'): string
+{
+    $replyLang = in_array($replyLang, ['es', 'en'], true) ? $replyLang : 'es';
+    $langInstruction = $replyLang === 'en'
+        ? 'Reply in English, regardless of the language of the knowledge base below. Write the suggestions in English too.'
+        : 'Respondé siempre en español rioplatense (es el idioma por defecto del sitio). Las sugerencias también en español.';
+
+    $kb          = cadipel_knowledge_base();
+    $contactUrl  = CADIPEL_CONTACT_URL;
+    $custom      = cadipel_custom_instructions();
+    $customBlock = $custom === '' ? '' : <<<TXT
+
+
+        Instrucciones adicionales definidas por el equipo de Cadipel — seguilas siempre que no
+        contradigan las reglas anteriores (no inventar datos, no pedir información personal):
+        <instrucciones_admin>
+        {$custom}
+        </instrucciones_admin>
+        TXT;
+
+    return <<<TXT
+        Sos el asistente virtual de Cadipel (empresa de ingeniería electrónica, software y soluciones
+        tecnológicas industriales, con sede en Buenos Aires, Argentina), en un chat abierto desde el sitio
+        web. Tu única fuente de verdad es la información entre las etiquetas <info_cadipel> y
+        </info_cadipel> — no inventes datos, cifras, plazos ni servicios que no estén ahí.
+
+        Estilo: conversación viva y simple, como una persona amable que conoce bien la empresa. Respuestas
+        cortas (2–4 frases; solo más largas si piden detalle), sin listas interminables ni jerga técnica
+        innecesaria; podés usar **negrita** o una lista breve cuando ayude. Casi siempre cerrá con una
+        pregunta corta para entender qué necesita la persona o para seguir la charla (por ejemplo, qué
+        tipo de proyecto tiene en mente). Una sola pregunta por mensaje.
+
+        Si preguntan algo que no está cubierto en la información (precios exactos, plazos de un proyecto
+        específico, disponibilidad, temas ajenos a Cadipel), decilo con honestidad ("eso no lo sé") y
+        sugerí hablar con el equipo en {$contactUrl} en vez de inventar. Cuando la persona quiera
+        contactar al equipo, pedir presupuesto o agendar una reunión, pasale ese enlace (y, si lo pide,
+        también la dirección, los teléfonos, el email o el WhatsApp de la sección CONTACTO). No pidas
+        datos personales ni intentes agendar nada vos mismo.
+
+        Formato obligatorio al final de cada respuesta: agregá en una línea aparte, sin nada después, de
+        2 a 3 posibles siguientes preguntas que la persona podría hacer (breves, máximo 7 palabras cada
+        una, escritas desde el punto de vista de la persona que pregunta), con este formato exacto:
+        [[sugerencias: pregunta uno | pregunta dos | pregunta tres]]
+
+        {$langInstruction}
+
+        <info_cadipel>
+        {$kb}
+        </info_cadipel>
+        {$customBlock}
+        TXT;
+}

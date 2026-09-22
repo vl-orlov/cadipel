@@ -1,9 +1,4 @@
 {
-    "nav_business_units": "Business Units",
-  "nav_companies": "Companies associated",
-  "nav_success_cases": "What we do",
-  "nav_about": "Success Cases",
-  "nav_contact": "Contact",
   "hero_title": "<span class=\"hero_title_line\">From idea</span><span class=\"hero_title_line\">to the technologies</span><span class=\"hero_title_line hero_title_accent\">of the future</span>",
   "hero_subtitle": "We transform complex engineering ideas into intelligent products and technological solutions that drive the future",
   "hero_cta": "Discover our solutions",
