@@ -38,16 +38,63 @@ SWITCH ( $page ) {
 ?>
 
 <!-- ASISTENTE IA: chat a pantalla completa en otro dominio -->
-<a class="cadipel_assistant_float" href="https://cadipel.pribridge.pro/?lang=es" target="_blank" rel="noopener" data-chat-link aria-label="Asistente IA de Cadipel">
-    <span class="cadipel_assistant_float_label">Asistente IA</span>
-    <span class="cadipel_assistant_float_avatar" id="cadipel_float_avatar"></span>
-</a>
+<div class="cadipel_assistant_float">
+    <div class="cadipel_assistant_bubble" id="cadipel_float_bubble" role="link" tabindex="0">
+        <button type="button" class="cadipel_assistant_bubble_close" data-i18n-aria-label="assistant_bubble_close" aria-label="Cerrar">✕</button>
+        <p class="cadipel_assistant_bubble_eyebrow" data-i18n="assistant_bubble_eyebrow">Cadipel</p>
+        <p class="cadipel_assistant_bubble_text" data-i18n="assistant_bubble_text">¿Tenés dudas sobre nuestras soluciones? Preguntame 👋</p>
+    </div>
+    <a class="cadipel_assistant_float_btn" href="https://cadipel.pribridge.pro/?lang=es" target="_blank" rel="noopener" data-chat-link aria-label="Asistente IA de Cadipel">
+        <span class="cadipel_assistant_float_avatar" id="cadipel_float_avatar"></span>
+    </a>
+</div>
 <script src="js/assistant-avatar.js"></script>
 <script>
     var floatAvatar = document.getElementById('cadipel_float_avatar');
     if (floatAvatar && window.CadipelAssistant && CadipelAssistant.avatar) {
         CadipelAssistant.avatar.create(floatAvatar, { size: 64 });
     }
+
+    (function () {
+        var bubble = document.getElementById('cadipel_float_bubble');
+        var link = document.querySelector('[data-chat-link]');
+        if (!bubble || !link) return;
+        var closeBtn = bubble.querySelector('.cadipel_assistant_bubble_close');
+        var DISMISS_KEY = 'cadipel_assistant_dismissed';
+        var dismissed = false;
+        try { dismissed = sessionStorage.getItem(DISMISS_KEY) === '1'; } catch (e) {}
+        var showTimer, hideTimer;
+        function showBubble() {
+            if (dismissed) return;
+            bubble.classList.add('is-visible');
+            hideTimer = setTimeout(hideBubble, 40000);
+        }
+        function hideBubble() {
+            clearTimeout(hideTimer);
+            bubble.classList.remove('is-visible');
+            if (!dismissed) showTimer = setTimeout(showBubble, 120000);
+        }
+        function openChat() {
+            window.open(link.href, '_blank', 'noopener');
+        }
+        closeBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            dismissed = true;
+            try { sessionStorage.setItem(DISMISS_KEY, '1'); } catch (err) {}
+            clearTimeout(hideTimer);
+            clearTimeout(showTimer);
+            bubble.classList.remove('is-visible');
+        });
+        bubble.addEventListener('click', openChat);
+        bubble.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openChat();
+            }
+        });
+        if (!dismissed) showTimer = setTimeout(showBubble, 1000);
+    })();
 </script>
 <!-- END ASISTENTE IA -->
 

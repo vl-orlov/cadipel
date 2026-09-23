@@ -425,7 +425,7 @@
     stopEverything();
     Store.create();
     renderAll();
-    els.input.focus();
+    if (!state.voiceMode) els.input.focus();
   }
 
   function deleteConversation(c) {
@@ -531,9 +531,10 @@
     state.streaming = true;
     state.abort = new AbortController();
     const abort = state.abort;
-    // En modo voz la respuesta siempre se lee en voz alta (como en la pantalla de voz original).
-    // En modo texto no se auto-lee: para eso está el botón "Escuchar" de cada respuesta (botRow).
-    const speak = state.voiceMode;
+    // Se lee en voz alta solo mientras sigue abierto el modo voz. Si la persona pasa a texto
+    // a mitad de la respuesta, el resto de esta respuesta ya no se encola (aunque vuelva al modo voz).
+    let speaking = state.voiceMode;
+    const stillSpeaking = () => (speaking = speaking && state.voiceMode);
     let spokenPos = 0;
     let firstChunkSent = false;
     CA.tts.stop();
@@ -546,7 +547,7 @@
         reply.content = text;
         reply.suggestions = suggestions;
         patchLastBubble(conv);
-        if (speak) {
+        if (stillSpeaking()) {
           const clean = speechClean(text);
           const [ready, rest] = extractSentences(clean.slice(spokenPos), firstChunkSent ? 110 : 30, false);
           if (ready.length) {
@@ -560,7 +561,7 @@
       const { text, suggestions } = splitReply(final);
       reply.content = text.trim();
       reply.suggestions = suggestions;
-      if (speak && reply.content) {
+      if (stillSpeaking() && reply.content) {
         const clean = speechClean(reply.content);
         const [tail] = extractSentences(clean.slice(spokenPos), 1, true);
         if (tail.length) CA.tts.enqueue(tail.join(' '), { lang: state.lang, rate: 1 });

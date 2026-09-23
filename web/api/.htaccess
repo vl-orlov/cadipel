@@ -1,5 +1,4 @@
-# El prompt del admin y el contador de login no deben poder descargarse por URL.
-# prompt_public.php sigue leyéndolos por disco; este archivo solo corta el acceso HTTP.
+# Config y restos del admin viejo no deben poder descargarse por URL.
 <FilesMatch "^(config\.php|config\.example\.php|custom_prompt\.txt|login_attempts\.json)$">
     <IfModule mod_authz_core.c>
         Require all denied

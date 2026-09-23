@@ -7,8 +7,7 @@ require_once is_file($configFile) ? $configFile : __DIR__ . '/../config.example.
 
 foreach ([
     'GEMINI_KEY' => '', 'OPENAI_KEY' => '', 'AZURE_TTS_KEY' => '', 'AZURE_TTS_REGION' => '',
-    'GOOGLE_TTS_KEY' => '', 'PROMPT_SYNC_URL' => '', 'PROMPT_SYNC_TOKEN' => '',
-    'PROMPT_CACHE_TTL' => 120, 'ALLOWED_HOSTS' => 'cadipel.pribridge.pro', 'APP_ENV' => 'prod',
+    'GOOGLE_TTS_KEY' => '', 'ALLOWED_HOSTS' => 'cadipel.pribridge.pro', 'APP_ENV' => 'prod',
     'TRUST_PROXY' => false,
 ] as $name => $default) {
     if (!defined($name)) {

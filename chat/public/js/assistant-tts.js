@@ -147,8 +147,9 @@
         void chunk;
       }
     } finally {
-      running = false;
+      // Tras stop() puede haber arrancado ya otra cola: solo la sesión vigente libera `running`.
       if (mySession === session) {
+        running = false;
         queue = [];
         setPlaying(false);
         if (window.CadipelAssistant.lipsync) window.CadipelAssistant.lipsync.stop();

@@ -2,7 +2,7 @@
 
 Chat a pantalla completa (PHP + JS vanilla, sin BD). Se abre desde el botón flotante del landing
 (www.cadipel.com.ar). Es un servicio autónomo: tiene sus propias claves de IA, su rate limit y su copia
-de la base de conocimiento; solo consulta al sitio principal para traer las instrucciones extra del admin.
+de la base de conocimiento. Las instrucciones extra se editan en `/admin/` de este mismo servicio.
 
 ## Estructura
 ```
@@ -10,8 +10,9 @@ chat/
   public/            ← docroot de nginx (único directorio accesible por web)
     index.php  css/  js/  img/  lang/chat/{es,en}.json
     api/ai_stream.php  api/tts.php  api/ai_transcribe.php
-  src/               ← fuera del docroot: bootstrap (config, origen, rate limit), prompt (base + sync)
-  var/               ← fuera del docroot: caché del prompt y contadores de rate limit (escribible)
+    admin/           ← panel: login y edición del prompt adicional
+  src/               ← fuera del docroot: bootstrap, prompt, admin (sesión y guardado)
+  var/               ← fuera del docroot: custom_prompt.txt, intentos de login, rate limit (escribible)
   config.php         ← claves (NO versionado; copiar de config.example.php)
   deploy/nginx.conf  ← script listo para correr en el VPS (crea el vhost + certbot)
 ```
@@ -28,7 +29,7 @@ Estructura en el servidor (calca la del repo — `public/`, `src/`, `var/`, `con
 /var/www/cadipel.pribridge.pro/
 ├── public/     ← contenido de chat/public/ (docroot de nginx)
 ├── src/        ← contenido de chat/src/ (fuera del docroot)
-├── var/        ← creado en el servidor, vacío al inicio (caché del prompt, rate limit)
+├── var/        ← creado en el servidor, vacío al inicio (prompt del admin, login, rate limit)
 └── config.php  ← se crea una vez a mano; los redeploys nunca lo tocan
 ```
 
@@ -48,9 +49,10 @@ certbot reescribe el archivo para agregar HTTPS, no hace falta tocar nada más).
 nano /var/www/cadipel.pribridge.pro/config.php
 ```
 Copiar el contenido de `chat/config.example.php` y completar `GEMINI_KEY`, `OPENAI_KEY`,
-`AZURE_TTS_KEY`/`AZURE_TTS_REGION`, `GOOGLE_TTS_KEY` (las que uses) y `PROMPT_SYNC_TOKEN`
-(`php -r "echo bin2hex(random_bytes(32));"`, mismo valor que en `web/api/config.php` del landing).
+`AZURE_TTS_KEY`/`AZURE_TTS_REGION`, `GOOGLE_TTS_KEY` (las que uses), `ADMIN_LOGIN` y
+`ADMIN_PASSWORD_HASH` (`php -r "echo password_hash('tu_clave', PASSWORD_DEFAULT);"`).
 Dejar `APP_ENV` en `'prod'` y `ALLOWED_HOSTS` en `cadipel.pribridge.pro`.
+El panel queda en `https://cadipel.pribridge.pro/admin/`.
 
 **4. FTP** (`cadipelftp`, igual que `assisipribridgeftp` — ver `cfg_assisi-pribridge.txt` §5; vsftpd
 ya está instalado y configurado en este VPS, no hace falta instalarlo):
@@ -87,13 +89,14 @@ esos dos directorios — nunca se tocan en un redeploy.
 **6. Probar:** abrir https://cadipel.pribridge.pro y escribir un mensaje.
 
 ## Landing (FTP a www.cadipel.com.ar, carpeta `web/`)
-Subir/reemplazar: `index.php`, `css/style.css`, `js/i18n.js`, `api/bootstrap.php`, `api/prompt_public.php`,
-`api/.htaccess`, `admin/includes/prompt.php`, `admin/includes/login_check.php`, `admin/js/login.js`,
+Subir/reemplazar: `index.php`, `css/style.css`, `js/i18n.js`, `api/bootstrap.php`, `api/.htaccess`,
+`admin/index.php`, `admin/login.php`,
 `css/avatar.css`, `js/assistant-avatar.js`, `img/assistant_avatar/` (los mismos archivos que en el chat, sin el retrato viejo).
-En `api/config.php` **del servidor**: agregar `define('PROMPT_SYNC_TOKEN', '<mismo token que en chat/config.php>');`
-y **borrar** las claves de IA (GEMINI_KEY, OPENAI_KEY, AZURE_*, GOOGLE_TTS_KEY): ya no se usan ahí.
+En `api/config.php` **del servidor**: **borrar** las claves de IA (GEMINI_KEY, OPENAI_KEY, AZURE_*, GOOGLE_TTS_KEY)
+y `PROMPT_SYNC_TOKEN`: ya no se usan ahí. El admin del sitio (`/admin/`) ahora solo redirige al del chat.
 
-Borrar del servidor (obsoletos): `api/ai_stream.php`, `api/ai_transcribe.php`, `api/tts.php`, `api/cadipel_prompt.php`,
+Borrar del servidor (obsoletos): `api/prompt_public.php`, `api/custom_prompt.txt`, `admin/includes/save_prompt.php`,
+`admin/includes/login_check.php`, `admin/includes/prompt.php`, `api/ai_stream.php`, `api/ai_transcribe.php`, `api/tts.php`, `api/cadipel_prompt.php`,
 `js/assistant*.js` (assistant, -avatar, -chat, -lipsync, -mic-feedback, -tts, -voice, -voice-hold), `css/assistant.css`,
 `lang/assistant/`, `img/assistant_avatar/`, e iconos `img/icons/{camia_send,camia_text,camia_voice,eliminar,mic_arrow_up,mic_close,mic_lock,microphone_icon,volume_mute_icon}.svg`.
 
@@ -109,5 +112,5 @@ Orden recomendado: primero el chat (para que el enlace ya funcione), después el
 
 ## Prompt
 La base de conocimiento vive en `src/prompt.php` (versionada). Las instrucciones extra se editan en
-`https://www.cadipel.com.ar/admin` (pestaña "Prompt IA") y llegan acá en ≤ 2 minutos
-(`PROMPT_CACHE_TTL`); si el sitio principal no responde se usa la última copia.
+`https://cadipel.pribridge.pro/admin/` y se guardan en `var/custom_prompt.txt`; el asistente las usa
+en la respuesta siguiente.

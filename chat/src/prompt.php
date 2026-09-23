@@ -70,88 +70,17 @@ function cadipel_knowledge_base(): string
 const CADIPEL_CONTACT_URL = 'https://www.cadipel.com.ar/#contacto';
 
 /**
- * Instrucciones adicionales cargadas por el equipo de Cadipel desde el panel de administración
- * del sitio principal (www.cadipel.com.ar/admin). Este servidor no tiene el archivo: las trae de
- * PROMPT_SYNC_URL con un token, las cachea PROMPT_CACHE_TTL segundos y usa un GET condicional
- * (ETag) para no transferir nada si no cambiaron. Si el sitio principal no responde se usa la
- * última copia cacheada.
+ * Instrucciones adicionales editadas en /admin/ del chat.
+ * El archivo vive en var/custom_prompt.txt; el guardado lo reemplaza de forma atómica.
  */
 function cadipel_custom_instructions(): string
 {
-    if (PROMPT_SYNC_URL === '') {
+    $path = CADIPEL_VAR_DIR . '/custom_prompt.txt';
+    if (!is_file($path)) {
         return '';
     }
-
-    $cacheFile = CADIPEL_VAR_DIR . '/custom_prompt.txt';
-    $metaFile  = CADIPEL_VAR_DIR . '/custom_prompt.meta.json';
-    $cached    = is_file($cacheFile) ? trim((string) file_get_contents($cacheFile)) : '';
-
-    $meta = is_file($metaFile) ? (json_decode((string) file_get_contents($metaFile), true) ?: []) : [];
-    if (isset($meta['checked_at']) && (time() - (int) $meta['checked_at']) < PROMPT_CACHE_TTL) {
-        return $cached;
-    }
-
-    $lock = @fopen(CADIPEL_VAR_DIR . '/custom_prompt.lock', 'c');
-    if ($lock === false) {
-        error_log('cadipel-chat: var/ no es escribible — no se puede sincronizar el prompt del admin');
-        return $cached;
-    }
-    if (!flock($lock, LOCK_EX | LOCK_NB)) {
-        fclose($lock);
-        return $cached; // otro request ya está refrescando
-    }
-
-    try {
-        $headers = ['X-Sync-Token: ' . PROMPT_SYNC_TOKEN];
-        if (!empty($meta['etag']) && $cached !== '') {
-            $headers[] = 'If-None-Match: ' . $meta['etag'];
-        }
-
-        $etag = $meta['etag'] ?? '';
-        $ch   = curl_init(PROMPT_SYNC_URL);
-        curl_setopt_array($ch, [
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_HTTPHEADER     => $headers,
-            CURLOPT_HEADERFUNCTION => function ($ch, $line) use (&$etag) {
-                if (stripos($line, 'etag:') === 0) {
-                    $etag = trim(substr($line, 5));
-                }
-                return strlen($line);
-            },
-            CURLOPT_CONNECTTIMEOUT => 2,
-            CURLOPT_TIMEOUT        => 4,
-        ]);
-        $body = curl_exec($ch);
-        $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $type = strtolower((string) curl_getinfo($ch, CURLINFO_CONTENT_TYPE));
-
-        if ($code === 200 && is_string($body)) {
-            $fresh     = trim($body);
-            $looksHtml = str_contains($type, 'text/html')
-                || preg_match('/^\s*<(!DOCTYPE|html|head|body)\b/i', $fresh) === 1;
-            if ($looksHtml) {
-                // Un 200 con la página de error del hosting no debe reemplazar el prompt.
-                error_log('cadipel-chat: sync del prompt devolvió HTML — se conserva la caché');
-            } else {
-                $cached = $fresh;
-                $tmp    = $cacheFile . '.' . getmypid() . '.tmp';
-                if (file_put_contents($tmp, $cached) !== false) {
-                    rename($tmp, $cacheFile); // atómico: un request concurrente nunca lee un archivo a medias
-                }
-                $meta['etag'] = $etag;
-            }
-        } elseif ($code !== 304) {
-            error_log("cadipel-chat: sync del prompt falló (HTTP $code) — se usa la copia en caché");
-        }
-        // 304 → sin cambios; error/timeout → se conserva la copia anterior y se reintenta tras el TTL
-        $meta['checked_at'] = time();
-        file_put_contents($metaFile, json_encode($meta));
-    } finally {
-        flock($lock, LOCK_UN);
-        fclose($lock);
-    }
-
-    return $cached;
+    $text = file_get_contents($path);
+    return is_string($text) ? trim($text) : '';
 }
 
 function build_cadipel_system_prompt(string $replyLang = 'es'): string

@@ -5,5 +5,8 @@
   "nav_cases": "Success cases",
   "nav_contact": "Contact",
   "carousel_prev": "Previous",
-  "carousel_next": "Next"
+  "carousel_next": "Next",
+  "assistant_bubble_eyebrow": "Cadipel",
+  "assistant_bubble_text": "Questions about our solutions? Ask me 👋",
+  "assistant_bubble_close": "Close"
 }

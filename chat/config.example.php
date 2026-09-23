@@ -16,12 +16,10 @@ define('AZURE_TTS_REGION', '');
 // Google Cloud Text-to-Speech (último fallback de voz)
 define('GOOGLE_TTS_KEY', '');
 
-// Sincronización del prompt del admin (vive en www.cadipel.com.ar/admin).
-// PROMPT_SYNC_TOKEN debe ser idéntico al definido en web/api/config.php del sitio principal.
-// Generar con: php -r "echo bin2hex(random_bytes(32));"
-define('PROMPT_SYNC_URL', 'https://www.cadipel.com.ar/api/prompt_public.php');
-define('PROMPT_SYNC_TOKEN', '');
-define('PROMPT_CACHE_TTL', 120); // segundos
+// Panel /admin/ del chat (un usuario, sin base de datos).
+// Generar el hash con: php -r "echo password_hash('tu_clave', PASSWORD_DEFAULT);"
+define('ADMIN_LOGIN', 'admin');
+define('ADMIN_PASSWORD_HASH', '');
 
 // Dominios desde los que se aceptan requests (comparación con Origin/Referer), separados por coma.
 define('ALLOWED_HOSTS', 'cadipel.pribridge.pro');

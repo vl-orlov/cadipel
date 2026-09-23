@@ -6,8 +6,6 @@ async function setLang(page, lang) {
   localStorage.setItem('lang', lang);
   document.querySelectorAll('[data-chat-link]').forEach(a => {
     a.href = 'https://cadipel.pribridge.pro/?lang=' + (lang === 'en' ? 'en' : 'es');
-    const label = a.querySelector('.cadipel_assistant_float_label');
-    if (label) label.textContent = lang === 'en' ? 'AI Assistant' : 'Asistente IA';
   });
 
   try {

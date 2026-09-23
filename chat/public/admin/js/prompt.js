@@ -10,7 +10,7 @@
         status.textContent = 'Guardando…';
         status.classList.remove('login_message_error');
 
-        fetch('includes/save_prompt.php', {
+        fetch('api/save.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ instructions: textarea.value })
@@ -18,7 +18,7 @@
         .then(function (response) { return response.json(); })
         .then(function (data) {
             if (data.ok === 1) {
-                status.textContent = 'Guardado.';
+                status.textContent = 'Guardado. El asistente ya usa este texto.';
             } else {
                 status.textContent = 'No se pudo guardar. Intentá de nuevo.';
                 status.classList.add('login_message_error');

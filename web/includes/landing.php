@@ -322,6 +322,7 @@ foreach ($business_units as $unit):
                             <h3 class="how_we_do_item_title" data-i18n="how_we_do_item3_title">Alianza estratégica con ASSISI SRL</h3>
                             <p class="how_we_do_item_text" data-i18n="how_we_do_item3_text">Ecosistema productivo con montaje THT y SMT y experiencia en múltiples industrias para escalar de prototipo a serie.</p>
                         </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -529,187 +530,42 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCycleScrollHint();
   }
   
-  // Вертикальный слайдер для секций "Lo que hacemos" и "Cómo lo hacemos"
+  // "Lo que hacemos" → "Cómo lo hacemos": el cambio sigue al scroll normal de la página
+  // (no se intercepta la rueda ni el touch). Pasa a la segunda lista cuando el borde superior
+  // del bloque, ya visible entero, sube por encima de la mitad del margen libre de la ventana.
   const whatWeDoContainer = document.querySelector('.what_we_do_container');
   const whatWeDoList = document.querySelector('.what_we_do_list');
   const howWeDoList = document.querySelector('.how_we_do_list');
   const scrollProgressBar = document.getElementById('scroll_progress');
-  
+
   if (whatWeDoContainer && whatWeDoList && howWeDoList && scrollProgressBar) {
-    let scrollProgress = 0;
-    let targetProgress = 0;
-    let isHovered = false;
-    let isAnimating = false;
-    let rafId = null;
-    
-    // Определяем мобильное устройство (более точная проверка)
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                     (window.matchMedia && window.matchMedia("(max-width: 768px)").matches);
-    
-    // Плавная анимация прогресса с использованием requestAnimationFrame
-    function animateProgress() {
-      if (Math.abs(scrollProgress - targetProgress) < 0.001) {
-        scrollProgress = targetProgress;
-        isAnimating = false;
-        updateSections();
-        return;
-      }
-      
-      // Плавное приближение к целевому значению (easing)
-      scrollProgress += (targetProgress - scrollProgress) * 0.15;
-      updateSections();
-      
-      if (isAnimating) {
-        rafId = requestAnimationFrame(animateProgress);
-      }
-    }
-    
-    whatWeDoContainer.addEventListener('mouseenter', () => {
-      isHovered = true;
-    });
-    
-    whatWeDoContainer.addEventListener('mouseleave', () => {
-      isHovered = false;
-      // Плавно возвращаем к начальному состоянию
-      targetProgress = 0;
-      if (!isAnimating) {
-        isAnimating = true;
-        rafId = requestAnimationFrame(animateProgress);
-      }
-    });
-    
-    // Оптимизированный обработчик wheel для десктопа
-    whatWeDoContainer.addEventListener('wheel', (e) => {
-      if (!isHovered) return;
-      
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Увеличиваем прогресс при скролле вниз, уменьшаем при скролле вверх
-      const step = Math.min(Math.abs(e.deltaY) / 500, 0.15); // Адаптивный шаг
-      
-      if (e.deltaY > 0) {
-        targetProgress = Math.min(1, targetProgress + step);
-      } else {
-        targetProgress = Math.max(0, targetProgress - step);
-      }
-      
-      // Запускаем анимацию если еще не запущена
-      if (!isAnimating) {
-        isAnimating = true;
-        rafId = requestAnimationFrame(animateProgress);
-      }
-    }, { passive: false });
-    
-    // Обработка touch-событий для мобильных устройств
-    if (isMobile) {
-      let touchStartY = 0;
-      let touchStartTime = 0;
-      let lastTouchY = 0;
-      let isTouching = false;
-      let touchVelocity = 0;
-      let initialScrollProgress = 0;
-      
-      whatWeDoContainer.addEventListener('touchstart', (e) => {
-        if (e.touches.length === 1) {
-          isTouching = true;
-          touchStartY = e.touches[0].clientY;
-          lastTouchY = touchStartY;
-          touchStartTime = Date.now();
-          touchVelocity = 0;
-          initialScrollProgress = scrollProgress;
-          // Останавливаем анимацию при начале touch
-          if (rafId) {
-            cancelAnimationFrame(rafId);
-            isAnimating = false;
-          }
-        }
-      }, { passive: false });
-      
-      whatWeDoContainer.addEventListener('touchmove', (e) => {
-        if (!isTouching || e.touches.length !== 1) return;
-        
-        e.preventDefault(); // Предотвращаем стандартный скролл
-        
-        const currentY = e.touches[0].clientY;
-        const deltaY = touchStartY - currentY; // Положительное = свайп вверх
-        const timeDelta = Date.now() - touchStartTime;
-        
-        // Вычисляем скорость
-        touchVelocity = deltaY / Math.max(timeDelta, 1);
-        
-        // Обновляем прогресс напрямую на основе движения
-        const containerHeight = whatWeDoContainer.offsetHeight;
-        const progressDelta = deltaY / containerHeight; // Нормализуем по высоте контейнера
-        
-        scrollProgress = Math.max(0, Math.min(1, initialScrollProgress + progressDelta));
-        updateSections();
-        
-        lastTouchY = currentY;
-      }, { passive: false });
-      
-      whatWeDoContainer.addEventListener('touchend', (e) => {
-        if (!isTouching) return;
-        
-        isTouching = false;
-        
-        // Устанавливаем целевой прогресс на основе текущего
-        targetProgress = scrollProgress;
-        
-        // Применяем инерцию на основе скорости
-        if (Math.abs(touchVelocity) > 0.5) {
-          const inertiaStep = Math.min(Math.abs(touchVelocity) * 0.15, 0.3);
-          if (touchVelocity > 0) {
-            targetProgress = Math.max(0, targetProgress - inertiaStep);
-          } else {
-            targetProgress = Math.min(1, targetProgress + inertiaStep);
-          }
-        }
-        
-        // Запускаем финальную анимацию
-        if (!isAnimating) {
-          isAnimating = true;
-          rafId = requestAnimationFrame(animateProgress);
-        }
-      }, { passive: false });
-    }
-    
-    // Оптимизированное обновление секций
-    function updateSections() {
-      // Запускаем анимацию если еще не запущена
-      if (!isAnimating && Math.abs(scrollProgress - targetProgress) > 0.001) {
-        isAnimating = true;
-        rafId = requestAnimationFrame(animateProgress);
-      }
-      
-      // Обновляем градиент линии прогресса
-      const firstHalfColor = scrollProgress <= 0.5 
-        ? (scrollProgress === 0 ? '#00b3ff' : '#ffffff') 
-        : '#ffffff';
-      const secondHalfColor = scrollProgress <= 0.5 
-        ? '#ffffff' 
-        : '#00b3ff';
-      
-      scrollProgressBar.style.background = `linear-gradient(to bottom, ${firstHalfColor} 0%, ${firstHalfColor} 50%, ${secondHalfColor} 50%, ${secondHalfColor} 100%)`;
-      
-      // Обновляем классы только при изменении состояния (оптимизация)
-      const shouldShowSecond = scrollProgress > 0.3;
-      const hasScrolled = whatWeDoList.classList.contains('scrolled');
-      const isVisible = howWeDoList.classList.contains('visible');
-      
-      if (shouldShowSecond && !hasScrolled) {
-        whatWeDoList.classList.add('scrolled');
-        howWeDoList.classList.add('visible');
-      } else if (!shouldShowSecond && hasScrolled) {
-        whatWeDoList.classList.remove('scrolled');
-        howWeDoList.classList.remove('visible');
-      }
-    }
-    
-    // Инициализация
+    let ticking = false;
+
+    const updateSections = () => {
+      ticking = false;
+      const rect = whatWeDoContainer.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const switchTop = Math.max((vh - rect.height) / 2, vh * 0.2);
+      const second = rect.top < switchTop;
+
+      whatWeDoList.classList.toggle('scrolled', second);
+      howWeDoList.classList.toggle('visible', second);
+
+      const firstHalf = second ? '#ffffff' : '#00b3ff';
+      const secondHalf = second ? '#00b3ff' : '#ffffff';
+      scrollProgressBar.style.background = `linear-gradient(to bottom, ${firstHalf} 0%, ${firstHalf} 50%, ${secondHalf} 50%, ${secondHalf} 100%)`;
+    };
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateSections);
+    };
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
     updateSections();
   }
-  
+
   // Анимация счетчика для статистики
   const statsSection = document.querySelector('.stats_section');
   const statsNumbers = document.querySelectorAll('.stats_number');
@@ -752,26 +608,70 @@ document.addEventListener('DOMContentLoaded', () => {
   const track = carousel && carousel.querySelector('.business_units_track');
   const wrap = document.querySelector('.business_units_carousel_wrap');
   if (carousel && track && wrap) {
-    const cards = () => [...track.children];
+    const originals = [...track.children];
+    const count = originals.length;
+    const markClone = (node) => {
+      node.classList.add('is-clone');
+      node.setAttribute('aria-hidden', 'true');
+      node.tabIndex = -1;
+      return node;
+    };
+    originals.forEach((card) => track.appendChild(markClone(card.cloneNode(true))));
+    [...originals].reverse().forEach((card) => {
+      track.insertBefore(markClone(card.cloneNode(true)), track.firstChild);
+    });
+
     const step = () => {
-      const card = cards()[0];
-      if (!card) return 320;
+      const card = track.children[count];
+      if (!card) return 350;
       const styles = getComputedStyle(track);
       const gap = parseFloat(styles.columnGap || styles.gap) || 0;
       return card.getBoundingClientRect().width + gap;
     };
-    const updateEnds = () => {
-      const max = carousel.scrollWidth - carousel.clientWidth;
-      wrap.classList.toggle('is-start', carousel.scrollLeft <= 2);
-      wrap.classList.toggle('is-end', max <= 2 || carousel.scrollLeft >= max - 2);
+    const setWidth = () => step() * count;
+    let jumping = false;
+    const jumpTo = (left) => {
+      jumping = true;
+      carousel.style.scrollSnapType = 'none';
+      carousel.scrollLeft = left;
+      requestAnimationFrame(() => {
+        carousel.style.scrollSnapType = '';
+        jumping = false;
+      });
+    };
+    const normalize = () => {
+      if (jumping) return;
+      const width = setWidth();
+      if (width <= 0) return;
+      const left = carousel.scrollLeft;
+      if (left < width - 2) jumpTo(left + width);
+      else if (left >= width * 2) jumpTo(left - width);
     };
     const scrollByCard = (dir) => {
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       carousel.scrollBy({ left: dir * step(), behavior: reduce ? 'auto' : 'smooth' });
     };
-    carousel.addEventListener('scroll', updateEnds, { passive: true });
-    window.addEventListener('resize', updateEnds);
-    updateEnds();
+    carousel.scrollLeft = setWidth();
+    carousel.classList.add('is-ready');
+    if ('onscrollend' in carousel) {
+      carousel.addEventListener('scrollend', normalize);
+    } else {
+      let scrollTimer = 0;
+      carousel.addEventListener('scroll', () => {
+        if (jumping) return;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(normalize, 80);
+      }, { passive: true });
+    }
+    // Al cambiar el ancho se conserva la tarjeta visible (no se vuelve a la primera).
+    let lastStep = step();
+    window.addEventListener('resize', () => {
+      const next = step();
+      if (Math.abs(next - lastStep) < 0.5) return;
+      const index = Math.round(carousel.scrollLeft / lastStep);
+      lastStep = next;
+      jumpTo(index * next);
+    });
     wrap.querySelector('.business_units_nav--prev').addEventListener('click', () => scrollByCard(-1));
     wrap.querySelector('.business_units_nav--next').addEventListener('click', () => scrollByCard(1));
     carousel.addEventListener('keydown', (e) => {
@@ -802,6 +702,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!dragging) return;
       dragging = false;
       carousel.classList.remove('is-dragging');
+      requestAnimationFrame(normalize);
     };
     carousel.addEventListener('pointerup', endDrag);
     carousel.addEventListener('pointercancel', endDrag);
