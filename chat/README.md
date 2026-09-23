@@ -41,8 +41,9 @@ ya resuelve a este VPS.
 ssh root@31.97.92.144
 mkdir -p /var/www/cadipel.pribridge.pro/{public,src,var}
 ```
-Correr `chat/deploy/nginx.conf` en el servidor (crea el vhost, activa el sitio y corre certbot —
-certbot reescribe el archivo para agregar HTTPS, no hace falta tocar nada más).
+Correr `chat/deploy/nginx.sh` en el servidor (crea el vhost, activa el sitio y corre certbot —
+certbot reescribe el archivo para agregar HTTPS, no hace falta tocar nada más). El vhost pasa a PHP
+solo `/index.php`, `/api/*.php` y `/admin/*.php` (+ `/admin/api/*.php`); cualquier otro `.php` da 404.
 
 **3. `config.php`** (una sola vez, a mano — no se sube por deploy):
 ```bash
@@ -83,6 +84,9 @@ ssh root@31.97.92.144 'chown -R cadipelftp:www-data /var/www/cadipel.pribridge.p
   find /var/www/cadipel.pribridge.pro/public /var/www/cadipel.pribridge.pro/src -type d -exec chmod 2775 {} \;
   find /var/www/cadipel.pribridge.pro/public /var/www/cadipel.pribridge.pro/src -type f -exec chmod 664 {} \;'
 ```
+**Por FTP** subir solo el contenido de `chat/public/` → `public/` y de `chat/src/` → `src/`. **Nunca** subir
+`config.php` (pisa las claves y pone `APP_ENV` en `dev`), `var/` (borra el prompt del admin) ni `README.md`/`config.example.php`.
+
 `--delete` en `public/`/`src/` es seguro porque `config.php` y `var/` viven un nivel arriba, fuera de
 esos dos directorios — nunca se tocan en un redeploy.
 
@@ -90,13 +94,11 @@ esos dos directorios — nunca se tocan en un redeploy.
 
 ## Landing (FTP a www.cadipel.com.ar, carpeta `web/`)
 Subir/reemplazar: `index.php`, `css/style.css`, `js/i18n.js`, `api/bootstrap.php`, `api/.htaccess`,
-`admin/index.php`, `admin/login.php`,
 `css/avatar.css`, `js/assistant-avatar.js`, `img/assistant_avatar/` (los mismos archivos que en el chat, sin el retrato viejo).
 En `api/config.php` **del servidor**: **borrar** las claves de IA (GEMINI_KEY, OPENAI_KEY, AZURE_*, GOOGLE_TTS_KEY)
-y `PROMPT_SYNC_TOKEN`: ya no se usan ahí. El admin del sitio (`/admin/`) ahora solo redirige al del chat.
+y `PROMPT_SYNC_TOKEN`: ya no se usan ahí. El landing ya no tiene panel: el admin vive solo en el chat.
 
-Borrar del servidor (obsoletos): `api/prompt_public.php`, `api/custom_prompt.txt`, `admin/includes/save_prompt.php`,
-`admin/includes/login_check.php`, `admin/includes/prompt.php`, `api/ai_stream.php`, `api/ai_transcribe.php`, `api/tts.php`, `api/cadipel_prompt.php`,
+Borrar del servidor (obsoletos): la carpeta `admin/` entera, `api/prompt_public.php`, `api/custom_prompt.txt`, `api/ai_stream.php`, `api/ai_transcribe.php`, `api/tts.php`, `api/cadipel_prompt.php`,
 `js/assistant*.js` (assistant, -avatar, -chat, -lipsync, -mic-feedback, -tts, -voice, -voice-hold), `css/assistant.css`,
 `lang/assistant/`, `img/assistant_avatar/`, e iconos `img/icons/{camia_send,camia_text,camia_voice,eliminar,mic_arrow_up,mic_close,mic_lock,microphone_icon,volume_mute_icon}.svg`.
 

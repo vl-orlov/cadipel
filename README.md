@@ -27,4 +27,4 @@ define('ADMIN_LOGIN', 'admin');
 define('ADMIN_PASSWORD_HASH', ''); // php -r "echo password_hash('tu_clave', PASSWORD_DEFAULT);"
 ```
 El texto se guarda en `chat/var/custom_prompt.txt` y el asistente lo usa en la respuesta siguiente.
-`www.cadipel.com.ar/admin` solo indica la dirección nueva.
+El landing ya no tiene `/admin/` (la carpeta `admin/` se borra del hosting de www.cadipel.com.ar).
