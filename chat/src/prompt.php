@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/site_actions.php';
+require_once __DIR__ . '/rich_blocks.php';
+
 /**
  * Base de conocimiento estática del asistente de Cadipel — construida a partir
  * del contenido real del sitio (web/includes/*.php). Sin BD.
@@ -83,13 +86,15 @@ function cadipel_custom_instructions(): string
     return is_string($text) ? trim($text) : '';
 }
 
-function build_cadipel_system_prompt(string $replyLang = 'es'): string
+function build_cadipel_system_prompt(string $replyLang = 'es', bool $siteActions = false, bool $rich = false): string
 {
     $replyLang = in_array($replyLang, ['es', 'en'], true) ? $replyLang : 'es';
     $langInstruction = $replyLang === 'en'
         ? 'Reply in English, regardless of the language of the knowledge base below. Write the suggestions in English too.'
         : 'Respondé siempre en español rioplatense (es el idioma por defecto del sitio). Las sugerencias también en español.';
 
+    $actions     = $siteActions ? "\n\n" . cadipel_site_actions_prompt() : '';
+    $actions    .= $rich ? "\n\n" . cadipel_rich_prompt() : '';
     $kb          = cadipel_knowledge_base();
     $contactUrl  = CADIPEL_CONTACT_URL;
     $custom      = cadipel_custom_instructions();
@@ -127,7 +132,7 @@ function build_cadipel_system_prompt(string $replyLang = 'es'): string
         una, escritas desde el punto de vista de la persona que pregunta), con este formato exacto:
         [[sugerencias: pregunta uno | pregunta dos | pregunta tres]]
 
-        {$langInstruction}
+        {$langInstruction}{$actions}
 
         <info_cadipel>
         {$kb}

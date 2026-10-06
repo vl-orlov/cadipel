@@ -35,4 +35,5 @@ $header_i18n_ns_esc = htmlspecialchars($header_i18n_ns, ENT_QUOTES, 'UTF-8');
             </div>
         </div>
     </div>
+    <?php include __DIR__ . '/assistant_island.php'; ?>
 </div>

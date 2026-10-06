@@ -22,4 +22,5 @@
             </div>
         </div>
     </div>
+    <?php include __DIR__ . '/assistant_island.php'; ?>
 </div>

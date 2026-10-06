@@ -45,5 +45,11 @@
   "aria_text_mode": "Text mode",
   "aria_stop_audio": "Stop audio",
   "aria_voice_orb": "Hold to talk to the assistant",
-  "listen": "Listen"
+  "listen": "Listen",
+  "share": "Share",
+  "related_links": "Related links",
+  "also_ask": "You can also ask",
+  "copied_chat": "Conversation copied",
+  "share_title": "Conversation with the Cadipel assistant",
+  "open_site": "Go to page"
 }

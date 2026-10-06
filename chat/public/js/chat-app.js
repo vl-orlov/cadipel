@@ -11,6 +11,7 @@
   const CA = window.CadipelAssistant;
   const Store = window.CadipelStore;
   const Md = window.CadipelMd;
+  const Rich = window.CadipelRich;
 
   const LANG_KEY = 'cadipel_chat_lang';
   const THEME_KEY = 'cadipel_chat_theme';
@@ -25,6 +26,7 @@
     sendBtn: $('send_btn'), langBtn: $('lang_btn'), langBtnSidebar: $('lang_btn_sidebar'),
     themeBtn: $('theme_btn'), themeBtnSidebar: $('theme_btn_sidebar'),
     toast: $('toast'), headAvatar: $('head_avatar'),
+    railLinks: $('rail_links'), railAsks: $('rail_asks'), railCopy: $('rail_copy'), railShare: $('rail_share'),
     // Dictado (hold-to-talk en el composer)
     holdStrip: $('hold_strip'), holdTrashAnchor: $('hold_trash_anchor'), holdTime: $('hold_time'),
     holdWave: $('hold_wave'), holdCancelHint: $('hold_cancel_hint'), replayStrip: $('replay_strip'),
@@ -137,18 +139,8 @@
 
   // ---------- Parseo de la respuesta (texto + sugerencias) ----------
   function splitReply(acc) {
-    let idx = acc.indexOf('[[');
-    const single = acc.search(/\[\s*(?:sugerencias?|suggestions?)\s*:/i);
-    if (single !== -1 && (idx === -1 || single < idx)) idx = single;
-    if (idx === -1) {
-      return { text: acc.endsWith('[') ? acc.slice(0, -1) : acc, suggestions: [] };
-    }
-    const text = acc.slice(0, idx).trimEnd();
-    const m = /\[{1,2}\s*(?:sugerencias?|suggestions?)\s*:\s*([^\]]*)\]{1,2}/i.exec(acc.slice(idx));
-    const suggestions = m
-      ? m[1].split('|').map((s) => s.trim()).filter(Boolean).slice(0, 3)
-      : [];
-    return { text, suggestions };
+    const r = Rich.parse(acc);
+    return { text: r.text, suggestions: r.suggestions, segments: r.segments, links: r.links };
   }
 
   /** Texto apto para leer en voz alta (sin sintaxis Markdown). */
@@ -192,7 +184,7 @@
     const res = await fetch('api/ai_stream.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages, lang: state.lang }),
+      body: JSON.stringify({ messages, lang: state.lang, rich: true }),
       signal,
     });
     if (!res.ok || !res.body) throw new HttpError(res.status);
@@ -263,8 +255,8 @@
     setSpeakingKey(key);
   }
 
-  function chipRow(list, onPick) {
-    const row = node('div', 'chips');
+  function chipRow(list, onPick, cls) {
+    const row = node('div', cls || 'chips');
     list.forEach((text) => {
       const b = node('button', 'chip');
       b.type = 'button';
@@ -293,17 +285,62 @@
     }
   }
 
+  const ICON_ARROW = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+
+  function fmtTime(ts) {
+    if (!ts) return '';
+    return new Date(ts).toLocaleTimeString(state.lang === 'en' ? 'en-US' : 'es-AR', { hour: '2-digit', minute: '2-digit', hour12: false });
+  }
+
+  function cardGrid(keys) {
+    const grid = node('div', 'rich_cards rich_cards--' + keys.length);
+    keys.forEach((k) => {
+      const c = Rich.CARDS[k];
+      const a = node('a', 'rich_card');
+      a.href = c.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      const img = node('img', 'rich_card_img');
+      img.src = 'img/cards/' + c.image + '.jpg';
+      img.alt = '';
+      img.loading = 'lazy';
+      a.appendChild(img);
+      const foot = node('span', 'rich_card_foot');
+      const txt = node('span', 'rich_card_text');
+      txt.appendChild(node('strong')).textContent = c[state.lang] || c.es;
+      if (c.sub) txt.appendChild(node('em')).textContent = c.sub[state.lang] || c.sub.es;
+      foot.appendChild(txt);
+      foot.appendChild(node('span', 'rich_card_go', ICON_ARROW));
+      a.appendChild(foot);
+      grid.appendChild(a);
+    });
+    return grid;
+  }
+
+  /** Cuerpo de una respuesta del asistente: texto Markdown + bloques (tarjetas, chips) en su orden. */
+  function renderBotBody(msg, host) {
+    host.textContent = '';
+    const segs = msg.segments && msg.segments.length ? msg.segments : [{ type: 'md', text: msg.content }];
+    segs.forEach((sg) => {
+      if (sg.type === 'md') host.appendChild(node('div', 'md', Md.render(sg.text)));
+      else if (sg.type === 'cards') host.appendChild(cardGrid(sg.keys));
+      else if (sg.type === 'chips') host.appendChild(chipRow(sg.items, (text) => void send(text), 'chips chips--tags'));
+    });
+  }
+
   function botRow(conv, i, isLast) {
     const msg = conv.messages[i];
     const row = node('div', 'msg msg--bot');
-    const bubble = node('div', 'bubble md');
+    row.appendChild(node('span', 'msg_avatar'));
+    const main = node('div', 'msg_main');
+    const bubble = node('div', 'bubble');
     if (msg.error && !msg.silent) bubble.classList.add('bubble--error');
     if (!msg.content && state.streaming && isLast) {
       bubble.innerHTML = '<span class="typing"><span></span><span></span><span></span></span>';
     } else {
-      bubble.innerHTML = Md.render(msg.content);
+      renderBotBody(msg, bubble);
     }
-    row.appendChild(bubble);
+    main.appendChild(bubble);
 
     const streamingThis = state.streaming && isLast;
     if (!streamingThis && msg.content && !msg.silent) {
@@ -334,12 +371,64 @@
         redo.addEventListener('click', () => void regenerate());
         actions.appendChild(redo);
       }
-      row.appendChild(actions);
+      if (msg.ts) actions.appendChild(node('span', 'msg_time')).textContent = fmtTime(msg.ts);
+      main.appendChild(actions);
     }
     if (isLast && !state.streaming && msg.suggestions && msg.suggestions.length) {
-      row.appendChild(chipRow(msg.suggestions, (text) => void send(text)));
+      main.appendChild(chipRow(msg.suggestions, (text) => void send(text), 'chips chips--suggest'));
     }
+    row.appendChild(main);
     return row;
+  }
+
+  // Panel lateral: enlaces al sitio y preguntas sugeridas según la última respuesta.
+  const RAIL_ICONS = {
+    doc: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>',
+    cube: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M3 7l9 5 9-5M12 12v10"/></svg>',
+    chart: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M6 21v-6M11 21v-9M16 21v-5"/><path d="M5 10l5-4 4 3 5-5M15 4h4v4"/></svg>',
+    building: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16M14 9h5a1 1 0 0 1 1 1v11M3 21h18M8 8h2M8 12h2M8 16h2"/></svg>',
+    chat: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+  };
+
+  function renderRail() {
+    const conv = Store.active();
+    const lastBot = conv ? [...conv.messages].reverse().find((m) => m.role === 'assistant' && m.content && !m.error) : null;
+    const linkKeys = lastBot && lastBot.links && lastBot.links.length ? lastBot.links : Rich.DEFAULT_LINKS;
+    els.railLinks.textContent = '';
+    linkKeys.forEach((k) => {
+      const l = Rich.LINKS[k];
+      if (!l) return;
+      const li = node('li');
+      const a = node('a', 'rail_item');
+      a.href = l.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.appendChild(node('span', 'rail_item_icon', RAIL_ICONS[l.icon] || RAIL_ICONS.cube));
+      a.appendChild(node('span', 'rail_item_label')).textContent = l[state.lang] || l.es;
+      a.appendChild(node('span', 'rail_item_go', ICON_ARROW));
+      li.appendChild(a);
+      els.railLinks.appendChild(li);
+    });
+
+    const asks = lastBot && lastBot.suggestions && lastBot.suggestions.length ? lastBot.suggestions : CHIP_KEYS.map(t);
+    els.railAsks.textContent = '';
+    asks.forEach((text) => {
+      const li = node('li');
+      const b = node('button', 'rail_item rail_item--text');
+      b.type = 'button';
+      b.appendChild(node('span', 'rail_item_label')).textContent = text;
+      b.appendChild(node('span', 'rail_item_go', ICON_ARROW));
+      b.addEventListener('click', () => void send(text));
+      li.appendChild(b);
+      els.railAsks.appendChild(li);
+    });
+  }
+
+  function conversationText() {
+    const conv = Store.active();
+    if (!conv || !conv.messages.length) return '';
+    const who = { user: t('export_you'), assistant: t('export_assistant') };
+    return conv.messages.filter((m) => !m.error).map((m) => `${who[m.role]}:\n${m.content}`).join('\n\n');
   }
 
   function renderMessages() {
@@ -354,6 +443,7 @@
         if (m.role === 'user') {
           const row = node('div', 'msg msg--user');
           row.appendChild(node('div', 'bubble')).textContent = m.content;
+          if (m.ts) row.appendChild(node('span', 'msg_time')).textContent = fmtTime(m.ts);
           els.messages.appendChild(row);
         } else {
           els.messages.appendChild(botRow(conv, i, i === conv.messages.length - 1));
@@ -386,6 +476,7 @@
   function renderAll() {
     renderConvList();
     renderMessages();
+    renderRail();
     scrollToBottom();
   }
 
@@ -395,9 +486,8 @@
     const bubble = els.messages.querySelector('.msg--bot:last-child .bubble');
     if (!bubble) return renderMessages();
     const stick = nearBottom();
-    bubble.innerHTML = last.content
-      ? Md.render(last.content)
-      : '<span class="typing"><span></span><span></span><span></span></span>';
+    if (last.content) renderBotBody(last, bubble);
+    else bubble.innerHTML = '<span class="typing"><span></span><span></span><span></span></span>';
     if (stick) scrollToBottom();
     renderVoiceCaption();
   }
@@ -485,7 +575,7 @@
     if (!text || state.streaming || state.transcribing) return;
     let conv = Store.active();
     if (!conv) conv = Store.create();
-    conv.messages.push({ role: 'user', content: text });
+    conv.messages.push({ role: 'user', content: text, ts: Date.now() });
     Store.touch(conv);
     els.input.value = '';
     autoGrow();
@@ -543,9 +633,11 @@
 
     try {
       const final = await streamReply(history, (acc) => {
-        const { text, suggestions } = splitReply(acc);
+        const { text, suggestions, segments, links } = splitReply(acc);
         reply.content = text;
         reply.suggestions = suggestions;
+        reply.segments = segments;
+        reply.links = links;
         patchLastBubble(conv);
         if (stillSpeaking()) {
           const clean = speechClean(text);
@@ -558,9 +650,12 @@
         }
       }, abort.signal);
 
-      const { text, suggestions } = splitReply(final);
-      reply.content = text.trim();
-      reply.suggestions = suggestions;
+      const done = splitReply(final);
+      reply.content = done.text.trim();
+      reply.suggestions = done.suggestions;
+      reply.segments = done.segments;
+      reply.links = done.links;
+      reply.ts = Date.now();
       if (stillSpeaking() && reply.content) {
         const clean = speechClean(reply.content);
         const [tail] = extractSentences(clean.slice(spokenPos), 1, true);
@@ -813,6 +908,19 @@
     els.backTextBtn.addEventListener('click', () => setVoiceMode(false));
     els.newChat.addEventListener('click', () => { newChat(); closeSidebar(); });
     els.exportBtn.addEventListener('click', exportChat);
+    els.railCopy.addEventListener('click', () => {
+      const txt = conversationText();
+      if (!txt) return toast(t('export_empty'));
+      void copyText(txt);
+    });
+    els.railShare.addEventListener('click', async () => {
+      const txt = conversationText();
+      if (!txt) return toast(t('export_empty'));
+      if (navigator.share) {
+        try { await navigator.share({ title: t('share_title'), text: txt }); return; } catch (e) { if (e && e.name === 'AbortError') return; }
+      }
+      void copyText(txt);
+    });
     els.langBtn.addEventListener('click', () => setLang(state.lang === 'es' ? 'en' : 'es'));
     els.langBtnSidebar.addEventListener('click', () => setLang(state.lang === 'es' ? 'en' : 'es'));
     els.themeBtn.addEventListener('click', toggleTheme);
@@ -835,6 +943,40 @@
     setVoiceMode(true);
     renderAll();
     renderMicHold(micHold.getSnapshot());
+
+    // Traspaso desde el panel del landing. Un enlace externo puede fabricar #h= y ?q=, así que nunca se
+    // reproduce un historial ajeno ni se envía nada solo: de #h= solo se toma lo último que escribió
+    // la persona (los turnos "assistant" se descartan) y, igual que ?q=, queda en el campo para que lo envíe ella.
+    let prefill = '';
+    const handoff = /^#h=(.+)$/.exec(location.hash);
+    if (handoff) {
+      history.replaceState(null, '', location.pathname + location.search);
+      let msgs = [];
+      try { msgs = JSON.parse(decodeURIComponent(handoff[1])); } catch { /* hash corrupto: se ignora */ }
+      const lastUser = (Array.isArray(msgs) ? msgs : []).reverse()
+        .find((m) => m && m.role === 'user' && typeof m.content === 'string' && m.content.trim());
+      if (lastUser) prefill = lastUser.content.trim().slice(0, 500);
+    }
+
+    const params = new URLSearchParams(location.search);
+    const q = (params.get('q') || '').trim().slice(0, 500);
+    const textMode = params.get('mode') === 'text';
+    if (q || textMode) {
+      params.delete('q');
+      params.delete('mode');
+      const qs = params.toString();
+      history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+    }
+    if (q) prefill = q;
+    if (prefill || textMode) {
+      setVoiceMode(false);
+      if (prefill) {
+        newChat();
+        els.input.value = prefill;
+        els.input.dispatchEvent(new Event('input'));
+      }
+      els.input.focus();
+    }
   }
 
   init().finally(() => document.body.classList.add('is-ready'));

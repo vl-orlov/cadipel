@@ -45,5 +45,11 @@
   "aria_text_mode": "Modo texto",
   "aria_stop_audio": "Detener audio",
   "aria_voice_orb": "Mantené para hablar con el asistente",
-  "listen": "Escuchar"
+  "listen": "Escuchar",
+  "share": "Compartir",
+  "related_links": "Enlaces relacionados",
+  "also_ask": "También puedes preguntar",
+  "copied_chat": "Conversación copiada",
+  "share_title": "Conversación con el asistente de Cadipel",
+  "open_site": "Ir a la página"
 }

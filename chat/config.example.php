@@ -22,7 +22,8 @@ define('ADMIN_LOGIN', 'admin');
 define('ADMIN_PASSWORD_HASH', '');
 
 // Dominios desde los que se aceptan requests (comparación con Origin/Referer), separados por coma.
-define('ALLOWED_HOSTS', 'cadipel.pribridge.pro');
+// El landing (www.cadipel.com.ar) llama a api/ai_stream.php desde su panel, por eso también va acá.
+define('ALLOWED_HOSTS', 'cadipel.pribridge.pro,www.cadipel.com.ar,cadipel.com.ar');
 
 // 'dev' además acepta localhost / 127.0.0.1 (para desarrollo local).
 define('APP_ENV', 'prod');

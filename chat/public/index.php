@@ -80,72 +80,99 @@ foreach (['lang/chat/es.json', 'lang/chat/en.json'] as $rel) {
         <div class="sidebar_backdrop" id="sidebar_backdrop"></div>
 
         <main class="chat">
-            <div class="chat_head">
-                <div class="chat_head_avatar" id="head_avatar"></div>
-                <div class="chat_head_text">
-                    <strong data-i18n="assistant_name">Asistente Cadipel</strong>
-                    <span class="chat_head_status"><i></i><span data-i18n="online">En línea</span></span>
-                </div>
-            </div>
-            <div class="messages_scroll" id="messages_scroll">
-                <div class="messages" id="messages" role="log" aria-live="polite"></div>
-            </div>
-
-            <div class="composer_wrap">
-                <div class="composer" id="composer">
-                    <div class="text_field" id="text_field">
-                        <textarea id="input" rows="1" maxlength="2000" data-i18n-placeholder="placeholder" placeholder="Escribí tu pregunta..."></textarea>
-
-                        <!-- Franja de grabación (dictado): reemplaza el textarea mientras se mantiene presionado el mic -->
-                        <div class="hold_strip" id="hold_strip" hidden>
-                            <div class="hold_trash_anchor" id="hold_trash_anchor" aria-hidden="true">
-                                <img src="img/icons/eliminar.svg" class="hold_trash" alt="">
-                            </div>
-                            <div class="hold_meter" id="hold_meter">
-                                <span class="hold_dot" aria-hidden="true"></span>
-                                <span class="hold_time" id="hold_time">0:00,00</span>
-                                <div class="hold_wave" id="hold_wave" aria-hidden="true"></div>
-                            </div>
-                            <span class="hold_cancel_hint" id="hold_cancel_hint" aria-hidden="true" data-i18n="release_to_cancel">Soltá para cancelar</span>
-                        </div>
-
-                        <!-- Animación de "tacho" al cancelar por swipe -->
-                        <div class="replay_strip" id="replay_strip" aria-hidden="true" hidden></div>
-                    </div>
-
-                    <div class="composer_actions">
-                        <div class="mic_slot" id="mic_slot">
-                            <div class="mic_lock_zone" id="mic_lock_zone" aria-hidden="true">
-                                <img src="img/icons/mic_lock.svg" class="mic_lock_icon" alt="">
-                                <img src="img/icons/mic_arrow_up.svg" class="mic_lock_arrow" alt="">
-                                <span class="mic_lock_label" data-i18n="lock_mic">Bloquear</span>
-                            </div>
-                            <button class="mic_btn" id="mic_btn" type="button" style="touch-action:none" data-i18n-aria-label="aria_mic" aria-label="Dictar por voz">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
-                            </button>
-                        </div>
-
-                        <!-- Modo "bloqueado" (manos libres): cancelar arriba, enviar al costado -->
-                        <div class="locked_actions" id="locked_actions" hidden>
-                            <button class="locked_cancel" id="locked_cancel_btn" type="button" data-i18n-aria-label="aria_rec_cancel" aria-label="Cancelar grabación">
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
-                            </button>
-                            <button class="locked_send" id="locked_send_btn" type="button" data-i18n-aria-label="aria_rec_send" aria-label="Terminar y enviar">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                            </button>
-                        </div>
-
-                        <button class="voice_toggle_btn" id="voice_toggle_btn" type="button" data-i18n-aria-label="aria_voice_mode" aria-label="Modo voz">
-                            <span class="orb_wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-                        </button>
-
-                        <button class="send_btn" id="send_btn" type="button" data-i18n-aria-label="aria_send" aria-label="Enviar">
-                            <svg class="ic_send" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-                            <svg class="ic_stop" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
-                        </button>
+            <div class="chat_body">
+                <div class="chat_col">
+                <div class="chat_head">
+                    <div class="chat_head_avatar" id="head_avatar"></div>
+                    <div class="chat_head_text">
+                        <strong data-i18n="assistant_name">Asistente Cadipel</strong>
+                        <span class="chat_head_status"><i></i><span data-i18n="online">En línea</span></span>
                     </div>
                 </div>
-                <p class="disclaimer" data-i18n="disclaimer">El asistente puede equivocarse. Para consultas puntuales, hablá con nuestro equipo.</p>
+                <div class="messages_scroll" id="messages_scroll">
+                    <div class="messages" id="messages" role="log" aria-live="polite"></div>
+                </div>
+
+                <div class="composer_wrap">
+                    <div class="composer" id="composer">
+                        <div class="text_field" id="text_field">
+                            <textarea id="input" rows="1" maxlength="2000" data-i18n-placeholder="placeholder" placeholder="Escribí tu pregunta..."></textarea>
+
+                            <!-- Franja de grabación (dictado): reemplaza el textarea mientras se mantiene presionado el mic -->
+                            <div class="hold_strip" id="hold_strip" hidden>
+                                <div class="hold_trash_anchor" id="hold_trash_anchor" aria-hidden="true">
+                                    <img src="img/icons/eliminar.svg" class="hold_trash" alt="">
+                                </div>
+                                <div class="hold_meter" id="hold_meter">
+                                    <span class="hold_dot" aria-hidden="true"></span>
+                                    <span class="hold_time" id="hold_time">0:00,00</span>
+                                    <div class="hold_wave" id="hold_wave" aria-hidden="true"></div>
+                                </div>
+                                <span class="hold_cancel_hint" id="hold_cancel_hint" aria-hidden="true" data-i18n="release_to_cancel">Soltá para cancelar</span>
+                            </div>
+
+                            <!-- Animación de "tacho" al cancelar por swipe -->
+                            <div class="replay_strip" id="replay_strip" aria-hidden="true" hidden></div>
+                        </div>
+
+                        <div class="composer_actions">
+                            <div class="mic_slot" id="mic_slot">
+                                <div class="mic_lock_zone" id="mic_lock_zone" aria-hidden="true">
+                                    <img src="img/icons/mic_lock.svg" class="mic_lock_icon" alt="">
+                                    <img src="img/icons/mic_arrow_up.svg" class="mic_lock_arrow" alt="">
+                                    <span class="mic_lock_label" data-i18n="lock_mic">Bloquear</span>
+                                </div>
+                                <button class="mic_btn" id="mic_btn" type="button" style="touch-action:none" data-i18n-aria-label="aria_mic" aria-label="Dictar por voz">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                                </button>
+                            </div>
+
+                            <!-- Modo "bloqueado" (manos libres): cancelar arriba, enviar al costado -->
+                            <div class="locked_actions" id="locked_actions" hidden>
+                                <button class="locked_cancel" id="locked_cancel_btn" type="button" data-i18n-aria-label="aria_rec_cancel" aria-label="Cancelar grabación">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>
+                                </button>
+                                <button class="locked_send" id="locked_send_btn" type="button" data-i18n-aria-label="aria_rec_send" aria-label="Terminar y enviar">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                                </button>
+                            </div>
+
+                            <button class="voice_toggle_btn" id="voice_toggle_btn" type="button" data-i18n-aria-label="aria_voice_mode" aria-label="Modo voz">
+                                <span class="orb_wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+                            </button>
+
+                            <button class="send_btn" id="send_btn" type="button" data-i18n-aria-label="aria_send" aria-label="Enviar">
+                                <svg class="ic_send" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                                <svg class="ic_stop" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="disclaimer" data-i18n="disclaimer">El asistente puede equivocarse. Para consultas puntuales, hablá con nuestro equipo.</p>
+                </div>
+                </div>
+            <aside class="rail" id="rail" aria-label="Panel lateral">
+                <div class="rail_actions">
+                    <button class="rail_btn" id="rail_copy" type="button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg>
+                        <span data-i18n="copy">Copiar</span>
+                    </button>
+                    <button class="rail_btn" id="rail_share" type="button">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-4M8.6 13.5l6.8 4"/></svg>
+                        <span data-i18n="share">Compartir</span>
+                    </button>
+                    <a class="rail_btn rail_btn--icon" href="https://www.cadipel.com.ar/" target="_blank" rel="noopener" data-i18n-aria-label="back_to_site" aria-label="Volver al sitio">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+                    </a>
+                </div>
+                <section class="rail_card">
+                    <h3 data-i18n="related_links">Enlaces relacionados</h3>
+                    <ul class="rail_list" id="rail_links"></ul>
+                </section>
+                <section class="rail_card">
+                    <h3 data-i18n="also_ask">También puedes preguntar</h3>
+                    <ul class="rail_list rail_list--text" id="rail_asks"></ul>
+                </section>
+            </aside>
             </div>
 
             <!-- Modo voz: pantalla dedicada con avatar + orbe "mantené para hablar" -->
@@ -183,6 +210,7 @@ foreach (['lang/chat/es.json', 'lang/chat/en.json'] as $rel) {
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="<?= asset('js/md.js') ?>"></script>
+<script src="<?= asset('js/rich.js') ?>"></script>
 <script src="<?= asset('js/assistant-lipsync.js') ?>"></script>
 <script src="<?= asset('js/assistant-avatar.js') ?>"></script>
 <script src="<?= asset('js/assistant-tts.js') ?>"></script>

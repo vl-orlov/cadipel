@@ -11,7 +11,7 @@ chat/
     index.php  css/  js/  img/  lang/chat/{es,en}.json
     api/ai_stream.php  api/tts.php  api/ai_transcribe.php
     admin/           ← panel: login y edición del prompt adicional
-  src/               ← fuera del docroot: bootstrap, prompt, admin (sesión y guardado)
+  src/               ← fuera del docroot: bootstrap, prompt, site_actions (destinos del asistente), admin (sesión y guardado)
   var/               ← fuera del docroot: custom_prompt.txt, intentos de login, rate limit (escribible)
   config.php         ← claves (NO versionado; copiar de config.example.php)
   deploy/nginx.conf  ← script listo para correr en el VPS (crea el vhost + certbot)
@@ -52,8 +52,15 @@ nano /var/www/cadipel.pribridge.pro/config.php
 Copiar el contenido de `chat/config.example.php` y completar `GEMINI_KEY`, `OPENAI_KEY`,
 `AZURE_TTS_KEY`/`AZURE_TTS_REGION`, `GOOGLE_TTS_KEY` (las que uses), `ADMIN_LOGIN` y
 `ADMIN_PASSWORD_HASH` (`php -r "echo password_hash('tu_clave', PASSWORD_DEFAULT);"`).
-Dejar `APP_ENV` en `'prod'` y `ALLOWED_HOSTS` en `cadipel.pribridge.pro`.
+Dejar `APP_ENV` en `'prod'` y `ALLOWED_HOSTS` en `cadipel.pribridge.pro,www.cadipel.com.ar,cadipel.com.ar`
+(el panel del landing llama a `api/ai_stream.php` desde www.cadipel.com.ar; sin esos hosts responde 403 y no hay CORS).
 El panel queda en `https://cadipel.pribridge.pro/admin/`.
+
+> **Servidores ya desplegados:** el default nuevo de `ALLOWED_HOSTS` solo rige si `config.php` no define la
+> constante. Si el `config.php` existente ya la define, hay que agregarle `www.cadipel.com.ar,cadipel.com.ar` a mano
+> (los redeploys no lo tocan). Verificar:
+> `curl -si -X POST https://cadipel.pribridge.pro/api/ai_stream.php -H 'Origin: https://www.cadipel.com.ar' -H 'Content-Type: application/json' -d '{}'`
+> debe responder 400 (no 403) y traer `Access-Control-Allow-Origin`.
 
 **4. FTP** (`cadipelftp`, igual que `assisipribridgeftp` — ver `cfg_assisi-pribridge.txt` §5; vsftpd
 ya está instalado y configurado en este VPS, no hace falta instalarlo):
@@ -93,6 +100,12 @@ esos dos directorios — nunca se tocan en un redeploy.
 **6. Probar:** abrir https://cadipel.pribridge.pro y escribir un mensaje.
 
 ## Landing (FTP a www.cadipel.com.ar, carpeta `web/`)
+**Panel del asistente (isla en la cabecera):** subir además `includes/assistant_island.php`, `includes/site_header.php`,
+`includes/landing_header.php`, `includes/landing.php`, `js/assistant-island.js`, `js/island-md.js` (copia de `chat/public/js/md.js`),
+`lang/nav/{es,en}.json` y `css/style.css`. Responde en streaming contra `https://cadipel.pribridge.pro/api/ai_stream.php`
+con `site_actions: true`: el chat puede llevar al visitante a una página/sección (`navigate_site`). Los destinos viven en
+`chat/src/site_actions.php` (servidor) y en `SITE_TARGETS` de `js/assistant-island.js` (landing): mantener ambas listas iguales.
+Para probar en local: chat en `:8899` (con `APP_ENV` `dev`) y landing en `:8888`.
 Subir/reemplazar: `index.php`, `css/style.css`, `js/i18n.js`, `api/bootstrap.php`, `api/.htaccess`,
 `css/avatar.css`, `js/assistant-avatar.js`, `img/assistant_avatar/` (los mismos archivos que en el chat, sin el retrato viejo).
 En `api/config.php` **del servidor**: **borrar** las claves de IA (GEMINI_KEY, OPENAI_KEY, AZURE_*, GOOGLE_TTS_KEY)

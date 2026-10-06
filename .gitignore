@@ -5,3 +5,6 @@ web/api/login_attempts.json
 chat/config.php
 chat/var/*
 !chat/var/.gitkeep
+
+chat/config.prod.php
+web/api/config.prod.php

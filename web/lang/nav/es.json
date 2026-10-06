@@ -6,7 +6,17 @@
   "nav_contact": "Contacto",
   "carousel_prev": "Anterior",
   "carousel_next": "Siguiente",
-  "assistant_bubble_eyebrow": "Cadipel",
-  "assistant_bubble_text": "¿Tenés dudas sobre nuestras soluciones? Preguntame 👋",
-  "assistant_bubble_close": "Cerrar"
+  "assistant_bar_placeholder": "¿En qué puedo ayudarte?",
+  "assistant_bar_open": "Abrir el asistente IA de Cadipel",
+  "assistant_bar_hello": "¡Hola!",
+  "assistant_bar_hello_text": "Soy tu asistente de CADIPEL.",
+  "assistant_bar_mic": "Hablar con el asistente",
+  "assistant_panel_title": "Asistente CADIPEL",
+  "assistant_open_full": "Abrir chat completo",
+  "assistant_new": "Nueva consulta",
+  "assistant_close": "Cerrar",
+  "assistant_chip_1": "¿Qué soluciones ofrecen?",
+  "assistant_chip_2": "Quiero automatizar mi línea de producción",
+  "assistant_chip_3": "Muéstrame los casos de éxito",
+  "assistant_chip_4": "Quiero hablar con el equipo"
 }

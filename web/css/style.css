@@ -10,6 +10,9 @@ a, button {
     touch-action: manipulation;
 }
 
+html, body {
+    overflow-x: clip;
+}
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     color: #062858;
@@ -32,32 +35,90 @@ h1, h2, h4, h5, h6,
     font-family: 'Space Grotesk', sans-serif;
 }
 
-/* HEADER */
+/* HEADER — isla flotante sobre el hero */
 .header {
-    background: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    --header-inset: 16px;
+    --header-gap: 14px;
+    --header-bar: 64px;
+    --header-pill: 1180px;
+    --glass-top: rgba(128, 156, 230, 0.44);
+    --glass-bottom: rgba(76, 106, 206, 0.52);
+    --glass-deep: rgba(58, 84, 178, 0.58);
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: var(--header-gap) var(--header-inset) 0;
+    margin-bottom: calc(-1 * (var(--header-gap) + var(--header-bar)) - 1px);
+    background: transparent;
+    box-shadow: none;
+    pointer-events: none;
 }
 .header_container {
-    max-width: 1400px;
+    position: relative;
+    z-index: 3;
+    max-width: min(var(--header-pill), calc(100vw - var(--header-inset) * 2));
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 10px 0 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 70px;
-    position: relative;
+    height: var(--header-bar);
+    border-radius: 999px;
+    pointer-events: auto;
 }
-@media (max-width: 1024px) {
-.header_container {
-    padding: 0 24px;
-}}
+/* Antes de que el JS dibuje la forma única (o sin JS): fondo plano equivalente. */
+.header_container:not(.has-shell) {
+    background: linear-gradient(180deg, rgba(118, 146, 226, 0.94), rgba(66, 96, 196, 0.96));
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 10px 28px rgba(20, 50, 170, 0.35);
+}
+/* Forma única cabecera + isla (js/assistant-island.js): vidrio, trazo y resplandor siguen el mismo contorno. */
+.cadipel_shell {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+.cadipel_shell > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.cadipel_shell_glow {
+    overflow: visible;
+    filter: blur(18px);
+    opacity: 0.5;
+    transform: translateY(10px);
+}
+.cadipel_shell_glow path {
+    fill: rgba(70, 105, 215, 0.7);
+}
+.cadipel_shell_glass {
+    background:
+        radial-gradient(ellipse 360px 80px at 24% 0, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0)),
+        radial-gradient(ellipse 260px 90px at 50% 100%, rgba(160, 190, 245, 0.3), rgba(160, 190, 245, 0)),
+        linear-gradient(180deg, var(--glass-top) 0, var(--glass-bottom) var(--shell-pill, 64px), var(--glass-deep) 100%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%) brightness(0.72);
+    backdrop-filter: blur(20px) saturate(130%) brightness(0.72);
+}
+.cadipel_shell_edge {
+    overflow: visible;
+}
 @media (max-width: 768px) {
+.header {
+    --header-inset: 12px;
+    --header-gap: 10px;
+    --header-bar: 56px;
+}
 .header_container {
-    padding: 0 16px;
-    height: 60px;
+    padding: 0 8px 0 16px;
 }}
 .logo {
     display: flex;
@@ -69,30 +130,32 @@ h1, h2, h4, h5, h6,
     height: auto;
     max-height: 30px;
     width: auto;
+    filter: brightness(0) invert(1);
 }
 .header_right {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 8px;
+    flex-shrink: 0;
 }
 .header_back_button {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: transparent;
-    border: 1px solid #062858;
-    color: #062858;
-    padding: 8px 16px;
-    border-radius: 6px;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 999px;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-family: inherit;
+    transition: background 0.2s ease, color 0.2s ease;
+    font-family: 'Space Grotesk', sans-serif;
 }
 .header_back_button:hover {
-    background: #062858;
-    color: #ffffff;
+    background: #fff;
+    color: #1a3fb8;
 }
 .header_back_button svg {
     width: 18px;
@@ -120,15 +183,15 @@ h1, h2, h4, h5, h6,
     padding: 0;
     z-index: 1001;
 }
-@media (max-width: 850px) {
+@media (max-width: 1100px) {
 .burger_menu {
     display: flex;
-    margin-right: 15px;
+    margin-right: 4px;
 }}
 .burger_menu span {
     width: 100%;
     height: 3px;
-    background: #062858;
+    background: #fff;
     border-radius: 3px;
     transition: all 0.3s ease;
     transform-origin: center;
@@ -143,111 +206,143 @@ h1, h2, h4, h5, h6,
     transform: rotate(-45deg) translate(8px, -8px);
 }
 .nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
-    gap: 20px;
+    gap: 2px;
     align-items: center;
-    margin-right: 45px;
+    margin: 0;
 }
-@media (max-width: 850px) {
+@media (max-width: 1100px) {
 .nav {
-    position: fixed;
-    top: -10px;
+    position: absolute;
+    top: calc(100% + 10px);
     left: 0;
-    width: 100%;
-    background: #ffffff;
+    right: 0;
+    width: auto;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    gap: 0;
-    margin-right: 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-    max-height: calc(100vh - 60px);
+    align-items: stretch;
+    gap: 2px;
+    padding: 8px;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(48, 88, 220, 0.94), rgba(30, 64, 180, 0.96));
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.18),
+        0 16px 40px rgba(20, 50, 170, 0.4);
+    transform: translateY(-6px);
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+    z-index: 5;
+    max-height: calc(100dvh - 140px);
     overflow-y: auto;
 }
 .nav.nav_open {
-    transform: translateY(0);
-    top: 60px;
-    z-index: 1002;
+    display: flex;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }}
 .nav a {
-    color: #062858;
+    color: #fff;
     text-decoration: none;
-    font-size: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
     font-weight: 500;
-    transition: color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+    white-space: nowrap;
 }
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
     .nav a {
         font-size: 14px;
+        padding: 8px 10px;
     }
 }
-@media (max-width: 850px) {
+@media (max-width: 1100px) {
 .nav a {
-    width: 100%;
-    padding: 15px 0;
+    width: auto;
+    padding: 12px 14px;
     font-size: 15px;
-    text-align: center;
-    border-bottom: 1px solid #f0f0f0;
-}
-.nav a:last-child {
-    border-bottom: none;
+    text-align: left;
+    border-radius: 14px;
 }
 }
 .nav a:hover {
-    color: #0066cc;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.16);
 }
 .nav a.nav_link_active {
-    color: #062858;
-    text-decoration: underline;
-    text-decoration-color: #062858;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 6px;
-}
-@media (max-width: 850px) {
-    .nav a.nav_link_active {
-        text-underline-offset: 4px;
-    }
+    color: #fff;
+    background: rgba(255, 255, 255, 0.24);
+    text-decoration: none;
 }
 .home_lang {
   display: flex;
   align-items: center;
   gap: 6px;
+  height: 36px;
+  padding: 0 12px 0 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 13px;
-  color: #000;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
   cursor: pointer;
   position: relative;
+  user-select: none;
+}
+.home_lang:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
 .home_lang img {
+  filter: brightness(0) invert(1);
   width: 16px;
-  height: auto;
+  height: 16px;
+  max-width: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
 }
 .home_lang_menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
-  margin-top: 6px;
-  background: white;
+  margin-top: 0;
+  background: rgba(255, 255, 255, 0.98);
   color: #31414E;
-  border-radius: 6px;
-  padding: 4px 0;
+  border-radius: 16px;
+  padding: 6px;
   list-style: none;
-  font-size: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 99;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  box-shadow: 0 12px 32px rgba(8, 20, 70, 0.16);
+  z-index: 6;
   cursor: pointer;
-  min-width: 120px;
+  min-width: 132px;
 }
 .home_lang_menu li {
-  padding: 6px 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
   cursor: pointer;
   white-space: nowrap;
   text-shadow: none;
 }
 .home_lang_menu li:hover {
-  background: #f0f0f0;
+  background: rgba(30, 107, 255, 0.08);
+  color: #1e6bff;
 }
 .home_lang_menu.hidden {
   display: none;
@@ -258,7 +353,10 @@ h1, h2, h4, h5, h6,
 .hero {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 70px);
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: 96px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -388,8 +486,9 @@ h1, h2, h4, h5, h6,
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    min-height: calc(100dvh - 70px);
+    min-height: 100dvh;
     height: auto;
+    padding-top: 156px;
 }
 .hero_background {
     position: relative;
@@ -453,6 +552,9 @@ h1, h2, h4, h5, h6,
     font-size: clamp(34px, 9.6vw, 44px);
     margin-bottom: 16px;
     line-height: 1.14;
+}
+.hero_title_line {
+    white-space: normal;
 }
 .hero_subtitle {
     font-size: 15.5px;
@@ -2247,7 +2349,10 @@ font-size: 22px;
 .hero_solucion {
     position: relative;
     width: 100%;
-    min-height: calc(100vh - 70px);
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: 88px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3566,120 +3671,660 @@ font-size: 22px;
     display: none;
 }}
 /* END CTA SECTION */
-/* ---------- Botón flotante del asistente IA (abre el chat en cadipel.pribridge.pro) ---------- */
-.cadipel_assistant_float {
-    position: fixed;
-    right: 20px;
-    bottom: 24px;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;
-    -webkit-tap-highlight-color: transparent;
-}
-.cadipel_assistant_float_btn {
-    display: block;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-}
-.cadipel_assistant_bubble {
-    position: relative;
-    max-width: 220px;
-    background: #fff;
-    border: 1px solid #dce6f5;
-    border-radius: 14px;
-    padding: 12px 34px 12px 14px;
-    box-shadow: 0 8px 24px rgba(6, 40, 88, 0.14);
-    opacity: 0;
-    transform: translateY(8px) scale(0.96);
+/* ---------- Asistente IA: "isla" pegada a la cabecera (abre el chat en cadipel.pribridge.pro) ---------- */
+/* Ventana que recorta el isla por debajo de la cabecera: al "anclarse" se esconde detrás de ella. */
+.cadipel_island_clip {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    height: 100vh;
+    overflow: hidden;
     pointer-events: none;
-    transition: opacity 0.25s ease, transform 0.25s ease;
 }
-.cadipel_assistant_bubble::after {
+.cadipel_island {
+    --island-flare: 56px;
+    --island-radius: 44px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 2;
+    padding: 0 var(--island-flare);
+    pointer-events: auto;
+    -webkit-tap-highlight-color: transparent;
+}
+.cadipel_island.is-animated {
+    transition: transform 0.55s cubic-bezier(0.3, 0.9, 0.3, 1);
+}
+/* Con scroll: el isla se esconde entero bajo la cabecera y queda solo la ruedita fina (.cadipel_island_handle). */
+.cadipel_island.is-docked:not(.is-open) {
+    transform: translate(-50%, calc(-100% - 8px));
+    pointer-events: none;
+}
+.cadipel_island_handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 100px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: none;
+    transform: translateX(-50%);
+    cursor: pointer;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+.cadipel_island_handle:focus-visible {
+    outline: none;
+}
+.cadipel_island_handle_svg {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -28px;
+    overflow: visible;
+    transform-origin: 50% 0;
+    transition: transform 0.3s cubic-bezier(0.3, 0.9, 0.3, 1);
+    filter: drop-shadow(0 2px 5px rgba(50, 100, 255, 0.55));
+}
+.cadipel_island_handle:hover .cadipel_island_handle_svg,
+.cadipel_island_handle:focus-visible .cadipel_island_handle_svg {
+    transform: scale(1.14, 1.3);
+}
+.cadipel_island_handle_glow {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    width: 44px;
+    height: 7px;
+    margin-left: -22px;
+    border-radius: 50%;
+    background: rgba(70, 120, 255, 0.85);
+    filter: blur(6px);
+    animation: cadipelHandleGlow 2.8s ease-in-out infinite;
+}
+.cadipel_island_handle_sweep {
+    animation: cadipelHandleSweep 3.4s ease-in-out infinite;
+}
+.cadipel_island_handle_dash {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: cadipelHandleDash 2.8s ease-in-out infinite;
+}
+@keyframes cadipelHandleGlow {
+    0% { transform: scale(1.4, 1.7); opacity: 1; }
+    55%, 100% { transform: scale(0.85); opacity: 0.4; }
+}
+@keyframes cadipelHandleSweep {
+    0%, 35% { transform: translateX(0); }
+    80%, 100% { transform: translateX(176px); }
+}
+@keyframes cadipelHandleDash {
+    0% { opacity: 1; transform: scaleX(1.15); }
+    55%, 100% { opacity: 0.55; transform: scaleX(0.8); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .cadipel_island_handle_glow,
+    .cadipel_island_handle_sweep,
+    .cadipel_island_handle_dash { animation: none; }
+}
+/* Onda de luz que corre a lo largo del borde de la cabecera desde la ruedita (solo con el isla anclado). */
+.cadipel_island_line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: auto;
+    /* Solo el tramo recto del borde inferior (sin las esquinas redondeadas de la cápsula), con extremos difuminados. */
+    width: calc(min(var(--header-pill, 1180px), 100% - var(--header-inset, 16px) * 2) - var(--header-bar, 64px));
+    height: 3px;
+    border-radius: 999px;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    transform: translateX(-50%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.cadipel_island_line::before {
     content: '';
     position: absolute;
-    right: 22px;
-    bottom: -8px;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid #fff;
-    filter: drop-shadow(0 1px 0 #dce6f5);
+    inset: 0;
+    background: rgba(70, 120, 255, 0.22);
 }
-.cadipel_assistant_bubble.is-visible {
-    opacity: 1;
-    transform: none;
-    pointer-events: auto;
-    cursor: pointer;
-}
-.cadipel_assistant_bubble_eyebrow {
-    margin: 0 0 2px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: #1558db;
-}
-.cadipel_assistant_bubble_text {
-    margin: 0;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    line-height: 1.45;
-    color: #062858;
-}
-.cadipel_assistant_bubble_close {
+.cadipel_island_line i {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 24px;
-    height: 24px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 12px;
-    color: #6b7280;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background:
+        linear-gradient(90deg, rgba(70, 120, 255, 0) 0%, rgba(70, 120, 255, 0.95) 50%, rgba(70, 120, 255, 0) 100%) top / 100% 3px no-repeat,
+        radial-gradient(ellipse 50% 100% at 50% 0, rgba(70, 120, 255, 0.5), rgba(70, 120, 255, 0) 100%);
+    transform: scaleX(0.04);
+    opacity: 0;
+    animation: cadipelHeaderWave 2.8s cubic-bezier(0.2, 0.6, 0.3, 1) infinite;
+}
+.cadipel_island_line i:nth-child(2) {
+    animation-delay: 0.45s;
+}
+@keyframes cadipelHeaderWave {
+    0% { transform: scaleX(0.04); opacity: 1; }
+    100% { transform: scaleX(1); opacity: 0; }
+}
+.cadipel_island.is-docked:not(.is-open) ~ .cadipel_island_line {
+    opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+    .cadipel_island_line i { animation: none; opacity: 0; }
+}
+.cadipel_island.is-docked:not(.is-open) ~ .cadipel_island_handle {
+    opacity: 1;
+    pointer-events: auto;
+}
+.cadipel_island_body {
+    position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0;
-    border-radius: 4px;
-    line-height: 1;
+    padding: 12px 18px 16px;
 }
-.cadipel_assistant_bubble_close:hover {
-    color: #062858;
-    background: #e4f0ff;
-}
-.cadipel_assistant_float_avatar {
+.cadipel_island_avatar_btn {
     position: relative;
+    flex: 0 0 auto;
+    display: block;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    box-shadow: 0 0 0 2px rgba(190, 210, 255, 0.7), 0 5px 14px rgba(70, 100, 200, 0.55);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.cadipel_island_avatar_btn:hover {
+    transform: scale(1.06);
+}
+.cadipel_island_avatar_btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+.cadipel_island_avatar,
+.cadipel_island_avatar .cadipel_avatar {
+    display: block;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+}
+.cadipel_island_avatar {
+    background: linear-gradient(160deg, #e4edff 0%, #9db8f5 100%);
+}
+.cadipel_island_status {
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #1e6bff;
+    border: 2px solid #fff;
+    box-shadow: 0 0 8px rgba(30, 107, 255, 0.9);
+}
+.cadipel_island_form,
+.cadipel_island_actions {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    width: 0;
+    margin-left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: width 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), margin-left 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.25s ease, visibility 0s linear 0.45s;
+}
+.cadipel_island_form {
+    gap: 12px;
+    height: 52px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(236, 242, 255, 0.62));
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 1.5px 0 rgba(255, 255, 255, 0.95), inset 0 0 0 1px rgba(255, 255, 255, 0.55), 0 6px 18px rgba(8, 20, 90, 0.28);
+    color: #2748c8;
+}
+.cadipel_island_form:focus-within {
+    box-shadow: inset 0 0 0 2px #1e6bff, 0 6px 18px rgba(8, 20, 70, 0.3);
+}
+.cadipel_island_search_icon {
+    flex: 0 0 auto;
+    margin-left: 20px;
+}
+.cadipel_island_form input {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 100%;
+    padding-right: 20px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    color: #062858;
+}
+.cadipel_island_form input::placeholder {
+    color: #6b7fa8;
+}
+.cadipel_island_actions {
+    gap: 8px;
+}
+.cadipel_island_action {
+    flex: 0 0 auto;
     display: grid;
     place-items: center;
-    width: 64px;
-    height: 64px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
-    background: #fff;
-    box-shadow: 0 10px 28px rgba(6, 40, 88, 0.14);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.1));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
-.cadipel_assistant_float_avatar::before {
+.cadipel_island_action:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+.cadipel_island.is-open .cadipel_island_form,
+.cadipel_island.is-open .cadipel_island_actions {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+.cadipel_island.is-open .cadipel_island_form {
+    width: min(420px, 38vw);
+    margin-left: 16px;
+}
+.cadipel_island.is-open .cadipel_island_actions {
+    width: 44px;
+    margin-left: 14px;
+}
+.cadipel_island.is-open .cadipel_island_avatar_btn {
+    box-shadow: 0 0 0 2px rgba(215, 228, 255, 0.95), 0 6px 16px rgba(80, 115, 220, 0.6);
+}
+.cadipel_island_bubble {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px 12px 18px;
+    border: 1px solid rgba(180, 205, 255, 0.45);
+    border-radius: 18px;
+    background: rgba(18, 40, 110, 0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    text-align: left;
+    white-space: nowrap;
+    cursor: pointer;
+    opacity: 0;
+    transform: translate(-50%, -8px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.cadipel_island_bubble::before {
     content: '';
     position: absolute;
-    inset: -3px;
+    top: -7px;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: rgba(18, 40, 110, 0.95);
+    border-left: 1px solid rgba(180, 205, 255, 0.45);
+    border-top: 1px solid rgba(180, 205, 255, 0.45);
+    transform: translateX(-50%) rotate(45deg);
+}
+.cadipel_island_bubble_text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 13px;
+    line-height: 1.35;
+}
+.cadipel_island_bubble_text strong {
+    font-size: 17px;
+    font-weight: 600;
+}
+.cadipel_island_bubble.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    pointer-events: auto;
+}
+@media (max-width: 768px) {
+    .cadipel_island { --island-flare: 18px; --island-radius: 30px; }
+    .cadipel_island_body { padding: 8px 10px 12px; }
+    .cadipel_island_avatar_btn,
+    .cadipel_island_avatar,
+    .cadipel_island_avatar .cadipel_avatar { width: 46px !important; height: 46px !important; }
+    .cadipel_island_form { height: 42px; }
+    .cadipel_island_form input { font-size: 14px; }
+    .cadipel_island_search_icon { margin-left: 14px; }
+    /* Todo el isla abierto cabe en el tramo recto de la cápsula (ancho - márgenes - esquinas de 28px), sin "orejas". */
+    .cadipel_island.is-open .cadipel_island_form {
+        width: calc(100vw - 2 * var(--header-inset, 12px) - var(--header-bar, 56px) - 2 * var(--island-flare) - 20px - 46px - 8px);
+        margin-left: 8px;
+    }
+    .cadipel_island_actions,
+    .cadipel_island.is-open .cadipel_island_actions { display: none; }
+}
+
+/* ---------- Panel de conversación del asistente (debajo del isla) ---------- */
+html {
+    scroll-padding-top: 112px;
+}
+.cadipel_island_panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    width: 0;
+    min-width: 100%;
+    transition: grid-template-rows 0.45s cubic-bezier(0.3, 0.9, 0.3, 1);
+}
+.cadipel_island.is-open .cadipel_island_panel {
+    grid-template-rows: 1fr;
+}
+/* El recorte (overflow) de la animación de altura dejaba la sombra de la tarjeta cortada en seco:
+   se amplía con padding y se compensa con margen negativo para que la sombra entre completa. */
+.cadipel_panel_clip {
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 30px;
+    margin: 0 -24px;
+    transition: padding-bottom 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), margin-bottom 0.45s cubic-bezier(0.3, 0.9, 0.3, 1);
+}
+.cadipel_island.is-open .cadipel_panel_clip {
+    padding-bottom: 44px;
+    margin-bottom: -44px;
+}
+.cadipel_panel_card {
+    margin: 14px 0 6px;
+    padding: 14px 16px 16px;
+    border-radius: 26px;
+    background:
+        radial-gradient(ellipse 60% 40% at 20% 0%, rgba(150, 185, 255, 0.28), rgba(150, 185, 255, 0) 70%),
+        rgba(12, 28, 82, 0.92);
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
+    backdrop-filter: blur(20px) saturate(170%);
+    box-shadow: inset 0 0 0 1px rgba(190, 210, 255, 0.35), inset 0 1.5px 0 rgba(255, 255, 255, 0.45), 0 14px 30px rgba(10, 25, 90, 0.35);
+    color: #eaf0ff;
+    font-family: 'Space Grotesk', sans-serif;
+}
+.cadipel_panel_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+.cadipel_panel_title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #b9cdff;
+}
+.cadipel_panel_head_actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.cadipel_panel_link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font: inherit;
+    font-size: 12.5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.cadipel_panel_icon {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
-    border: 1.5px solid rgba(30, 107, 255, 0.5);
-    animation: cadipelFloatRingPulse 3.6s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.cadipel_panel_link:hover,
+.cadipel_panel_icon:hover {
+    background: rgba(255, 255, 255, 0.26);
+}
+.cadipel_panel_messages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: min(340px, 46vh);
+    overflow-y: auto;
+    padding-right: 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+}
+.cadipel_panel_messages:empty {
+    display: none;
+}
+.cadipel_msg {
+    max-width: 88%;
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+.cadipel_msg p {
+    margin: 0 0 6px;
+}
+.cadipel_msg p:last-child,
+.cadipel_msg ul:last-child,
+.cadipel_msg ol:last-child {
+    margin-bottom: 0;
+}
+.cadipel_msg ul,
+.cadipel_msg ol {
+    margin: 0 0 6px;
+    padding-left: 20px;
+}
+.cadipel_msg a {
+    color: #9fc0ff;
+    text-decoration: underline;
+}
+.cadipel_msg code {
+    padding: 1px 5px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.92em;
+}
+.cadipel_msg_user {
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+    background: linear-gradient(135deg, #3d7bff, #2a55d6);
+    color: #fff;
+}
+.cadipel_msg_bot {
+    align-self: flex-start;
+    border-bottom-left-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+.cadipel_msg_error {
+    background: rgba(255, 110, 110, 0.16);
+    box-shadow: inset 0 0 0 1px rgba(255, 140, 140, 0.4);
+}
+.cadipel_typing {
+    display: inline-flex;
+    gap: 4px;
+    padding: 5px 0;
+}
+.cadipel_typing i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b9cdff;
+    animation: cadipelTyping 1.1s ease-in-out infinite;
+}
+.cadipel_typing i:nth-child(2) { animation-delay: 0.15s; }
+.cadipel_typing i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cadipelTyping {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30% { transform: translateY(-4px); opacity: 1; }
+}
+.cadipel_msg_action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    height: 34px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1a3fb8;
+    font: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(5, 15, 60, 0.35);
+}
+.cadipel_panel_chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+.cadipel_panel_chips:empty {
+    display: none;
+}
+.cadipel_panel_messages:empty + .cadipel_panel_chips {
+    margin-top: 0;
+}
+.cadipel_chip {
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    color: #fff;
+    font: inherit;
+    font-size: 13.5px;
+    line-height: 1.25;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.cadipel_chip:hover {
+    background: rgba(255, 255, 255, 0.24);
+    transform: translateY(-1px);
+}
+@media (max-width: 768px) {
+    .cadipel_panel_card { padding: 12px; border-radius: 22px; }
+    .cadipel_msg { max-width: 94%; font-size: 14px; }
+    .cadipel_chip { font-size: 13px; padding: 7px 12px; }
+    .cadipel_panel_title { font-size: 11.5px; white-space: nowrap; }
+    .cadipel_panel_link span { display: none; }
+    .cadipel_panel_link { padding: 0 9px; }
+}
+
+/* Con el menú móvil (burger) abierto el isla se esconde por completo: el menú ocupa su lugar. */
+.header:has(.nav.nav_open) .cadipel_island {
+    transform: translate(-50%, calc(-100% - 8px)) !important;
+    pointer-events: none !important;
+}
+.header:has(.nav.nav_open) .cadipel_island_handle,
+.header:has(.nav.nav_open) .cadipel_island_line,
+.header:has(.nav.nav_open) .cadipel_island_bubble {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ---------- Isla plegado: la gota con avatar + iconos de búsqueda y micrófono a los lados ---------- */
+.cadipel_island_mini {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 0 0 1px rgba(255, 255, 255, 0.26);
+    color: #fff;
+    cursor: pointer;
+    overflow: hidden;
+    transition: width 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), margin 0.45s cubic-bezier(0.3, 0.9, 0.3, 1), opacity 0.25s ease, background 0.2s ease, transform 0.2s ease;
+}
+.cadipel_island_mini:hover {
+    background: rgba(255, 255, 255, 0.34);
+    transform: translateY(-1px);
+}
+.cadipel_island_mini_search {
+    order: -1;
+    margin-right: 14px;
+}
+.cadipel_island_mini_mic {
+    order: 9;
+    margin-left: 14px;
+}
+.cadipel_island.is-open .cadipel_island_mini {
+    width: 0;
+    margin-left: 0;
+    margin-right: 0;
+    opacity: 0;
     pointer-events: none;
 }
-.cadipel_assistant_float_avatar .cadipel_avatar {
-    width: 64px;
-    height: 64px;
+@media (max-width: 768px) {
+    .cadipel_island_mini { width: 36px; height: 36px; }
+    .cadipel_island_mini_search { margin-right: 10px; }
+    .cadipel_island_mini_mic { margin-left: 10px; }
 }
-.cadipel_assistant_float:hover .cadipel_assistant_float_avatar {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 32px rgba(6, 40, 88, 0.2);
+
+/* ---------- Móvil: isla abierto y panel de conversación a todo el ancho de la cápsula ---------- */
+@media (max-width: 768px) {
+    .cadipel_panel_clip { margin: 0 calc(-1 * var(--island-flare)); padding: 0 6px; }
+    .cadipel_island.is-open .cadipel_panel_clip { padding-bottom: 36px; margin-bottom: -36px; }
+    .cadipel_panel_card { margin-top: 10px; }
+    .cadipel_island.is-open .cadipel_island_form {
+        width: calc(100vw - 2 * var(--header-inset, 12px) - 2 * var(--island-flare) - 20px - 46px - 8px - 36px);
+    }
+    .cadipel_island_form { gap: 8px; }
+    .cadipel_island_search_icon { margin-left: 12px; width: 18px; height: 18px; }
+    .cadipel_island_form input { font-size: 13.5px; padding-right: 12px; text-overflow: ellipsis; }
+    .cadipel_panel_chips { gap: 6px; }
+    .cadipel_chip { padding: 7px 12px; }
 }
-@keyframes cadipelFloatRingPulse {
-    0%, 100% { transform: scale(1); opacity: 0.9; }
-    50% { transform: scale(1.08); opacity: 0.35; }
-}
-@media (max-width: 640px) {
-    .cadipel_assistant_float { right: 14px; bottom: 18px; }
+
+/* Móvil: los chips ocupan todo el ancho (mismos bordes izquierdo y derecho); la altura sigue al texto. */
+@media (max-width: 768px) {
+    .cadipel_panel_chips { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
+    .cadipel_chip { width: 100%; text-align: left; border-radius: 18px; }
 }

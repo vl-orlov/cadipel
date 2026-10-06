@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../src/bootstrap.php';
 require_once __DIR__ . '/../../src/prompt.php';
 
+handle_cors();
 require_post();
 require_allowed_origin();
 rate_limit('chat', 20, 200);
@@ -10,12 +11,16 @@ rate_limit('chat', 20, 200);
 $body     = read_json_body(100000);
 $messages = sanitize_messages($body['messages'] ?? []);
 $lang     = trim((string) ($body['lang'] ?? 'es'));
+// Solo el panel del landing activa las acciones de navegación (el chat completo no las usa).
+$siteActions = !empty($body['site_actions']);
+// Solo el chat completo pide bloques enriquecidos (tarjetas, chips, enlaces); el panel del landing no los dibuja.
+$rich = !$siteActions && !empty($body['rich']);
 
 if (empty($messages) || end($messages)['role'] !== 'user') {
     json_error(400, 'Missing messages');
 }
 
-$systemPrompt = build_cadipel_system_prompt($lang);
+$systemPrompt = build_cadipel_system_prompt($lang, $siteActions, $rich);
 
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
@@ -26,7 +31,7 @@ while (ob_get_level() > 0) {
 }
 
 /** @param list<array{role?: string, content?: string}> $messages */
-function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
+function cadipel_emit_gemini_stream(array $messages, string $systemPrompt, bool $siteActions, string $lang): bool
 {
     $contents = [];
     foreach ($messages as $msg) {
@@ -38,6 +43,9 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
         'contents'         => $contents,
         'generationConfig' => ['thinkingConfig' => ['thinkingBudget' => 0]],
     ];
+    if ($siteActions) {
+        $payload['tools'] = [cadipel_site_tool_declaration()];
+    }
     if ($systemPrompt !== '') {
         $payload['systemInstruction'] = ['parts' => [['text' => $systemPrompt]]];
     }
@@ -45,6 +53,9 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
     $url        = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse';
     $lineBuffer = '';
     $streamed   = false;
+    $actionSent = false;
+    $targets    = cadipel_site_targets();
+    $labelLang  = $lang === 'en' ? 'en' : 'es';
 
     $ch = curl_init($url);
     curl_setopt_array($ch, [
@@ -52,7 +63,7 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
         CURLOPT_POSTFIELDS    => json_encode($payload),
         CURLOPT_HTTPHEADER    => ['Content-Type: application/json', 'x-goog-api-key: ' . GEMINI_KEY],
         CURLOPT_TIMEOUT       => 60,
-        CURLOPT_WRITEFUNCTION => function ($ch, $data) use (&$lineBuffer, &$streamed) {
+        CURLOPT_WRITEFUNCTION => function ($ch, $data) use (&$lineBuffer, &$streamed, &$actionSent, $siteActions, $targets, $labelLang) {
             $lineBuffer .= $data;
             $lines      = explode("\n", $lineBuffer);
             $lineBuffer = array_pop($lines) ?? '';
@@ -76,6 +87,19 @@ function cadipel_emit_gemini_stream(array $messages, string $systemPrompt): bool
                             continue;
                         }
                         $text .= (string) ($part['text'] ?? '');
+
+                        $call   = $part['functionCall'] ?? null;
+                        $target = is_array($call) && ($call['name'] ?? '') === 'navigate_site'
+                            ? (string) ($call['args']['target'] ?? '') : '';
+                        if ($siteActions && !$actionSent && isset($targets[$target])) {
+                            $actionSent = true;
+                            $streamed   = true;
+                            echo 'data: ' . json_encode(
+                                ['action' => ['type' => 'navigate', 'target' => $target, 'label' => $targets[$target][$labelLang]]],
+                                JSON_UNESCAPED_UNICODE
+                            ) . "\n\n";
+                            flush();
+                        }
                     }
                 }
                 if ($text !== '') {
@@ -142,7 +166,7 @@ function cadipel_fetch_openai_reply(array $messages, string $systemPrompt): stri
 
 $streamed = false;
 if (GEMINI_KEY !== '') {
-    $streamed = cadipel_emit_gemini_stream($messages, $systemPrompt);
+    $streamed = cadipel_emit_gemini_stream($messages, $systemPrompt, $siteActions, $lang);
 }
 
 if (!$streamed) {

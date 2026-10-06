@@ -7,7 +7,7 @@ require_once is_file($configFile) ? $configFile : __DIR__ . '/../config.example.
 
 foreach ([
     'GEMINI_KEY' => '', 'OPENAI_KEY' => '', 'AZURE_TTS_KEY' => '', 'AZURE_TTS_REGION' => '',
-    'GOOGLE_TTS_KEY' => '', 'ALLOWED_HOSTS' => 'cadipel.pribridge.pro', 'APP_ENV' => 'prod',
+    'GOOGLE_TTS_KEY' => '', 'ALLOWED_HOSTS' => 'cadipel.pribridge.pro,www.cadipel.com.ar,cadipel.com.ar', 'APP_ENV' => 'prod',
     'TRUST_PROXY' => false,
 ] as $name => $default) {
     if (!defined($name)) {
@@ -54,21 +54,47 @@ function require_post(): void
     }
 }
 
+/** @return list<string> */
+function allowed_hosts(): array
+{
+    $allowed = array_filter(array_map('trim', explode(',', strtolower(ALLOWED_HOSTS))));
+    if (APP_ENV === 'dev') {
+        array_push($allowed, 'localhost', '127.0.0.1');
+    }
+    return array_values($allowed);
+}
+
 /**
  * Filtro barato de uso accidental/ajeno: exige que Origin (o Referer) sea uno de los dominios
  * permitidos. No frena a un script que falsifique el header — para eso está el rate limit.
  */
 function require_allowed_origin(): void
 {
-    $allowed = array_filter(array_map('trim', explode(',', strtolower(ALLOWED_HOSTS))));
-    if (APP_ENV === 'dev') {
-        array_push($allowed, 'localhost', '127.0.0.1');
-    }
-
     $source = $_SERVER['HTTP_ORIGIN'] ?? $_SERVER['HTTP_REFERER'] ?? '';
     $host   = strtolower((string) parse_url($source, PHP_URL_HOST));
-    if ($host === '' || !in_array($host, $allowed, true)) {
+    if ($host === '' || !in_array($host, allowed_hosts(), true)) {
         json_error(403, 'Forbidden origin');
+    }
+}
+
+/**
+ * CORS para el panel del landing (www.cadipel.com.ar llama a este endpoint desde otro dominio).
+ * Solo se refleja el Origin si su host está en ALLOWED_HOSTS; el preflight OPTIONS se responde acá.
+ */
+function handle_cors(): void
+{
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    $host   = strtolower((string) parse_url($origin, PHP_URL_HOST));
+    if ($origin !== '' && in_array($host, allowed_hosts(), true)) {
+        header('Access-Control-Allow-Origin: ' . $origin);
+        header('Vary: Origin');
+        header('Access-Control-Allow-Methods: POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Content-Type');
+        header('Access-Control-Max-Age: 600');
+    }
+    if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
+        http_response_code(204);
+        exit;
     }
 }
 
